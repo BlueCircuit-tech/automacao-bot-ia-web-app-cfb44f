@@ -116,7 +116,511 @@
 
         <!-- CONTEÚDO PRINCIPAL COM ROLAGEM -->
         <main id="main-content" style="height:calc(100vh - 56px - 72px);overflow-y:auto;overflow-x:hidden;scroll-behavior:smooth;-webkit-overflow-scrolling:touch">
-            <!-- TELAS -->
+            <section data-tela="painel-principal" class="hidden">
+      <div class="px-5 pt-4 pb-2">
+        <!-- Cabeçalho da tela -->
+        <div class="flex items-center justify-between mb-5">
+          <div class="flex items-center gap-3">
+            <button id="btn-avatar-menu" class="relative w-11 h-11 rounded-full bg-marca-100 flex items-center justify-center text-marca-700 font-bold font-display text-lg active:scale-95 transition-transform">
+              ML
+              <span class="absolute -bottom-0.5 -right-0.5 w-4 h-4 bg-green-500 border-2 border-white rounded-full"></span>
+            </button>
+            <div>
+              <p class="text-xs text-gray-400 font-body">Bom dia,</p>
+              <h1 class="text-lg font-display font-bold text-gray-900 leading-tight">Marina Lima</h1>
+            </div>
+          </div>
+          <div class="flex items-center gap-2">
+            <button onclick="painel_principal_abrirBusca()" class="w-10 h-10 rounded-xl bg-gray-50 flex items-center justify-center active:scale-95 transition-all hover:bg-gray-100">
+              <svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+            </button>
+            <button onclick="mostrarTela('notificacoes')" class="w-10 h-10 rounded-xl bg-gray-50 flex items-center justify-center active:scale-95 transition-all hover:bg-gray-100 relative">
+              <svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/></svg>
+              <span class="absolute -top-1 -right-1 w-5 h-5 bg-red-500 rounded-full text-white text-[10px] font-bold flex items-center justify-center">3</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Busca rápida -->
+        <div id="busca-rapida" class="mb-5">
+          <div class="relative">
+            <svg class="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+            <input type="text" id="input-busca-painel" placeholder="Buscar automações, conversas..." oninput="painel_principal_filtrar(this.value)" class="w-full pl-10 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-2xl text-sm font-body text-gray-700 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-marca-500/30 focus:border-marca-400 transition-all">
+          </div>
+        </div>
+
+        <!-- Cards de indicadores -->
+        <div class="grid grid-cols-2 gap-3 mb-5">
+          <div class="card bg-white p-4 cursor-pointer active:scale-95 transition-transform" onclick="mostrarTela('automacoes')">
+            <div class="flex items-center justify-between mb-2">
+              <div class="w-9 h-9 rounded-xl bg-blue-50 flex items-center justify-center">
+                <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+              </div>
+              <span class="badge bg-green-50 text-green-700 text-[10px] font-semibold px-2 py-0.5 rounded-full">+2 hoje</span>
+            </div>
+            <p class="text-2xl font-display font-bold text-gray-900">3</p>
+            <p class="text-xs text-gray-500 font-body mt-0.5">Automações ativas</p>
+          </div>
+
+          <div class="card bg-white p-4 cursor-pointer active:scale-95 transition-transform" onclick="mostrarTela('historico')">
+            <div class="flex items-center justify-between mb-2">
+              <div class="w-9 h-9 rounded-xl bg-purple-50 flex items-center justify-center">
+                <svg class="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+              </div>
+              <span class="badge bg-blue-50 text-blue-700 text-[10px] font-semibold px-2 py-0.5 rounded-full">+5</span>
+            </div>
+            <p class="text-2xl font-display font-bold text-gray-900">12</p>
+            <p class="text-xs text-gray-500 font-body mt-0.5">Conversas hoje</p>
+          </div>
+
+          <div class="card bg-white p-4 cursor-pointer active:scale-95 transition-transform" onclick="painel_principal_abrirDetalheSucesso()">
+            <div class="flex items-center justify-between mb-2">
+              <div class="w-9 h-9 rounded-xl bg-green-50 flex items-center justify-center">
+                <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              </div>
+              <span class="badge bg-green-50 text-green-700 text-[10px] font-semibold px-2 py-0.5 rounded-full">↑ 4%</span>
+            </div>
+            <p class="text-2xl font-display font-bold text-gray-900">87%</p>
+            <p class="text-xs text-gray-500 font-body mt-0.5">Taxa de sucesso</p>
+          </div>
+
+          <div class="card bg-gradient-to-br from-red-50 to-orange-50 p-4 cursor-pointer active:scale-95 transition-transform" onclick="painel_principal_abrirAlertas()">
+            <div class="flex items-center justify-between mb-2">
+              <div class="w-9 h-9 rounded-xl bg-red-100 flex items-center justify-center">
+                <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"/></svg>
+              </div>
+              <span class="badge bg-red-100 text-red-700 text-[10px] font-semibold px-2 py-0.5 rounded-full animate-pulse">2</span>
+            </div>
+            <p class="text-2xl font-display font-bold text-red-700">2</p>
+            <p class="text-xs text-red-500/80 font-body mt-0.5">Alertas de atenção</p>
+          </div>
+        </div>
+
+        <!-- Gráfico de desempenho semanal -->
+        <div class="card bg-white p-4 mb-5">
+          <div class="flex items-center justify-between mb-3">
+            <div>
+              <h3 class="text-sm font-display font-bold text-gray-900">Desempenho semanal</h3>
+              <p class="text-[11px] text-gray-400 font-body">Interações do bot por dia</p>
+            </div>
+            <span class="badge bg-green-50 text-green-700 text-[10px] font-semibold px-2 py-0.5 rounded-full">↑ 12%</span>
+          </div>
+          <svg viewBox="0 0 340 100" class="w-full h-20">
+            <defs>
+              <linearGradient id="chartGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#8B5CF6" stop-opacity="0.2"/>
+                <stop offset="100%" stop-color="#8B5CF6" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+            <polyline fill="url(#chartGrad)" stroke="none" points="0,85 57,72 114,78 171,55 228,60 285,35 340,18 340,100 0,100"/>
+            <polyline fill="none" stroke="#8B5CF6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" points="0,85 57,72 114,78 171,55 228,60 285,35 340,18"/>
+            <circle cx="57" cy="72" r="3.5" fill="#fff" stroke="#8B5CF6" stroke-width="2"/>
+            <circle cx="114" cy="78" r="3.5" fill="#fff" stroke="#8B5CF6" stroke-width="2"/>
+            <circle cx="171" cy="55" r="3.5" fill="#fff" stroke="#8B5CF6" stroke-width="2"/>
+            <circle cx="228" cy="60" r="3.5" fill="#fff" stroke="#8B5CF6" stroke-width="2"/>
+            <circle cx="285" cy="35" r="3.5" fill="#fff" stroke="#8B5CF6" stroke-width="2"/>
+            <circle cx="340" cy="18" r="4" fill="#8B5CF6" stroke="#fff" stroke-width="2"/>
+            <text x="5" y="14" font-size="9" fill="#9CA3AF" font-family="sans-serif">Seg</text>
+            <text x="62" y="14" font-size="9" fill="#9CA3AF" font-family="sans-serif">Ter</text>
+            <text x="119" y="14" font-size="9" fill="#9CA3AF" font-family="sans-serif">Qua</text>
+            <text x="176" y="14" font-size="9" fill="#9CA3AF" font-family="sans-serif">Qui</text>
+            <text x="233" y="14" font-size="9" fill="#9CA3AF" font-family="sans-serif">Sex</text>
+            <text x="289" y="14" font-size="9" fill="#9CA3AF" font-family="sans-serif">Sáb</text>
+            <text x="334" y="14" font-size="9" fill="#9CA3AF" font-family="sans-serif">Dom</text>
+          </svg>
+        </div>
+
+        <!-- Botão Nova Automação -->
+        <button onclick="mostrarTela('automacoes')" class="w-full py-4 rounded-2xl bg-gradient-to-r from-marca-600 to-marca-500 text-white font-display font-bold text-base shadow-lg shadow-marca-500/25 active:scale-[0.98] transition-all hover:shadow-xl hover:shadow-marca-500/30 mb-5 flex items-center justify-center gap-2">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"/></svg>
+          Nova Automação
+        </button>
+
+        <!-- Lista de últimas conversas -->
+        <div class="flex items-center justify-between mb-3">
+          <h2 class="text-base font-display font-bold text-gray-900">Últimas conversas</h2>
+          <button onclick="mostrarTela('historico')" class="text-xs text-marca-600 font-semibold font-body hover:text-marca-700 transition-colors">Ver todas</button>
+        </div>
+
+        <div id="lista-conversas" class="space-y-2.5 pb-6">
+          <div class="card bg-white p-3.5 flex items-center gap-3.5 cursor-pointer active:scale-[0.98] transition-all" onclick="painel_principal_abrirConversa(this, 'Atendimento ao Cliente', 'Ana Beatriz', '13:42', 'online', 'Preciso alterar meu pedido #8847. Pode me ajudar?')">
+            <div class="w-11 h-11 rounded-full bg-gradient-to-br from-blue-100 to-blue-200 flex items-center justify-center text-blue-700 font-bold font-display text-sm shrink-0">AC</div>
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center justify-between">
+                <p class="text-sm font-display font-bold text-gray-900 truncate">Atendimento ao Cliente</p>
+                <span class="text-[11px] text-gray-400 font-body shrink-0 ml-2">13:42</span>
+              </div>
+              <p class="text-xs text-gray-500 font-body truncate mt-0.5">Ana Beatriz: Preciso alterar meu pedido #8847...</p>
+              <div class="flex items-center gap-1.5 mt-1.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>
+                <span class="text-[10px] text-green-600 font-semibold font-body">Online</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card bg-white p-3.5 flex items-center gap-3.5 cursor-pointer active:scale-[0.98] transition-all" onclick="painel_principal_abrirConversa(this, 'Agendamento', 'Carlos Eduardo', '12:15', 'online', 'Quero marcar consulta para sexta-feira.')">
+            <div class="w-11 h-11 rounded-full bg-gradient-to-br from-emerald-100 to-emerald-200 flex items-center justify-center text-emerald-700 font-bold font-display text-sm shrink-0">AG</div>
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center justify-between">
+                <p class="text-sm font-display font-bold text-gray-900 truncate">Agendamento</p>
+                <span class="text-[11px] text-gray-400 font-body shrink-0 ml-2">12:15</span>
+              </div>
+              <p class="text-xs text-gray-500 font-body truncate mt-0.5">Carlos Eduardo: Quero marcar consulta para sexta...</p>
+              <div class="flex items-center gap-1.5 mt-1.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>
+                <span class="text-[10px] text-green-600 font-semibold font-body">Online</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card bg-white p-3.5 flex items-center gap-3.5 cursor-pointer active:scale-[0.98] transition-all" onclick="painel_principal_abrirConversa(this, 'Suporte Técnico', 'Fernanda Rocha', '11:30', 'processando', 'Meu login não funciona há 2 dias.')">
+            <div class="w-11 h-11 rounded-full bg-gradient-to-br from-amber-100 to-amber-200 flex items-center justify-center text-amber-700 font-bold font-display text-sm shrink-0">ST</div>
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center justify-between">
+                <p class="text-sm font-display font-bold text-gray-900 truncate">Suporte Técnico</p>
+                <span class="text-[11px] text-gray-400 font-body shrink-0 ml-2">11:30</span>
+              </div>
+              <p class="text-xs text-gray-500 font-body truncate mt-0.5">Fernanda Rocha: Meu login não funciona há 2 dias</p>
+              <div class="flex items-center gap-1.5 mt-1.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
+                <span class="text-[10px] text-amber-600 font-semibold font-body">Processando</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card bg-white p-3.5 flex items-center gap-3.5 cursor-pointer active:scale-[0.98] transition-all" onclick="painel_principal_abrirConversa(this, 'Vendas', 'Ricardo Mendes', '10:05', 'encerrada', 'Gostaria de saber sobre o plano Enterprise.')">
+            <div class="w-11 h-11 rounded-full bg-gradient-to-br from-violet-100 to-violet-200 flex items-center justify-center text-violet-700 font-bold font-display text-sm shrink-0">VD</div>
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center justify-between">
+                <p class="text-sm font-display font-bold text-gray-900 truncate">Vendas</p>
+                <span class="text-[11px] text-gray-400 font-body shrink-0 ml-2">10:05</span>
+              </div>
+              <p class="text-xs text-gray-500 font-body truncate mt-0.5">Ricardo Mendes: Gostaria de saber sobre plano Enterprise</p>
+              <div class="flex items-center gap-1.5 mt-1.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-gray-400"></span>
+                <span class="text-[10px] text-gray-500 font-semibold font-body">Encerrada</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card bg-white p-3.5 flex items-center gap-3.5 cursor-pointer active:scale-[0.98] transition-all" onclick="painel_principal_abrirConversa(this, 'Onboarding', 'Juliana Pereira', '09:18', 'online', 'Como eu configuro a integração com o WhatsApp?')">
+            <div class="w-11 h-11 rounded-full bg-gradient-to-br from-pink-100 to-pink-200 flex items-center justify-center text-pink-700 font-bold font-display text-sm shrink-0">OB</div>
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center justify-between">
+                <p class="text-sm font-display font-bold text-gray-900 truncate">Onboarding</p>
+                <span class="text-[11px] text-gray-400 font-body shrink-0 ml-2">09:18</span>
+              </div>
+              <p class="text-xs text-gray-500 font-body truncate mt-0.5">Juliana Pereira: Como configuro integração WhatsApp?</p>
+              <div class="flex items-center gap-1.5 mt-1.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>
+                <span class="text-[10px] text-green-600 font-semibold font-body">Online</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card bg-white p-3.5 flex items-center gap-3.5 cursor-pointer active:scale-[0.98] transition-all" onclick="painel_principal_abrirConversa(this, 'Pós-venda', 'Lucas Almeida', '08:45', 'aguardando', 'Ainda não recebi o código de acesso.')">
+            <div class="w-11 h-11 rounded-full bg-gradient-to-br from-cyan-100 to-cyan-200 flex items-center justify-center text-cyan-700 font-bold font-display text-sm shrink-0">PV</div>
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center justify-between">
+                <p class="text-sm font-display font-bold text-gray-900 truncate">Pós-venda</p>
+                <span class="text-[11px] text-gray-400 font-body shrink-0 ml-2">08:45</span>
+              </div>
+              <p class="text-xs text-gray-500 font-body truncate mt-0.5">Lucas Almeida: Ainda não recebi o código de acesso</p>
+              <div class="flex items-center gap-1.5 mt-1.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-blue-500"></span>
+                <span class="text-[10px] text-blue-600 font-semibold font-body">Aguardando</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Menu popup do avatar -->
+      <div id="menu-avatar" class="fixed inset-0 bg-black/30 z-50 hidden" onclick="painel_principal_fecharMenu(event)">
+        <div class="absolute top-16 left-5 w-64 bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden" onclick="event.stopPropagation()">
+          <div class="p-4 bg-gradient-to-r from-marca-600 to-marca-500 text-white">
+            <div class="flex items-center gap-3">
+              <div class="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center font-display font-bold text-lg">ML</div>
+              <div>
+                <p class="text-sm font-display font-bold">Marina Lima</p>
+                <p class="text-[11px] text-white/70 font-body">marina@empresa.com</p>
+              </div>
+            </div>
+          </div>
+          <nav class="py-2">
+            <button onclick="painel_principal_navegarMenu('chat-com-ia')" class="w-full flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors text-left">
+              <svg class="w-5 h-5 text-marca-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+              <span class="text-sm font-body text-gray-700 font-medium">Chat com IA</span>
+            </button>
+            <button onclick="painel_principal_navegarMenu('historico')" class="w-full flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors text-left">
+              <svg class="w-5 h-5 text-marca-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              <span class="text-sm font-body text-gray-700 font-medium">Histórico</span>
+            </button>
+            <button onclick="painel_principal_navegarMenu('planos')" class="w-full flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors text-left">
+              <svg class="w-5 h-5 text-marca-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg>
+              <span class="text-sm font-body text-gray-700 font-medium">Planos</span>
+            </button>
+            <button onclick="painel_principal_navegarMenu('automacoes')" class="w-full flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors text-left">
+              <svg class="w-5 h-5 text-marca-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+              <span class="text-sm font-body text-gray-700 font-medium">Co... (Automações)</span>
+            </button>
+            <div class="border-t border-gray-100 my-1"></div>
+            <button onclick="painel_principal_fecharMenu()" class="w-full flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors text-left">
+              <svg class="w-5 h-5 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
+              <span class="text-sm font-body text-red-600 font-medium">Sair</span>
+            </button>
+          </nav>
+        </div>
+      </div>
+
+      <!-- Modal de detalhe de automação -->
+      <div id="modal-detalhe-automacao" class="fixed inset-0 bg-black/40 z-50 hidden flex items-end justify-center" onclick="if(event.target===this)fecharModal()">
+        <div class="bg-white rounded-t-3xl w-full max-w-[430px] p-6 pb-8">
+          <div class="w-10 h-1 bg-gray-300 rounded-full mx-auto mb-5"></div>
+          <h3 class="text-lg font-display font-bold text-gray-900 mb-1">Atendimento ao Cliente</h3>
+          <p class="text-xs text-gray-500 font-body mb-4">Fluxo iniciado em 12/01/2025 — 3.2k interações</p>
+
+          <div class="grid grid-cols-3 gap-3 mb-5">
+            <div class="bg-green-50 rounded-xl p-3 text-center">
+              <p class="text-lg font-display font-bold text-green-700">87%</p>
+              <p class="text-[10px] text-green-600 font-body">Sucesso</p>
+            </div>
+            <div class="bg-blue-50 rounded-xl p-3 text-center">
+              <p class="text-lg font-display font-bold text-blue-700">2.8k</p>
+              <p class="text-[10px] text-blue-600 font-body">Resolvidos</p>
+            </div>
+            <div class="bg-amber-50 rounded-xl p-3 text-center">
+              <p class="text-lg font-display font-bold text-amber-700">42s</p>
+              <p class="text-[10px] text-amber-600 font-body">Tempo médio</p>
+            </div>
+          </div>
+
+          <div class="space-y-2.5 mb-5">
+            <div class="flex items-center justify-between py-2 border-b border-gray-100">
+              <span class="text-xs text-gray-500 font-body">Status</span>
+              <span class="badge bg-green-50 text-green-700 text-[10px] font-semibold px-2.5 py-1 rounded-full flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>Ativa</span>
+            </div>
+            <div class="flex items-center justify-between py-2 border-b border-gray-100">
+              <span class="text-xs text-gray-500 font-body">Canal</span>
+              <span class="text-xs font-semibold font-body text-gray-800">WhatsApp + Web</span>
+            </div>
+            <div class="flex items-center justify-between py-2 border-b border-gray-100">
+              <span class="text-xs text-gray-500 font-body">Última execução</span>
+              <span class="text-xs font-semibold font-body text-gray-800">Há 2 min</span>
+            </div>
+            <div class="flex items-center justify-between py-2">
+              <span class="text-xs text-gray-500 font-body">Modelo IA</span>
+              <span class="text-xs font-semibold font-body text-gray-800">GPT-4o</span>
+            </div>
+          </div>
+
+          <div class="flex gap-3">
+            <button onclick="fecharModal(); toast('Automação editada com sucesso', 'ok')" class="flex-1 py-3 rounded-xl bg-marca-600 text-white font-display font-bold text-sm active:scale-95 transition-all">Editar</button>
+            <button onclick="fecharModal(); toast('Relatório exportado!', 'ok')" class="flex-1 py-3 rounded-xl bg-gray-100 text-gray-700 font-display font-bold text-sm active:scale-95 transition-all">Relatório</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Overlay de busca -->
+      <div id="overlay-busca" class="fixed inset-0 bg-black/40 z-50 hidden" onclick="painel_principal_fecharBusca()">
+        <div class="bg-white w-full max-w-[430px] mx-auto h-full overflow-y-auto" onclick="event.stopPropagation()">
+          <div class="p-5">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="relative flex-1">
+                <svg class="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                <input type="text" id="input-busca-overlay" placeholder="Buscar automações, conversas..." oninput="painel_principal_buscarOverlay(this.value)" autofocus class="w-full pl-10 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-2xl text-sm font-body text-gray-700 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-marca-500/30 focus:border-marca-400 transition-all">
+              </div>
+              <button onclick="painel_principal_fecharBusca()" class="text-marca-600 font-semibold text-sm font-body">Cancelar</button>
+            </div>
+            <div id="resultados-busca" class="space-y-2">
+              <div class="resultado-busca card bg-white p-3.5 flex items-center gap-3 cursor-pointer active:scale-[0.98] transition-all" onclick="painel_principal_abrirDetalheSucesso(); painel_principal_fecharBusca()">
+                <div class="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center text-blue-600 shrink-0"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg></div>
+                <div><p class="text-sm font-display font-bold text-gray-900">Atendimento ao Cliente</p><p class="text-[11px] text-gray-500 font-body">Automação ativa · 87% sucesso</p></div>
+              </div>
+              <div class="resultado-busca card bg-white p-3.5 flex items-center gap-3 cursor-pointer active:scale-[0.98] transition-all" onclick="mostrarTela('historico'); painel_principal_fecharBusca()">
+                <div class="w-10 h-10 rounded-full bg-purple-50 flex items-center justify-center text-purple-600 shrink-0"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg></div>
+                <div><p class="text-sm font-display font-bold text-gray-900">Conversas — Histórico</p><p class="text-[11px] text-gray-500 font-body">12 conversas hoje</p></div>
+              </div>
+              <div class="resultado-busca card bg-white p-3.5 flex items-center gap-3 cursor-pointer active:scale-[0.98] transition-all" onclick="mostrarTela('suporte-humano'); painel_principal_fecharBusca()">
+                <div class="w-10 h-10 rounded-full bg-orange-50 flex items-center justify-center text-orange-600 shrink-0"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"/></svg></div>
+                <div><p class="text-sm font-display font-bold text-gray-900">Suporte Humano</p><p class="text-[11px] text-gray-500 font-body">Fale com um especialista</p></div>
+              </div>
+              <div class="resultado-busca card bg-white p-3.5 flex items-center gap-3 cursor-pointer active:scale-[0.98] transition-all" onclick="mostrarTela('planos'); painel_principal_fecharBusca()">
+                <div class="w-10 h-10 rounded-full bg-yellow-50 flex items-center justify-center text-yellow-600 shrink-0"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg></div>
+                <div><p class="text-sm font-display font-bold text-gray-900">Planos</p><p class="text-[11px] text-gray-500 font-body">Upgrade de plano disponível</p></div>
+              </div>
+            </div>
+            <div id="resultado-vazio" class="hidden text-center py-12">
+              <div class="w-16 h-16 rounded-full bg-gray-50 flex items-center justify-center mx-auto mb-3">
+                <svg class="w-8 h-8 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+              </div>
+              <p class="text-sm font-body text-gray-400">Nenhum resultado encontrado</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <script>
+        function painel_principal_abrirBusca() {
+          const overlay = document.getElementById('overlay-busca');
+          overlay.classList.remove('hidden');
+          setTimeout(() => document.getElementById('input-busca-overlay').focus(), 100);
+        }
+
+        function painel_principal_fecharBusca() {
+          document.getElementById('overlay-busca').classList.add('hidden');
+          document.getElementById('input-busca-overlay').value = '';
+          painel_principal_restaurarResultados();
+        }
+
+        function painel_principal_buscarOverlay(termo) {
+          const itens = document.querySelectorAll('.resultado-busca');
+          const vazio = document.getElementById('resultado-vazio');
+          const resultados = document.getElementById('resultados-busca');
+          const termoLower = termo.toLowerCase().trim();
+          let visiveis = 0;
+
+          itens.forEach(item => {
+            const texto = item.textContent.toLowerCase();
+            const visivel = texto.includes(termoLower);
+            item.style.display = visivel ? '' : 'none';
+            if (visivel) visiveis++;
+          });
+
+          if (visiveis === 0 && termoLower) {
+            resultados.classList.add('hidden');
+            vazio.classList.remove('hidden');
+          } else {
+            resultados.classList.remove('hidden');
+            vazio.classList.add('hidden');
+          }
+        }
+
+        function painel_principal_restaurarResultados() {
+          document.getElementById('resultados-busca').classList.remove('hidden');
+          document.getElementById('resultado-vazio').classList.add('hidden');
+          document.querySelectorAll('.resultado-busca').forEach(item => item.style.display = '');
+        }
+
+        function painel_principal_abrirConversa(elemento, nomeFluxo, usuario, hora, status, mensagem) {
+          const cards = document.querySelectorAll('#lista-conversas .card');
+          cards.forEach(c => { c.classList.remove('ring-2', 'ring-marca-500'); c.style.background = ''; });
+          elemento.style.background = '#F5F3FF';
+          elemento.classList.add('ring-2', 'ring-marca-500');
+          setTimeout(() => {
+            abrirModal(`
+              <div class="text-center mb-5">
+                <div class="w-16 h-16 rounded-full bg-gradient-to-br from-marca-100 to-marca-200 flex items-center justify-center text-marca-700 font-display font-bold text-xl mx-auto mb-3">${nomeFluxo.split(' ').map(p=>p[0]).join('').slice(0,2)}</div>
+                <h3 class="text-lg font-display font-bold text-gray-900">${nomeFluxo}</h3>
+                <p class="text-sm text-gray-500 font-body">${usuario} · ${hora}</p>
+              </div>
+              <div class="space-y-3 mb-5">
+                <div class="bg-gray-50 rounded-xl p-3">
+                  <p class="text-xs text-gray-500 font-body mb-1">Mensagem do usuário</p>
+                  <p class="text-sm font-body text-gray-800">"${mensagem}"</p>
+                </div>
+                <div class="bg-marca-50 rounded-xl p-3 border border-marca-100">
+                  <p class="text-xs text-marca-600 font-body mb-1">Resposta do bot</p>
+                  <p class="text-sm font-body text-gray-800">Olá! Recebi sua mensagem. Vou verificar as informações e retornar em instantes. Enquanto isso, posso te ajudar com mais alguma coisa?</p>
+                </div>
+              </div>
+              <div class="flex gap-3">
+                <button onclick="fecharModal(); mostrarTela('suporte-humano')" class="flex-1 py-3 rounded-xl bg-marca-600 text-white font-display font-bold text-sm active:scale-95 transition-all">Transferir para Humano</button>
+                <button onclick="fecharModal()" class="flex-1 py-3 rounded-xl bg-gray-100 text-gray-700 font-display font-bold text-sm active:scale-95 transition-all">Fechar</button>
+              </div>
+            `, 'Conversa');
+          }, 150);
+        }
+
+        function painel_principal_abrirDetalheSucesso() {
+          abrirModal(`
+            <div class="text-center mb-5">
+              <div class="w-20 h-20 rounded-full bg-green-50 flex items-center justify-center mx-auto mb-3">
+                <svg class="w-10 h-10 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              </div>
+              <h3 class="text-lg font-display font-bold text-gray-900">Taxa de Sucesso</h3>
+              <p class="text-sm text-gray-500 font-body mt-1">Performance geral das automações</p>
+            </div>
+            <div class="grid grid-cols-2 gap-3 mb-5">
+              <div class="bg-green-50 rounded-xl p-4 text-center"><p class="text-2xl font-display font-bold text-green-700">87%</p><p class="text-xs text-green-600 font-body">Taxa de sucesso</p></div>
+              <div class="bg-blue-50 rounded-xl p-4 text-center"><p class="text-2xl font-display font-bold text-blue-700">94%</p><p class="text-xs text-blue-600 font-body">Satisfação</p></div>
+              <div class="bg-purple-50 rounded-xl p-4 text-center"><p class="text-2xl font-display font-bold text-purple-700">1.2k</p><p class="text-xs text-purple-600 font-body">Total de interações</p></div>
+              <div class="bg-amber-50 rounded-xl p-4 text-center"><p class="text-2xl font-display font-bold text-amber-700">38s</p><p class="text-xs text-amber-600 font-body">Tempo médio</p></div>
+            </div>
+            <svg viewBox="0 0 300 80" class="w-full h-16 mb-5">
+              <defs><linearGradient id="donutG" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#10B981"/><stop offset="100%" stop-color="#059669"/></linearGradient></defs>
+              <circle cx="100" cy="50" r="35" fill="none" stroke="#E5E7EB" stroke-width="12"/>
+              <circle cx="100" cy="50" r="35" fill="none" stroke="url(#donutG)" stroke-width="12" stroke-dasharray="174.9 220" stroke-dashoffset="0" transform="rotate(-90 100 50)"/>
+              <circle cx="100" cy="50" r="22" fill="white"/>
+              <text x="100" y="55" text-anchor="middle" font-size="16" font-weight="bold" fill="#065F46" font-family="sans-serif">87%</text>
+              <text x="210" y="38" font-size="9" fill="#9CA3AF" font-family="sans-serif">Resolvidos</text>
+              <text x="210" y="50" font-size="12" font-weight="bold" fill="#10B981" font-family="sans-serif">1.044</text>
+              <text x="210" y="65" font-size="9" fill="#9CA3AF" font-family="sans-serif">Pendentes</text>
+              <text x="210" y="77" font-size="12" font-weight="bold" fill="#F59E0B" font-family="sans-serif">156</text>
+            </svg>
+            <button onclick="fecharModal(); toast('Relatório gerado com sucesso', 'ok')" class="w-full py-3 rounded-xl bg-marca-600 text-white font-display font-bold text-sm active:scale-95 transition-all">Exportar Relatório</button>
+          `, 'Detalhe de Sucesso');
+        }
+
+        function painel_principal_abrirAlertas() {
+          abrirModal(`
+            <div class="mb-4">
+              <h3 class="text-lg font-display font-bold text-gray-900 mb-1">Alertas de Atenção</h3>
+              <p class="text-xs text-gray-500 font-body">Ações necessárias em 2 fluxos</p>
+            </div>
+            <div class="space-y-3 mb-5">
+              <div class="bg-red-50 border border-red-100 rounded-xl p-4">
+                <div class="flex items-center gap-2 mb-2">
+                  <svg class="w-4 h-4 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"/></svg>
+                  <p class="text-sm font-display font-bold text-red-700">Atendimento ao Cliente</p>
+                </div>
+                <p class="text-xs text-red-600/80 font-body mb-3">Limite de mensagens atingido no plano atual (1.000/mês). <strong class="text-red-700">156 mensagens restantes.</strong></p>
+                <button onclick="fecharModal(); mostrarTela('planos')" class="text-xs bg-red-600 text-white px-4 py-2 rounded-lg font-semibold font-body active:scale-95 transition-all">Upgrade de Plano</button>
+              </div>
+              <div class="bg-amber-50 border border-amber-100 rounded-xl p-4">
+                <div class="flex items-center gap-2 mb-2">
+                  <svg class="w-4 h-4 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                  <p class="text-sm font-display font-bold text-amber-700">Suporte Técnico</p>
+                </div>
+                <p class="text-xs text-amber-600/80 font-body mb-3">3 conversas aguardando resposta humana há mais de 1 hora.</p>
+                <button onclick="fecharModal(); mostrarTela('suporte-humano')" class="text-xs bg-amber-600 text-white px-4 py-2 rounded-lg font-semibold font-body active:scale-95 transition-all">Ver Conversas</button>
+              </div>
+            </div>
+            <button onclick="fecharModal()" class="w-full py-3 rounded-xl bg-gray-100 text-gray-700 font-display font-bold text-sm active:scale-95 transition-all">Fechar</button>
+          `, 'Alertas');
+        }
+
+        function painel_principal_abrirMenu() {
+          document.getElementById('menu-avatar').classList.remove('hidden');
+        }
+
+        function painel_principal_fecharMenu(event) {
+          if (!event || event.target === document.getElementById('menu-avatar')) {
+            document.getElementById('menu-avatar').classList.add('hidden');
+          }
+        }
+
+        function painel_principal_navegarMenu(tela) {
+          painel_principal_fecharMenu();
+          setTimeout(() => mostrarTela(tela), 200);
+        }
+
+        function painel_principal_filtrar(termo) {
+          const cards = document.querySelectorAll('#lista-conversas .card');
+          const t = termo.toLowerCase().trim();
+          let visiveis = 0;
+          cards.forEach(card => {
+            const texto = card.textContent.toLowerCase();
+            card.style.display = texto.includes(t) ? '' : 'none';
+            if (texto.includes(t)) visiveis++;
+          });
+        }
+
+        document.getElementById('btn-avatar-menu').addEventListener('click', painel_principal_abrirMenu);
+      </script>
+    </section>
+
+    <!-- TELAS -->
         </main>
 
         <!-- NAVEGAÇÃO INFERIOR -->
