@@ -2754,6 +2754,593 @@ function planos_toggleFaq(el) {
   </script>
 </section>
 
+    <section data-tela="dashboard-admin" class="hidden">
+  <div class="flex h-[100dvh] -mx-4 -my-6">
+    <aside class="w-[260px] h-full bg-slate-900 text-white flex flex-col shrink-0">
+      <div class="px-5 py-5 border-b border-slate-700">
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-lg bg-emerald-500 flex items-center justify-center">
+            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+          </div>
+          <div>
+            <p class="font-display font-bold text-sm">AutoFlow</p>
+            <p class="text-[10px] text-slate-400 uppercase tracking-wider">Admin Panel</p>
+          </div>
+        </div>
+      </div>
+      <nav class="flex-1 overflow-y-auto py-4 px-3 space-y-1">
+        <button onclick="mostrarTela('dashboard-admin')" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg bg-emerald-500/15 text-emerald-400 text-sm font-medium">
+          <svg class="w-[18px] h-[18px]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/></svg>
+          Dashboard
+        </button>
+        <button onclick="mostrarTela('gestao-de-usuarios')" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 text-sm font-medium transition-colors">
+          <svg class="w-[18px] h-[18px]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+          Usuários
+        </button>
+        <button onclick="mostrarTela('automacoes')" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 text-sm font-medium transition-colors">
+          <svg class="w-[18px] h-[18px]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+          Automações
+        </button>
+        <button onclick="mostrarTela('planos')" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 text-sm font-medium transition-colors">
+          <svg class="w-[18px] h-[18px]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/></svg>
+          Pagamentos
+        </button>
+        <button onclick="mostrarTela('notificacoes')" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 text-sm font-medium transition-colors">
+          <svg class="w-[18px] h-[18px]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/></svg>
+          Notificações
+          <span class="ml-auto bg-red-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">3</span>
+        </button>
+        <button onclick="mostrarTela('suporte-humano')" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 text-sm font-medium transition-colors">
+          <svg class="w-[18px] h-[18px]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/></svg>
+          Suporte
+        </button>
+        <div class="pt-3 mt-3 border-t border-slate-700">
+          <button onclick="mostrarTela('planos')" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 text-sm font-medium transition-colors">
+            <svg class="w-[18px] h-[18px]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            Configurações
+          </button>
+        </div>
+      </nav>
+      <div class="px-4 py-4 border-t border-slate-700">
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-8 rounded-full bg-emerald-600 flex items-center justify-center text-xs font-bold text-white">AC</div>
+          <div class="flex-1 min-w-0">
+            <p class="text-sm font-medium text-white truncate">Admin Carlos</p>
+            <p class="text-[11px] text-slate-400 truncate">carlos@autoflow.ai</p>
+          </div>
+          <button class="text-slate-400 hover:text-white transition-colors">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <div class="flex-1 overflow-y-auto bg-slate-50 p-6">
+      <div class="max-w-6xl mx-auto">
+        <div class="flex items-start justify-between mb-6">
+          <div>
+            <h1 class="font-display text-2xl font-bold text-slate-900">Dashboard</h1>
+            <p class="text-sm text-slate-500 mt-1">Visão geral em tempo real — <span id="dashboard_admin_ultimaAtualizacao">Atualizado agora</span></p>
+          </div>
+          <div class="flex gap-2">
+            <button onclick="dashboard_admin_atualizarDados()" class="btn bg-white border border-slate-200 text-slate-700 px-3 py-2 rounded-lg text-sm font-medium hover:bg-slate-50 active:scale-95 transition-all flex items-center gap-2">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+              Atualizar
+            </button>
+            <button onclick="mostrarTela('gestao-de-usuarios')" class="btn bg-emerald-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-emerald-700 active:scale-95 transition-all flex items-center gap-2">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/></svg>
+              Novo Usuário
+            </button>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-4 gap-4 mb-6" id="dashboard_admin_kpis">
+          <div class="card p-4 hover:shadow-lg transition-shadow cursor-pointer" onclick="dashboard_admin_detalharKPI('usuarios')">
+            <div class="flex items-start justify-between mb-3">
+              <div class="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center">
+                <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+              </div>
+              <span class="badge bg-green-100 text-green-700 text-xs font-semibold px-2 py-0.5 rounded-full">+12%</span>
+            </div>
+            <p class="text-2xl font-bold text-slate-900 font-display">1.247</p>
+            <p class="text-xs text-slate-500 mt-1">Usuários ativos hoje</p>
+            <div class="mt-3 h-1 bg-slate-100 rounded-full overflow-hidden">
+              <div class="h-full bg-blue-500 rounded-full" style="width:78%"></div>
+            </div>
+          </div>
+          <div class="card p-4 hover:shadow-lg transition-shadow cursor-pointer" onclick="dashboard_admin_detalharKPI('automacoes')">
+            <div class="flex items-start justify-between mb-3">
+              <div class="w-10 h-10 rounded-lg bg-emerald-100 flex items-center justify-center">
+                <svg class="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+              </div>
+              <span class="badge bg-green-100 text-green-700 text-xs font-semibold px-2 py-0.5 rounded-full">+8%</span>
+            </div>
+            <p class="text-2xl font-bold text-slate-900 font-display">8.932</p>
+            <p class="text-xs text-slate-500 mt-1">Automações executadas</p>
+            <div class="mt-3 h-1 bg-slate-100 rounded-full overflow-hidden">
+              <div class="h-full bg-emerald-500 rounded-full" style="width:89%"></div>
+            </div>
+          </div>
+          <div class="card p-4 hover:shadow-lg transition-shadow cursor-pointer" onclick="dashboard_admin_detalharKPI('sucesso')">
+            <div class="flex items-start justify-between mb-3">
+              <div class="w-10 h-10 rounded-lg bg-amber-100 flex items-center justify-center">
+                <svg class="w-5 h-5 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              </div>
+              <span class="badge bg-amber-100 text-amber-700 text-xs font-semibold px-2 py-0.5 rounded-full">-2%</span>
+            </div>
+            <p class="text-2xl font-bold text-slate-900 font-display">94%</p>
+            <p class="text-xs text-slate-500 mt-1">Taxa de sucesso do bot</p>
+            <div class="mt-3 h-1 bg-slate-100 rounded-full overflow-hidden">
+              <div class="h-full bg-amber-500 rounded-full" style="width:94%"></div>
+            </div>
+          </div>
+          <div class="card p-4 hover:shadow-lg transition-shadow cursor-pointer" onclick="dashboard_admin_detalharKPI('receita')">
+            <div class="flex items-start justify-between mb-3">
+              <div class="w-10 h-10 rounded-lg bg-purple-100 flex items-center justify-center">
+                <svg class="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              </div>
+              <span class="badge bg-green-100 text-green-700 text-xs font-semibold px-2 py-0.5 rounded-full">+23%</span>
+            </div>
+            <p class="text-2xl font-bold text-slate-900 font-display">R$ 3.450</p>
+            <p class="text-xs text-slate-500 mt-1">Receita do dia</p>
+            <div class="mt-3 h-1 bg-slate-100 rounded-full overflow-hidden">
+              <div class="h-full bg-purple-500 rounded-full" style="width:69%"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-3 gap-4 mb-6">
+          <div class="col-span-2 card p-5">
+            <div class="flex items-center justify-between mb-4">
+              <div>
+                <h3 class="font-display font-bold text-slate-900">Tendência de Uso</h3>
+                <p class="text-xs text-slate-500 mt-0.5">Últimos 7 dias</p>
+              </div>
+              <div class="flex gap-1 bg-slate-100 rounded-lg p-0.5">
+                <button onclick="dashboard_admin_setPeriodo('7d')" id="dash_periodo_7d" class="text-xs px-3 py-1.5 rounded-md font-medium bg-white text-slate-800 shadow-sm transition-all">7 dias</button>
+                <button onclick="dashboard_admin_setPeriodo('30d')" id="dash_periodo_30d" class="text-xs px-3 py-1.5 rounded-md font-medium text-slate-500 hover:text-slate-700 transition-all">30 dias</button>
+              </div>
+            </div>
+            <svg id="dashboard_admin_graficoLinha" viewBox="0 0 600 200" class="w-full h-48">
+              <defs>
+                <linearGradient id="lineGrad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#10b981" stop-opacity="0.2"/>
+                  <stop offset="100%" stop-color="#10b981" stop-opacity="0"/>
+                </linearGradient>
+              </defs>
+              <line x1="40" y1="180" x2="590" y2="180" stroke="#e2e8f0" stroke-width="1"/>
+              <line x1="40" y1="140" x2="590" y2="140" stroke="#f1f5f9" stroke-width="1" stroke-dasharray="4"/>
+              <line x1="40" y1="100" x2="590" y2="100" stroke="#f1f5f9" stroke-width="1" stroke-dasharray="4"/>
+              <line x1="40" y1="60" x2="590" y2="60" stroke="#f1f5f9" stroke-width="1" stroke-dasharray="4"/>
+              <line x1="40" y1="20" x2="590" y2="20" stroke="#f1f5f9" stroke-width="1" stroke-dasharray="4"/>
+              <path d="M40,160 L131,130 L222,145 L313,90 L404,70 L495,50 L586,35" fill="none" stroke="#10b981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M40,160 L131,130 L222,145 L313,90 L404,70 L495,50 L586,35 L586,180 L40,180 Z" fill="url(#lineGrad)"/>
+              <circle cx="40" cy="160" r="4" fill="#10b981" stroke="white" stroke-width="2"/>
+              <circle cx="131" cy="130" r="4" fill="#10b981" stroke="white" stroke-width="2"/>
+              <circle cx="222" cy="145" r="4" fill="#10b981" stroke="white" stroke-width="2"/>
+              <circle cx="313" cy="90" r="4" fill="#10b981" stroke="white" stroke-width="2"/>
+              <circle cx="404" cy="70" r="4" fill="#10b981" stroke="white" stroke-width="2"/>
+              <circle cx="495" cy="50" r="4" fill="#10b981" stroke="white" stroke-width="2"/>
+              <circle cx="586" cy="35" r="5" fill="#059669" stroke="white" stroke-width="2.5"/>
+              <text x="40" y="196" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="Inter, sans-serif">Seg</text>
+              <text x="131" y="196" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="Inter, sans-serif">Ter</text>
+              <text x="222" y="196" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="Inter, sans-serif">Qua</text>
+              <text x="313" y="196" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="Inter, sans-serif">Qui</text>
+              <text x="404" y="196" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="Inter, sans-serif">Sex</text>
+              <text x="495" y="196" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="Inter, sans-serif">Sáb</text>
+              <text x="586" y="196" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="Inter, sans-serif">Dom</text>
+              <text x="16" y="184" text-anchor="end" fill="#cbd5e1" font-size="9" font-family="Inter, sans-serif">5k</text>
+              <text x="16" y="144" text-anchor="end" fill="#cbd5e1" font-size="9" font-family="Inter, sans-serif">4k</text>
+              <text x="16" y="104" text-anchor="end" fill="#cbd5e1" font-size="9" font-family="Inter, sans-serif">3k</text>
+              <text x="16" y="64" text-anchor="end" fill="#cbd5e1" font-size="9" font-family="Inter, sans-serif">2k</text>
+              <text x="16" y="24" text-anchor="end" fill="#cbd5e1" font-size="9" font-family="Inter, sans-serif">1k</text>
+            </svg>
+          </div>
+          <div class="card p-5">
+            <h3 class="font-display font-bold text-slate-900 mb-1">Tipos de Automação</h3>
+            <p class="text-xs text-slate-500 mb-4">Distribuição por canal</p>
+            <svg viewBox="0 0 160 160" class="w-36 h-36 mx-auto">
+              <circle cx="80" cy="80" r="55" fill="none" stroke="#f1f5f9" stroke-width="18"/>
+              <circle cx="80" cy="80" r="55" fill="none" stroke="#10b981" stroke-width="18" stroke-dasharray="138 346" stroke-dashoffset="0" transform="rotate(-90 80 80)"/>
+              <circle cx="80" cy="80" r="55" fill="none" stroke="#3b82f6" stroke-width="18" stroke-dasharray="92 346" stroke-dashoffset="-138" transform="rotate(-90 80 80)"/>
+              <circle cx="80" cy="80" r="55" fill="none" stroke="#f59e0b" stroke-width="18" stroke-dasharray="52 346" stroke-dashoffset="-230" transform="rotate(-90 80 80)"/>
+              <circle cx="80" cy="80" r="55" fill="none" stroke="#ef4444" stroke-width="18" stroke-dasharray="34 346" stroke-dashoffset="-282" transform="rotate(-90 80 80)"/>
+              <circle cx="80" cy="80" r="30" fill="white"/>
+              <text x="80" y="76" text-anchor="middle" fill="#1e293b" font-size="12" font-weight="bold" font-family="Inter, sans-serif">100%</text>
+              <text x="80" y="90" text-anchor="middle" fill="#94a3b8" font-size="8" font-family="Inter, sans-serif">total</text>
+            </svg>
+            <div class="mt-3 space-y-2">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2"><div class="w-2.5 h-2.5 rounded-full bg-emerald-500"></div><span class="text-xs text-slate-600">WhatsApp</span></div>
+                <span class="text-xs font-semibold text-slate-800">45%</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2"><div class="w-2.5 h-2.5 rounded-full bg-blue-500"></div><span class="text-xs text-slate-600">E-mail</span></div>
+                <span class="text-xs font-semibold text-slate-800">30%</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2"><div class="w-2.5 h-2.5 rounded-full bg-amber-500"></div><span class="text-xs text-slate-600">Push</span></div>
+                <span class="text-xs font-semibold text-slate-800">15%</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2"><div class="w-2.5 h-2.5 rounded-full bg-red-500"></div><span class="text-xs text-slate-600">SMS</span></div>
+                <span class="text-xs font-semibold text-slate-800">10%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-3 gap-4 mb-6">
+          <div class="col-span-2 card p-5">
+            <div class="flex items-center justify-between mb-4">
+              <div>
+                <h3 class="font-display font-bold text-slate-900">Alertas do Sistema</h3>
+                <p class="text-xs text-slate-500 mt-0.5">Problemas que precisam de atenção</p>
+              </div>
+              <span class="badge bg-red-100 text-red-700 text-xs font-bold px-2.5 py-1 rounded-full">5 alertas</span>
+            </div>
+            <div class="space-y-2" id="dashboard_admin_listaAlertas">
+              <div onclick="dashboard_admin_detalharAlerta('a1')" class="flex items-start gap-3 p-3 bg-red-50 border border-red-100 rounded-xl cursor-pointer hover:bg-red-100/70 transition-colors active:scale-[0.99]">
+                <div class="w-8 h-8 rounded-lg bg-red-200 flex items-center justify-center shrink-0 mt-0.5">
+                  <svg class="w-4 h-4 text-red-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+                </div>
+                <div class="flex-1 min-w-0">
+                  <p class="text-sm font-semibold text-red-900">Automação com taxa de sucesso crítica</p>
+                  <p class="text-xs text-red-600 mt-0.5">3 automações abaixo de 80% de sucesso nas últimas 24h</p>
+                  <p class="text-[11px] text-red-400 mt-1">Ação recomendada: revisar fluxos de mensagem</p>
+                </div>
+                <span class="badge bg-red-200 text-red-800 text-[10px] font-bold px-2 py-0.5 rounded-full shrink-0">CRÍTICO</span>
+              </div>
+              <div onclick="dashboard_admin_detalharAlerta('a2')" class="flex items-start gap-3 p-3 bg-amber-50 border border-amber-100 rounded-xl cursor-pointer hover:bg-amber-100/70 transition-colors active:scale-[0.99]">
+                <div class="w-8 h-8 rounded-lg bg-amber-200 flex items-center justify-center shrink-0 mt-0.5">
+                  <svg class="w-4 h-4 text-amber-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                </div>
+                <div class="flex-1 min-w-0">
+                  <p class="text-sm font-semibold text-amber-900">Assinaturas vencendo em breve</p>
+                  <p class="text-xs text-amber-600 mt-0.5">12 usuários com assinatura vencendo nas próximas 48h</p>
+                  <p class="text-[11px] text-amber-400 mt-1">Ação recomendada: enviar lembrete de renovação</p>
+                </div>
+                <span class="badge bg-amber-200 text-amber-800 text-[10px] font-bold px-2 py-0.5 rounded-full shrink-0">ATENÇÃO</span>
+              </div>
+              <div onclick="dashboard_admin_detalharAlerta('a3')" class="flex items-start gap-3 p-3 bg-slate-50 border border-slate-200 rounded-xl cursor-pointer hover:bg-slate-100 transition-colors active:scale-[0.99]">
+                <div class="w-8 h-8 rounded-lg bg-slate-200 flex items-center justify-center shrink-0 mt-0.5">
+                  <svg class="w-4 h-4 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                </div>
+                <div class="flex-1 min-w-0">
+                  <p class="text-sm font-semibold text-slate-800">Atualização de API disponível</p>
+                  <p class="text-xs text-slate-500 mt-0.5">Nova versão da API do WhatsApp Business disponível</p>
+                  <p class="text-[11px] text-slate-400 mt-1">Atualização recomendada para manter compatibilidade</p>
+                </div>
+                <span class="badge bg-slate-200 text-slate-700 text-[10px] font-bold px-2 py-0.5 rounded-full shrink-0">INFO</span>
+              </div>
+            </div>
+          </div>
+          <div class="card p-5">
+            <h3 class="font-display font-bold text-slate-900 mb-1">Atividade Recente</h3>
+            <p class="text-xs text-slate-500 mb-4">Últimas ações no sistema</p>
+            <div class="space-y-3" id="dashboard_admin_atividade">
+              <div class="flex gap-3">
+                <div class="flex flex-col items-center">
+                  <div class="w-2 h-2 rounded-full bg-emerald-500 mt-1.5"></div>
+                  <div class="w-px h-8 bg-slate-200"></div>
+                </div>
+                <div>
+                  <p class="text-xs text-slate-700 font-medium">Novo usuário cadastrado</p>
+                  <p class="text-[11px] text-slate-400">maria.silva@email.com</p>
+                  <p class="text-[10px] text-slate-300 mt-0.5">há 2 min</p>
+                </div>
+              </div>
+              <div class="flex gap-3">
+                <div class="flex flex-col items-center">
+                  <div class="w-2 h-2 rounded-full bg-blue-500 mt-1.5"></div>
+                  <div class="w-px h-8 bg-slate-200"></div>
+                </div>
+                <div>
+                  <p class="text-xs text-slate-700 font-medium">Automação executada</p>
+                  <p class="text-[11px] text-slate-400">Fluxo de boas-vindas — 847 envios</p>
+                  <p class="text-[10px] text-slate-300 mt-0.5">há 5 min</p>
+                </div>
+              </div>
+              <div class="flex gap-3">
+                <div class="flex flex-col items-center">
+                  <div class="w-2 h-2 rounded-full bg-purple-500 mt-1.5"></div>
+                  <div class="w-px h-8 bg-slate-200"></div>
+                </div>
+                <div>
+                  <p class="text-xs text-slate-700 font-medium">Pagamento recebido</p>
+                  <p class="text-[11px] text-slate-400">R$ 289,90 — plano Pro</p>
+                  <p class="text-[10px] text-slate-300 mt-0.5">há 12 min</p>
+                </div>
+              </div>
+              <div class="flex gap-3">
+                <div class="flex flex-col items-center">
+                  <div class="w-2 h-2 rounded-full bg-amber-500 mt-1.5"></div>
+                  <div class="w-px h-8 bg-slate-200"></div>
+                </div>
+                <div>
+                  <p class="text-xs text-slate-700 font-medium">Ticket de suporte aberto</p>
+                  <p class="text-[11px] text-slate-400">Pedro Santos — categoria IA</p>
+                  <p class="text-[10px] text-slate-300 mt-0.5">há 18 min</p>
+                </div>
+              </div>
+              <div class="flex gap-3">
+                <div class="flex flex-col items-center">
+                  <div class="w-2 h-2 rounded-full bg-red-500 mt-1.5"></div>
+                </div>
+                <div>
+                  <p class="text-xs text-slate-700 font-medium">Automação falhou</p>
+                  <p class="text-[11px] text-slate-400">Fluxo SMS-Envio #42</p>
+                  <p class="text-[10px] text-slate-300 mt-0.5">há 23 min</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card p-5">
+          <div class="flex items-center justify-between mb-4">
+            <div>
+              <h3 class="font-display font-bold text-slate-900">Automações Ativas</h3>
+              <p class="text-xs text-slate-500 mt-0.5">Monitoramento de performance por automação</p>
+            </div>
+            <div class="relative">
+              <svg class="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+              <input type="text" id="dashboard_admin_buscaAutomacoes" placeholder="Buscar automação..." oninput="dashboard_admin_filtrarAutomacoes()" class="pl-9 pr-4 py-2 text-sm border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500/30 focus:border-emerald-500 w-64 bg-slate-50">
+            </div>
+          </div>
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-sm">
+              <thead>
+                <tr class="border-b border-slate-200">
+                  <th class="pb-3 text-xs font-semibold text-slate-500 uppercase tracking-wider">Automação</th>
+                  <th class="pb-3 text-xs font-semibold text-slate-500 uppercase tracking-wider">Tipo</th>
+                  <th class="pb-3 text-xs font-semibold text-slate-500 uppercase tracking-wider">Execuções/dia</th>
+                  <th class="pb-3 text-xs font-semibold text-slate-500 uppercase tracking-wider">Sucesso</th>
+                  <th class="pb-3 text-xs font-semibold text-slate-500 uppercase tracking-wider">Status</th>
+                  <th class="pb-3 text-xs font-semibold text-slate-500 uppercase tracking-wider text-right">Ação</th>
+                </tr>
+              </thead>
+              <tbody id="dashboard_admin_tabelaAutomacoes">
+              </tbody>
+            </table>
+          </div>
+          <div id="dashboard_admin_estadoVazio" class="hidden py-12 text-center">
+            <svg class="w-12 h-12 text-slate-300 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <p class="text-sm text-slate-500 font-medium">Nenhuma automação encontrada</p>
+            <p class="text-xs text-slate-400 mt-1">Tente ajustar os termos de busca</p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-4 mt-6">
+          <div class="card p-5">
+            <h3 class="font-display font-bold text-slate-900 mb-1">Usuários Recentes</h3>
+            <p class="text-xs text-slate-500 mb-4">Últimos cadastros</p>
+            <div class="space-y-3" id="dashboard_admin_usuariosRecentes">
+            </div>
+          </div>
+          <div class="card p-5">
+            <h3 class="font-display font-bold text-slate-900 mb-1">Assinaturas</h3>
+            <p class="text-xs text-slate-500 mb-4">Resumo de planos ativos</p>
+            <div class="space-y-3">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                  <div class="w-8 h-8 rounded-lg bg-violet-100 flex items-center justify-center">
+                    <svg class="w-4 h-4 text-violet-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg>
+                  </div>
+                  <div>
+                    <p class="text-sm font-medium text-slate-800">Plano Free</p>
+                    <p class="text-[11px] text-slate-400">Até 100 automações</p>
+                  </div>
+                </div>
+                <span class="text-sm font-bold text-slate-900">2.341</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                  <div class="w-8 h-8 rounded-lg bg-blue-100 flex items-center justify-center">
+                    <svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg>
+                  </div>
+                  <div>
+                    <p class="text-sm font-medium text-slate-800">Plano Pro</p>
+                    <p class="text-[11px] text-slate-400">Automações ilimitadas</p>
+                  </div>
+                </div>
+                <span class="text-sm font-bold text-slate-900">856</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                  <div class="w-8 h-8 rounded-lg bg-amber-100 flex items-center justify-center">
+                    <svg class="w-4 h-4 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg>
+                  </div>
+                  <div>
+                    <p class="text-sm font-medium text-slate-800">Plano Enterprise</p>
+                    <p class="text-[11px] text-slate-400">API dedicada + suporte</p>
+                  </div>
+                </div>
+                <span class="text-sm font-bold text-slate-900">50</span>
+              </div>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100">
+              <div class="flex justify-between text-xs mb-1"><span class="text-slate-500">Conversão Free → Pro</span><span class="font-semibold text-slate-800">24%</span></div>
+              <div class="h-1.5 bg-slate-100 rounded-full overflow-hidden"><div class="h-full bg-blue-500 rounded-full" style="width:24%"></div></div>
+            </div>
+            <div class="mt-2">
+              <div class="flex justify-between text-xs mb-1"><span class="text-slate-500">Taxa de renovação</span><span class="font-semibold text-slate-800">87%</span></div>
+              <div class="h-1.5 bg-slate-100 rounded-full overflow-hidden"><div class="h-full bg-emerald-500 rounded-full" style="width:87%"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  if(window.dashboard_admin_inicializado) return;
+  window.dashboard_admin_inicializado = true;
+
+  const automacoes = [
+    {id:1, nome:'Boas-vindas WhatsApp', tipo:'WhatsApp', execucoes:1247, sucesso:97, status:'ativo'},
+    {id:2, nome:'Recuperação de Carrinho', tipo:'WhatsApp', execucoes:832, sucesso:92, status:'ativo'},
+    {id:3, nome:'Confirmação de Agendamento', tipo:'SMS', execucoes:654, sucesso:74, status:'alerta'},
+    {id:4, nome:'Newsletter Semanal', tipo:'E-mail', execucoes:2100, sucesso:95, status:'ativo'},
+    {id:5, nome:'Alerta de Promoção', tipo:'Push', execucoes:3400, sucesso:88, status:'ativo'},
+    {id:6, nome:'Pesquisa de Satisfação', tipo:'WhatsApp', execucoes:420, sucesso:76, status:'alerta'},
+    {id:7, nome:'Lembrete de Consulta', tipo:'SMS', execucoes:890, sucesso:96, status:'ativo'},
+    {id:8, nome:'Follow-up de Venda', tipo:'E-mail', execucoes:560, sucesso:82, status:'ativo'},
+  ];
+
+  const usuariosRecentes = [
+    {nome:'Ana Carolina Mendes', email:'ana.mendes@gmail.com', plano:'Pro', data:'2026-01-15', cor:'bg-rose-500', ini:'AM'},
+    {nome:'Carlos Eduardo Lima', email:'carlos.lima@outlook.com', plano:'Free', data:'2026-01-15', cor:'bg-blue-500', ini:'CL'},
+    {nome:'Fernanda Oliveira', email:'fer.oliveira@empresa.com', plano:'Enterprise', data:'2026-01-14', cor:'bg-amber-500', ini:'FO'},
+    {nome:'Ricardo Santos', email:'ricardo.s@tech.io', plano:'Pro', data:'2026-01-14', cor:'bg-emerald-500', ini:'RS'},
+    {nome:'Patricia Souza', email:'patricia.souza@gmail.com', plano:'Free', data:'2026-01-13', cor:'bg-purple-500', ini:'PS'},
+    {nome:'João Pedro Almeida', email:'joao.almeida@corp.com', plano:'Pro', data:'2026-01-13', cor:'bg-cyan-500', ini:'JA'},
+  ];
+
+  window.dashboard_admin_renderAutomacoes = function(lista) {
+    const tbody = document.getElementById('dashboard_admin_tabelaAutomacoes');
+    const vazio = document.getElementById('dashboard_admin_estadoVazio');
+    if(!tbody) return;
+    if(lista.length === 0) {
+      tbody.innerHTML = '';
+      vazio.classList.remove('hidden');
+      return;
+    }
+    vazio.classList.add('hidden');
+    tbody.innerHTML = lista.map(a => {
+      const tipoCor = a.tipo === 'WhatsApp' ? 'bg-green-100 text-green-700' : a.tipo === 'E-mail' ? 'bg-blue-100 text-blue-700' : a.tipo === 'Push' ? 'bg-amber-100 text-amber-700' : 'bg-red-100 text-red-700';
+      const statusBadge = a.status === 'ativo' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700';
+      const statusLabel = a.status === 'ativo' ? 'Ativo' : 'Alerta';
+      return `<tr class="border-b border-slate-100 hover:bg-slate-50 transition-colors cursor-pointer" onclick="dashboard_admin_detalharAutomacao(${a.id})">
+        <td class="py-3 pr-4"><p class="font-medium text-slate-800 text-sm">${a.nome}</p><p class="text-[11px] text-slate-400">ID: #${String(a.id).padStart(4,'0')}</p></td>
+        <td class="py-3 pr-4"><span class="badge ${tipoCor} text-xs font-medium px-2 py-0.5 rounded-full">${a.tipo}</span></td>
+        <td class="py-3 pr-4 text-sm text-slate-700 font-medium">${a.execucoes.toLocaleString('pt-BR')}</td>
+        <td class="py-3 pr-4"><div class="flex items-center gap-2"><div class="w-16 h-1.5 bg-slate-100 rounded-full overflow-hidden"><div class="h-full rounded-full ${a.sucesso >= 90 ? 'bg-green-500' : a.sucesso >= 80 ? 'bg-amber-500' : 'bg-red-500'}" style="width:${a.sucesso}%"></div></div><span class="text-xs font-semibold ${a.sucesso >= 90 ? 'text-green-700' : a.sucesso >= 80 ? 'text-amber-700' : 'text-red-700'}">${a.sucesso}%</span></div></td>
+        <td class="py-3 pr-4"><span class="badge ${statusBadge} text-[10px] font-bold px-2 py-0.5 rounded-full">${statusLabel}</span></td>
+        <td class="py-3 text-right"><button onclick="event.stopPropagation(); dashboard_admin_verDetalhe(${a.id})" class="text-emerald-600 hover:text-emerald-700 text-xs font-medium hover:underline">Ver detalhe</button></td>
+      </tr>`;
+    }).join('');
+  };
+
+  window.dashboard_admin_filtrarAutomacoes = function() {
+    const q = document.getElementById('dashboard_admin_buscaAutomacoes').value.toLowerCase().trim();
+    const filtradas = automacoes.filter(a => a.nome.toLowerCase().includes(q) || a.tipo.toLowerCase().includes(q));
+    window.dashboard_admin_renderAutomacoes(filtradas);
+  };
+
+  window.dashboard_admin_detalharAutomacao = function(id) {
+    const a = automacoes.find(x => x.id === id);
+    if(!a) return;
+    const html = `<div class="space-y-4">
+      <div class="flex items-center gap-3 mb-2">
+        <div class="w-12 h-12 rounded-xl bg-emerald-100 flex items-center justify-center">
+          <svg class="w-6 h-6 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+        </div>
+        <div><p class="font-display font-bold text-slate-900">${a.nome}</p><p class="text-xs text-slate-500">ID: #${String(a.id).padStart(4,'0')}</p></div>
+      </div>
+      <div class="grid grid-cols-3 gap-3">
+        <div class="bg-slate-50 rounded-lg p-3 text-center"><p class="text-lg font-bold text-slate-900">${a.execucoes.toLocaleString('pt-BR')}</p><p class="text-[11px] text-slate-500">Execuções/dia</p></div>
+        <div class="bg-slate-50 rounded-lg p-3 text-center"><p class="text-lg font-bold ${a.sucesso >= 90 ? 'text-green-600' : a.sucesso >= 80 ? 'text-amber-600' : 'text-red-600'}">${a.sucesso}%</p><p class="text-[11px] text-slate-500">Taxa sucesso</p></div>
+        <div class="bg-slate-50 rounded-lg p-3 text-center"><p class="text-lg font-bold text-slate-900">${a.tipo}</p><p class="text-[11px] text-slate-500">Canal</p></div>
+      </div>
+      <div class="border-t border-slate-100 pt-3">
+        <p class="text-xs font-semibold text-slate-700 mb-2">Desempenho últimos 7 dias</p>
+        <svg viewBox="0 0 300 80" class="w-full h-16">
+          <line x1="20" y1="70" x2="290" y2="70" stroke="#e2e8f0" stroke-width="1"/>
+          <line x1="20" y1="50" x2="290" y2="50" stroke="#f1f5f9" stroke-width="1" stroke-dasharray="3"/>
+          <line x1="20" y1="30" x2="290" y2="30" stroke="#f1f5f9" stroke-width="1" stroke-dasharray="3"/>
+          <line x1="20" y1="10" x2="290" y2="10" stroke="#f1f5f9" stroke-width="1" stroke-dasharray="3"/>
+          <path d="M20,40 L60,35 L100,45 L140,20 L180,15 L220,12 L260,8 L290,6" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round"/>
+          ${[20,60,100,140,180,220,260,290].map((x,i) => `<circle cx="${x}" cy="${[40,35,45,20,15,12,8,6][i]}" r="3" fill="#10b981" stroke="white" stroke-width="1.5"/>`).join('')}
+        </svg>
+      </div>
+      <div class="flex gap-2 pt-2">
+        <button onclick="fecharModal(); dashboard_admin_editarAutomacao(${a.id})" class="btn flex-1 bg-emerald-600 text-white py-2 rounded-lg text-sm font-medium hover:bg-emerald-700 active:scale-95 transition-all">Editar Automação</button>
+        <button onclick="fecharModal(); toast('Automação pausada','info')" class="btn flex-1 bg-slate-100 text-slate-700 py-2 rounded-lg text-sm font-medium hover:bg-slate-200 active:scale-95 transition-all">Pausar</button>
+      </div>
+    </div>`;
+    abrirModal(html, 'Detalhe da Automação');
+  };
+
+  window.dashboard_admin_verDetalhe = function(id) {
+    dashboard_admin_detalharAutomacao(id);
+  };
+
+  window.dashboard_admin_editarAutomacao = function(id) {
+    toast('Editor de automação aberto','info');
+  };
+
+  window.dashboard_admin_detalharAlerta = function(id) {
+    const alertas = {
+      a1: {titulo:'Automação com taxa de sucesso crítica', html:`<div class="space-y-3"><p class="text-sm text-slate-600">3 automações estão com desempenho abaixo do aceitável (80%):</p><div class="space-y-2">${automacoes.filter(a=>a.status==='alerta').map(a=>`<div class="flex items-center justify-between p-3 bg-red-50 rounded-lg"><div><p class="text-sm font-medium text-red-900">${a.nome}</p><p class="text-xs text-red-600">Sucesso: ${a.sucesso}%</p></div><span class="badge bg-red-200 text-red-800 text-[10px] font-bold px-2 py-0.5 rounded-full">CRÍTICO</span></div>`).join('')}</div><button onclick="fecharModal(); toast('Ação corretiva iniciada','ok')" class="btn w-full bg-red-600 text-white py-2.5 rounded-lg text-sm font-medium hover:bg-red-700 active:scale-95 transition-all mt-3">Iniciar Ação Corretiva</button></div>`},
+      a2: {titulo:'Assinaturas vencendo em breve', html:`<div class="space-y-3"><p class="text-sm text-slate-600">Enviar lembrete para os 12 usuários com assinatura vencendo em 48h?</p><div class="bg-amber-50 border border-amber-200 rounded-lg p-3"><p class="text-xs text-amber-700 font-medium">Modelo de mensagem: "Olá! Sua assinatura Pro vence em 48h. Renove agora e continue aproveitando!"</p></div><button onclick="fecharModal(); toast('Lembretes enviados com sucesso','ok')" class="btn w-full bg-amber-600 text-white py-2.5 rounded-lg text-sm font-medium hover:bg-amber-700 active:scale-95 transition-all">Enviar Lembretes via WhatsApp</button></div>`},
+      a3: {titulo:'Atualização de API disponível', html:`<div class="space-y-3"><p class="text-sm text-slate-600">A API do WhatsApp Business foi atualizada. Versão atual: v18.0 → Nova: v19.0</p><div class="bg-blue-50 border border-blue-200 rounded-lg p-3"><p class="text-xs text-blue-700 font-medium">Mudanças principais:</p><ul class="text-xs text-blue-600 mt-1 list-disc list-inside"><li>Suporte a mensagens interativas</li><li>Melhorias na taxa de entrega</li><li>Novos webhooks disponíveis</li></ul></div><button onclick="fecharModal(); toast('Atualização agendada','ok')" class="btn w-full bg-blue-600 text-white py-2.5 rounded-lg text-sm font-medium hover:bg-blue-700 active:scale-95 transition-all">Agendar Atualização</button></div>`}
+    };
+    const a = alertas[id];
+    if(a) abrirModal(a.html, a.titulo);
+  };
+
+  window.dashboard_admin_detalharKPI = function(tipo) {
+    const kpis = {
+      usuarios: {titulo:'Usuários Ativos — Hoje', html:`<div class="space-y-3"><p class="text-3xl font-bold text-slate-900">1.247</p><p class="text-sm text-green-600 font-medium">+12% vs. ontem (1.113)</p><div class="space-y-2 mt-3">${['09:00','12:00','15:00','18:00','21:00'].map((h,i)=>`<div class="flex items-center gap-3"><span class="text-xs text-slate-500 w-10">${h}</span><div class="flex-1 h-2 bg-slate-100 rounded-full overflow-hidden"><div class="h-full bg-blue-500 rounded-full" style="width:${[30,65,80,55,25][i]}%"></div></div><span class="text-xs text-slate-500 w-10 text-right">${[374,810,994,683,312][i]}</span></div>`).join('')}</div></div>`},
+      automacoes: {titulo:'Automações Executadas — Hoje', html:`<div class="space-y-3"><p class="text-3xl font-bold text-slate-900">8.932</p><p class="text-sm text-green-600 font-medium">+8% vs. ontem (8.267)</p><div class="grid grid-cols-2 gap-2 mt-3">${[{l:'WhatsApp',v:'4.019',c:'text-green-600'},{l:'E-mail',v:'2.680',c:'text-blue-600'},{l:'Push',v:'1.340',c:'text-amber-600'},{l:'SMS',v:'893',c:'text-red-600'}].map(x=>`<div class="bg-slate-50 rounded-lg p-2"><p class="text-lg font-bold ${x.c}">${x.v}</p><p class="text-[11px] text-slate-500">${x.l}</p></div>`).join('')}</div></div>`},
+      sucesso: {titulo:'Taxa de Sucesso do Bot', html:`<div class="space-y-3"><p class="text-3xl font-bold text-slate-900">94%</p><p class="text-sm text-amber-600 font-medium">-2% vs. ontem (96%)</p><p class="text-xs text-slate-500 mt-2">Principais motivos de falha:</p><ul class="text-xs text-slate-600 space-y-1 mt-1"><li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-red-400"></span>Timeout na conexão (42%)</li><li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>Número inválido (31%)</li><li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-slate-300"></span>Outros (27%)</li></ul></div>`},
+      receita: {titulo:'Receita do Dia', html:`<div class="space-y-3"><p class="text-3xl font-bold text-slate-900">R$ 3.450</p><p class="text-sm text-green-600 font-medium">+23% vs. ontem (R$ 2.803)</p><div class="grid grid-cols-2 gap-2 mt-3">${[{l:'Novas assinaturas',v:'R$ 1.200'},{l:'Renovações',v:'R$ 1.890'},{l:'Upgrades',v:'R$ 320'},{l:'Outros',v:'R$ 40'}].map(x=>`<div class="bg-slate-50 rounded-lg p-2"><p class="text-sm font-bold text-slate-900">${x.v}</p><p class="text-[11px] text-slate-500">${x.l}</p></div>`).join('')}</div></div>`}
+    };
+    const k = kpis[tipo];
+    if(k) abrirModal(k.html, k.titulo);
+  };
+
+  window.dashboard_admin_atualizarDados = function() {
+    const el = document.getElementById('dashboard_admin_ultimaAtualizacao');
+    if(el) {
+      el.textContent = 'Atualizado agora';
+      el.classList.add('text-emerald-600');
+      setTimeout(()=>el.classList.remove('text-emerald-600'), 2000);
+    }
+    toast('Dados atualizados com sucesso','ok');
+  };
+
+  window.dashboard_admin_setPeriodo = function(periodo) {
+    const btn7 = document.getElementById('dash_periodo_7d');
+    const btn30 = document.getElementById('dash_periodo_30d');
+    if(!btn7 || !btn30) return;
+    if(periodo === '7d') {
+      btn7.className = 'text-xs px-3 py-1.5 rounded-md font-medium bg-white text-slate-800 shadow-sm transition-all';
+      btn30.className = 'text-xs px-3 py-1.5 rounded-md font-medium text-slate-500 hover:text-slate-700 transition-all';
+    } else {
+      btn30.className = 'text-xs px-3 py-1.5 rounded-md font-medium bg-white text-slate-800 shadow-sm transition-all';
+      btn7.className = 'text-xs px-3 py-1.5 rounded-md font-medium text-slate-500 hover:text-slate-700 transition-all';
+    }
+    toast(periodo === '7d' ? 'Exibindo últimos 7 dias' : 'Exibindo últimos 30 dias','info');
+  };
+
+  window.dashboard_admin_renderAutomacoes(automacoes);
+
+  window.dashboard_admin_renderUsuariosRecentes = function() {
+    const container = document.getElementById('dashboard_admin_usuariosRecentes');
+    if(!container) return;
+    container.innerHTML = usuariosRecentes.map(u => `
+      <div class="flex items-center gap-3 cursor-pointer hover:bg-slate-50 rounded-lg p-2 -mx-2 transition-colors" onclick="mostrarTela('gestao-de-usuarios'); toast('Perfil de ${u.nome}','info')">
+        <div class="w-9 h-9 rounded-full ${u.cor} flex items-center justify-center text-xs font-bold text-white shrink-0">${u.ini}</div>
+        <div class="flex-1 min-w-0">
+          <p class="text-sm font-medium text-slate-800 truncate">${u.nome}</p>
+          <p class="text-[11px] text-slate-400">${u.email}</p>
+        </div>
+        <div class="text-right shrink-0">
+          <span class="badge ${u.plano === 'Pro' ? 'bg-blue-100 text-blue-700' : u.plano === 'Enterprise' ? 'bg-amber-100 text-amber-700' : 'bg-slate-100 text-slate-600'} text-[10px] font-bold px-2 py-0.5 rounded-full">${u.plano}</span>
+          <p class="text-[10px] text-slate-400 mt-1">${u.data}</p>
+        </div>
+      </div>
+    `).join('');
+  };
+
+  window.dashboard_admin_renderUsuariosRecentes();
+})();
+</script>
+
     <!-- TELAS -->
         </main>
 
