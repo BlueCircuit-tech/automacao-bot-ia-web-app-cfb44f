@@ -2288,6 +2288,138 @@ function planos_toggleFaq(el) {
 }
 </script>
 
+    <section data-tela="notificacoes" class="hidden">
+      <div class="px-5 pt-2 pb-6 space-y-5">
+        <div class="flex items-center justify-between">
+          <div>
+            <h1 class="text-2xl font-display font-bold text-gray-900 leading-tight">Notificações</h1>
+            <p class="text-sm text-gray-500 mt-0.5">5 alertas não lidos</p>
+          </div>
+          <button onclick="notificacoes_marcarTudoLido()" class="text-sm font-semibold text-marca-600 hover:text-marca-700 active:scale-95 transition-all px-3 py-1.5 rounded-lg hover:bg-marca-50">
+            Marcar tudo como lido
+          </button>
+        </div>
+        <div class="flex gap-2 overflow-x-auto pb-1 -mx-5 px-5 scrollbar-hide" id="filtros-container">
+          <button onclick="notificacoes_filtrar('todos')" data-filtro="todos" class="notif-filtro active-filtro flex-shrink-0 px-4 py-2 rounded-full text-sm font-semibold transition-all duration-200 active:scale-95 bg-marca-600 text-white shadow-md">
+            Todos
+          </button>
+          <button onclick="notificacoes_filtrar('chatbot')" data-filtro="chatbot" class="notif-filtro flex-shrink-0 px-4 py-2 rounded-full text-sm font-semibold transition-all duration-200 active:scale-95 bg-gray-100 text-gray-600 hover:bg-gray-200">
+            🤖 Chatbot
+          </button>
+          <button onclick="notificacoes_filtrar('pagamentos')" data-filtro="pagamentos" class="notif-filtro flex-shrink-0 px-4 py-2 rounded-full text-sm font-semibold transition-all duration-200 active:scale-95 bg-gray-100 text-gray-600 hover:bg-gray-200">
+            💳 Pagamentos
+          </button>
+          <button onclick="notificacoes_filtrar('automacoes')" data-filtro="automacoes" class="notif-filtro flex-shrink-0 px-4 py-2 rounded-full text-sm font-semibold transition-all duration-200 active:scale-95 bg-gray-100 text-gray-600 hover:bg-gray-200">
+            ⚙️ Automações
+          </button>
+          <button onclick="notificacoes_filtrar('sistema')" data-filtro="sistema" class="notif-filtro flex-shrink-0 px-4 py-2 rounded-full text-sm font-semibold transition-all duration-200 active:scale-95 bg-gray-100 text-gray-600 hover:bg-gray-200">
+            🔔 Sistema
+          </button>
+        </div>
+        <div id="lista-notificacoes" class="space-y-3"></div>
+        <div id="empty-notificacoes" class="hidden text-center py-12 space-y-4">
+          <div class="w-24 h-24 mx-auto bg-gray-100 rounded-full flex items-center justify-center">
+            <svg class="w-12 h-12 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/></svg>
+          </div>
+          <div>
+            <p class="text-gray-500 font-medium">Nenhuma notificação aqui</p>
+            <p class="text-sm text-gray-400 mt-1">Quando surgir algo novo, você verá por aqui</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      const notificacoes_dados = [
+        {id:1, tipo:'chatbot', icone:'🤖', corIcone:'bg-purple-100 text-purple-600', titulo:'Bot respondeu 15 clientes hoje', descricao:'Seu bot de WhatsApp processou 15 conversas com taxa de resolução de 87%.', tempo:'há 2 horas', lida:false, acao:{label:'Ver relatório', callback:()=>{mostrarTela('historico');toast('Abrindo relatório de conversas...','info');}}},
+        {id:2, tipo:'pagamentos', icone:'💳', corIcone:'bg-green-100 text-green-600', titulo:'Assinatura Pro renovada', descricao:'Pagamento de R$ 97,00 confirmado. Próxima cobrança em 30 dias.', tempo:'há 5 horas', lida:false, acao:{label:'Ver fatura', callback:()=>{abrirModal('<div class="space-y-3"><p class="text-gray-600">Fatura #2026-0041</p><p class="text-2xl font-bold text-gray-900">R$ 97,00</p><p class="text-sm text-gray-500">Vencimento: 15/02/2026</p><p class="text-sm text-gray-500">Método: Cartão **** 4829</p><p class="text-sm text-green-600 font-medium">Pago ✓</p></div>','Fatura Detalhada');}}},
+        {id:3, tipo:'automacoes', icone:'⚙️', corIcone:'bg-blue-100 text-blue-600', titulo:'Fluxo disparou 200 mensagens', descricao:'Automação "Black Friday 2026" enviou 200 e-mails com 42% de taxa de abertura.', tempo:'há 8 horas', lida:false, acao:{label:'Ver relatório', callback:()=>{mostrarTela('automacoes');toast('Abrindo detalhes da automação...','info');}}},
+        {id:4, tipo:'sistema', icone:'🔔', corIcone:'bg-amber-100 text-amber-600', titulo:'Manutenção programada', descricao:'Sistema passará por atualização no dia 20/01, das 02:00 às 04:00.', tempo:'há 1 dia', lida:true, acao:null},
+        {id:5, tipo:'chatbot', icone:'🤖', corIcone:'bg-purple-100 text-purple-600', titulo:'Novo fluxo criado com sucesso', descricao:'Seu fluxo "Suporte Técnico" foi ativado e já está respondendo automaticamente.', tempo:'há 1 dia', lida:false, acao:{label:'Configurar', callback:()=>{mostrarTela('automacoes');toast('Abrindo configurações do fluxo...','info');}}},
+        {id:6, tipo:'pagamentos', icone:'💳', corIcone:'bg-red-100 text-red-600', titulo:'Fatura vence em 3 dias', descricao:'Sua assinatura Pro vence no dia 18/01. Renove para não interromper o serviço.', tempo:'há 2 dias', lida:true, acao:{label:'Renovar agora', callback:()=>{mostrarTela('planos');toast('Redirecionando para planos...','info');}}},
+        {id:7, tipo:'automacoes', icone:'⚙️', corIcone:'bg-blue-100 text-blue-600', titulo:'Integração conectada', descricao:'Sua conta do Gmail foi conectada com sucesso. Agora você pode automatizar e-mails.', tempo:'há 3 dias', lida:true, acao:null},
+        {id:8, tipo:'sistema', icone:'🔔', corIcone:'bg-amber-100 text-amber-600', titulo:'Novo recurso disponível', descricao:'Conheça o novo Dashboard de Inteligência. Clique para explorar métricas avançadas.', tempo:'há 4 dias', lida:true, acao:{label:'Explorar', callback:()=>{mostrarTela('painel-principal');toast('Navegando para o Dashboard...','info');}}},
+        {id:9, tipo:'chatbot', icone:'🤖', corIcone:'bg-purple-100 text-purple-600', titulo:'Treinamento do bot concluído', descricao:'Seu bot aprendeu 12 novas perguntas. Acurácia de resposta subiu para 91%.', tempo:'há 5 dias', lida:true, acao:null},
+        {id:10, tipo:'pagamentos', icone:'💳', corIcone:'bg-green-100 text-green-600', titulo:'Pagamento recebido via PIX', descricao:'Cliente Carlos Mendes realizou pagamento de R$ 350,00. Saldo atualizado.', tempo:'há 6 dias', lida:true, acao:null}
+      ];
+
+      let notificacoes_filtroAtual = 'todos';
+
+      function notificacoes_renderizar() {
+        const container = document.getElementById('lista-notificacoes');
+        const empty = document.getElementById('empty-notificacoes');
+        const filtradas = notificacoes_filtroAtual === 'todos'
+          ? notificacoes_dados
+          : notificacoes_dados.filter(n => n.tipo === notificacoes_filtroAtual);
+
+        if (filtradas.length === 0) {
+          container.innerHTML = '';
+          empty.classList.remove('hidden');
+          return;
+        }
+        empty.classList.add('hidden');
+        container.innerHTML = filtradas.map(n => `
+          <div onclick="notificacoes_abrirDetalhe(${n.id})" class="card p-4 cursor-pointer hover:shadow-lg transition-all duration-200 active:scale-[0.98] ${n.lida ? 'opacity-75' : 'border-l-4 border-marca-500'}">
+            <div class="flex gap-3">
+              <div class="w-10 h-10 rounded-xl ${n.corIcone} flex items-center justify-center text-lg flex-shrink-0">${n.icone}</div>
+              <div class="flex-1 min-w-0">
+                <div class="flex items-start justify-between gap-2">
+                  <h3 class="text-sm font-semibold text-gray-900 leading-tight ${n.lida ? '' : 'text-gray-900'}">${n.titulo}</h3>
+                  ${!n.lida ? '<span class="w-2 h-2 rounded-full bg-marca-500 flex-shrink-0 mt-1.5"></span>' : ''}
+                </div>
+                <p class="text-xs text-gray-500 mt-1 leading-relaxed line-clamp-2">${n.descricao}</p>
+                <div class="flex items-center justify-between mt-2.5">
+                  <span class="text-xs text-gray-400">${n.tempo}</span>
+                  ${n.acao ? `<button onclick="event.stopPropagation();(${n.acao.callback.toString()})()" class="text-xs font-semibold text-marca-600 bg-marca-50 px-3 py-1 rounded-lg hover:bg-marca-100 active:scale-95 transition-all">${n.acao.label}</button>` : ''}
+                </div>
+              </div>
+            </div>
+          </div>
+        `).join('');
+
+        const naoLidas = notificacoes_dados.filter(n => !n.lida).length;
+        document.querySelector('[data-tela="notificacoes"] p.text-sm').textContent = naoLidas === 0 ? 'Todas as notificações foram lidas' : `${naoLidas} alertas não lidos`;
+      }
+
+      function notificacoes_filtrar(tipo) {
+        notificacoes_filtroAtual = tipo;
+        document.querySelectorAll('.notif-filtro').forEach(btn => {
+          const isActive = btn.dataset.filtro === tipo;
+          btn.className = `notif-filtro flex-shrink-0 px-4 py-2 rounded-full text-sm font-semibold transition-all duration-200 active:scale-95 ${isActive ? 'bg-marca-600 text-white shadow-md' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'}`;
+        });
+        notificacoes_renderizar();
+      }
+
+      function notificacoes_marcarTudoLido() {
+        notificacoes_dados.forEach(n => n.lida = true);
+        notificacoes_renderizar();
+        toast('Todas as notificações foram marcadas como lidas','ok');
+      }
+
+      function notificacoes_abrirDetalhe(id) {
+        const n = notificacoes_dados.find(x => x.id === id);
+        if (!n) return;
+        n.lida = true;
+        const html = `
+          <div class="space-y-4">
+            <div class="flex items-center gap-3">
+              <div class="w-12 h-12 rounded-xl ${n.corIcone} flex items-center justify-center text-2xl">${n.icone}</div>
+              <div>
+                <span class="badge ${n.tipo==='chatbot'?'bg-purple-100 text-purple-700':n.tipo==='pagamentos'?'bg-green-100 text-green-700':n.tipo==='automacoes'?'bg-blue-100 text-blue-700':'bg-amber-100 text-amber-700'} px-2 py-0.5 rounded-full text-xs font-semibold capitalize">${n.tipo}</span>
+              </div>
+            </div>
+            <h3 class="text-lg font-display font-bold text-gray-900">${n.titulo}</h3>
+            <p class="text-sm text-gray-600 leading-relaxed">${n.descricao}</p>
+            <div class="flex items-center gap-2 text-xs text-gray-400"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>${n.tempo}</p>
+            ${n.acao ? `<button onclick="(${n.acao.callback.toString()})();fecharModal();" class="btn w-full">${n.acao.label}</button>` : ''}
+          </div>`;
+        abrirModal(html, 'Detalhes da Notificação');
+        notificacoes_renderizar();
+      }
+
+      notificacoes_renderizar();
+    </script>
+
     <!-- TELAS -->
         </main>
 
