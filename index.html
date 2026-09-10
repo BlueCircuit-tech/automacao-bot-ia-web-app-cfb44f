@@ -1850,6 +1850,444 @@ if (editOverlay) {
 .animate-slide-up { animation: slideUp 0.35s cubic-bezier(0.16, 1, 0.3, 1); }
 </style>
 
+    <section data-tela="planos" class="hidden">
+  <div class="fade-in px-4 pb-4 pt-2 max-w-[430px] mx-auto">
+    <!-- Cabeçalho da tela -->
+    <div class="flex items-center justify-between mb-5">
+      <div class="flex items-center gap-3">
+        <button onclick="planos_voltar()" class="w-9 h-9 rounded-full bg-gray-100 flex items-center justify-center active:scale-95 transition-all hover:bg-gray-200">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M13.5 15H5.5a1 1 0 01-1-1V4a1 1 0 011-1h7.3L12.3 5.7a1 1 0 010 1.4L9.7 10.4a1 1 0 01-1.4 0L5 6"/></svg>
+        </button>
+        <div>
+          <h1 class="font-display text-xl font-bold text-gray-900 leading-tight">Planos e Assinaturas</h1>
+          <p class="text-xs text-gray-500 mt-0.5">Escolha o plano ideal para você</p>
+        </div>
+      </div>
+      <button onclick="mostrarTela('suporte-humano')" class="w-9 h-9 rounded-full bg-gray-100 flex items-center justify-center active:scale-95 transition-all hover:bg-gray-200 relative">
+        <svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 11.5a4.5 4.5 0 00-3.93-2.46 5 5 0 10-6.06 6.06 4.5 4.5 0 004.46-3.93"/><circle cx="8.5" cy="8.5" r="1.2"/></svg>
+        <span class="absolute -top-0.5 -right-0.5 w-3.5 h-3.5 bg-red-500 rounded-full border-2 border-white"></span>
+      </button>
+    </div>
+
+    <!-- Card do plano atual -->
+    <div class="bg-gradient-to-br from-marca-600 via-marca-700 to-marca-800 rounded-2xl p-5 mb-6 text-white shadow-lg shadow-marca-200 relative overflow-hidden">
+      <div class="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2"></div>
+      <div class="absolute bottom-0 left-0 w-24 h-24 bg-white/5 rounded-full translate-y-1/2 -translate-x-1/2"></div>
+      <div class="relative z-10">
+        <div class="flex items-center justify-between mb-3">
+          <span class="inline-flex items-center gap-1.5 bg-white/20 backdrop-blur-sm text-xs font-semibold px-3 py-1 rounded-full">
+            <svg width="12" height="12" fill="currentColor" viewBox="0 0 16 16"><path d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25z"/></svg>
+            Seu Plano
+          </span>
+          <span class="text-xs text-white/70">Ativo até 15/07/2025</span>
+        </div>
+        <h2 class="font-display text-2xl font-bold mb-1">Plano Pro</h2>
+        <p class="text-white/80 text-sm mb-4">1.000 automações/mês · 3 canais · IA avançada</p>
+        <div class="flex items-baseline gap-1 mb-4">
+          <span class="text-3xl font-bold">R$ 79</span>
+          <span class="text-white/70 text-sm">/mês</span>
+        </div>
+        <div class="flex gap-2">
+          <button onclick="planos_abrirModalGerenciar()" class="flex-1 bg-white text-marca-700 font-semibold text-sm py-2.5 rounded-xl active:scale-95 transition-all hover:bg-gray-100">Gerenciar Assinatura</button>
+          <button onclick="planos_abrirModalMudar()" class="px-4 bg-white/15 text-white font-medium text-sm py-2.5 rounded-xl active:scale-95 transition-all hover:bg-white/25 border border-white/20">Mudar</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cards de planos -->
+    <div class="space-y-3 mb-6">
+      <!-- Plano Básico -->
+      <div onclick="planos_abrirDetalhes('basico')" class="card bg-white rounded-2xl p-5 border-2 border-transparent active:border-marca-300 active:bg-marca-50/30 transition-all cursor-pointer hover:shadow-md group">
+        <div class="flex items-start justify-between mb-3">
+          <div>
+            <h3 class="font-display text-lg font-bold text-gray-900 group-hover:text-marca-700 transition-colors">Básico</h3>
+            <p class="text-xs text-gray-500 mt-0.5">Para quem está começando</p>
+          </div>
+          <div class="text-right">
+            <div class="flex items-baseline gap-0.5">
+              <span class="text-xl font-bold text-gray-900">R$ 29</span>
+              <span class="text-xs text-gray-500">/mês</span>
+            </div>
+          </div>
+        </div>
+        <div class="flex flex-wrap gap-2 mb-3">
+          <span class="inline-flex items-center gap-1 text-xs bg-gray-100 text-gray-700 px-2.5 py-1 rounded-lg font-medium">
+            <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 16 16"><path d="M3 8l3 3 7-7"/></svg>
+            100 automações/mês
+          </span>
+          <span class="inline-flex items-center gap-1 text-xs bg-gray-100 text-gray-700 px-2.5 py-1 rounded-lg font-medium">
+            <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 16 16"><path d="M3 8l3 3 7-7"/></svg>
+            1 canal
+          </span>
+        </div>
+        <div class="flex items-center gap-2 text-xs text-gray-500 mb-3">
+          <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6.5"/><path d="M8 5v3.5l2.5 1.5"/></svg>
+          Suporte por e-mail em até 24h
+        </div>
+        <button onclick="event.stopPropagation(); planos_abrirModalAssinar('basico')" class="w-full py-2.5 rounded-xl border-2 border-marca-600 text-marca-700 font-semibold text-sm active:scale-95 transition-all hover:bg-marca-50">Assinar Plano Básico</button>
+      </div>
+
+      <!-- Plano Pro -->
+      <div onclick="planos_abrirDetalhes('pro')" class="card bg-white rounded-2xl p-5 border-2 border-marca-500 shadow-md shadow-marca-100 cursor-pointer group relative overflow-hidden">
+        <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-marca-400 via-marca-600 to-marca-400"></div>
+        <div class="flex items-start justify-between mb-3">
+          <div>
+            <div class="flex items-center gap-2 mb-1">
+              <h3 class="font-display text-lg font-bold text-gray-900 group-hover:text-marca-700 transition-colors">Pro</h3>
+              <span class="badge bg-marca-100 text-marca-700 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wide">Popular</span>
+            </div>
+            <p class="text-xs text-gray-500">O mais escolhido</p>
+          </div>
+          <div class="text-right">
+            <div class="flex items-baseline gap-0.5">
+              <span class="text-xl font-bold text-gray-900">R$ 79</span>
+              <span class="text-xs text-gray-500">/mês</span>
+            </div>
+          </div>
+        </div>
+        <div class="flex flex-wrap gap-2 mb-3">
+          <span class="inline-flex items-center gap-1 text-xs bg-marca-50 text-marca-700 px-2.5 py-1 rounded-lg font-medium">
+            <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 16 16"><path d="M3 8l3 3 7-7"/></svg>
+            1.000 automações/mês
+          </span>
+          <span class="inline-flex items-center gap-1 text-xs bg-marca-50 text-marca-700 px-2.5 py-1 rounded-lg font-medium">
+            <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 16 16"><path d="M3 8l3 3 7-7"/></svg>
+            3 canais
+          </span>
+          <span class="inline-flex items-center gap-1 text-xs bg-marca-50 text-marca-700 px-2.5 py-1 rounded-lg font-medium">
+            <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 16 16"><path d="M3 8l3 3 7-7"/></svg>
+            IA avançada
+          </span>
+        </div>
+        <div class="flex items-center gap-2 text-xs text-gray-500 mb-3">
+          <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6.5"/><path d="M8 5v3.5l2.5 1.5"/></svg>
+          Suporte prioritário em até 2h
+        </div>
+        <button onclick="event.stopPropagation(); planos_abrirModalGerenciar()" class="w-full py-2.5 rounded-xl bg-marca-600 text-white font-semibold text-sm active:scale-95 transition-all hover:bg-marca-700 shadow-md shadow-marca-200">Gerenciar Assinatura</button>
+      </div>
+
+      <!-- Plano Empresarial -->
+      <div onclick="planos_abrirDetalhes('empresarial')" class="card bg-white rounded-2xl p-5 border-2 border-transparent active:border-amber-400 active:bg-amber-50/30 transition-all cursor-pointer hover:shadow-md group">
+        <div class="flex items-start justify-between mb-3">
+          <div>
+            <h3 class="font-display text-lg font-bold text-gray-900 group-hover:text-amber-700 transition-colors">Empresarial</h3>
+            <p class="text-xs text-gray-500 mt-0.5">Para equipes e negócios</p>
+          </div>
+          <div class="text-right">
+            <div class="flex items-baseline gap-0.5">
+              <span class="text-xl font-bold text-gray-900">R$ 199</span>
+              <span class="text-xs text-gray-500">/mês</span>
+            </div>
+          </div>
+        </div>
+        <div class="flex flex-wrap gap-2 mb-3">
+          <span class="inline-flex items-center gap-1 text-xs bg-amber-50 text-amber-800 px-2.5 py-1 rounded-lg font-medium">
+            <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 16 16"><path d="M3 8l3 3 7-7"/></svg>
+            Automações ilimitadas
+          </span>
+          <span class="inline-flex items-center gap-1 text-xs bg-amber-50 text-amber-800 px-2.5 py-1 rounded-lg font-medium">
+            <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 16 16"><path d="M3 8l3 3 7-7"/></svg>
+            Todos os canais
+          </span>
+          <span class="inline-flex items-center gap-1 text-xs bg-amber-50 text-amber-800 px-2.5 py-1 rounded-lg font-medium">
+            <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 16 16"><path d="M3 8l3 3 7-7"/></svg>
+            Suporte prioritário
+          </span>
+        </div>
+        <div class="flex items-center gap-2 text-xs text-gray-500 mb-3">
+          <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6.5"/><path d="M8 5v3.5l2.5 1.5"/></svg>
+          Gerente de conta dedicado
+        </div>
+        <button onclick="event.stopPropagation(); planos_abrirModalAssinar('empresarial')" class="w-full py-2.5 rounded-xl border-2 border-amber-500 text-amber-700 font-semibold text-sm active:scale-95 transition-all hover:bg-amber-50">Assinar Plano Empresarial</button>
+      </div>
+    </div>
+
+    <!-- Comparativo rápido -->
+    <div class="bg-gray-50 rounded-2xl p-4 mb-6">
+      <h3 class="font-display text-sm font-bold text-gray-800 mb-3 flex items-center gap-2">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="3" width="12" height="10" rx="1.5"/><path d="M2 7h12"/></svg>
+        Comparativo rápido
+      </h3>
+      <div class="grid grid-cols-3 gap-2 text-center text-xs">
+        <div class="bg-white rounded-xl p-3">
+          <div class="font-bold text-gray-900">Básico</div>
+          <div class="text-marca-600 font-bold mt-1">R$ 29</div>
+        </div>
+        <div class="bg-marca-600 rounded-xl p-3 text-white shadow-md">
+          <div class="font-bold">Pro</div>
+          <div class="text-marca-100 font-bold mt-1">R$ 79</div>
+        </div>
+        <div class="bg-white rounded-xl p-3">
+          <div class="font-bold text-gray-900">Empresarial</div>
+          <div class="text-amber-600 font-bold mt-1">R$ 199</div>
+        </div>
+      </div>
+      <div class="mt-3 space-y-1.5 text-xs text-gray-600">
+        <div class="flex justify-between"><span>Automações/mês</span><span class="font-semibold">100 / 1.000 / ∞</span></div>
+        <div class="flex justify-between"><span>Canais conectados</span><span class="font-semibold">1 / 3 / Todos</span></div>
+        <div class="flex justify-between"><span>IA avançada</span><span class="font-semibold">— / Sim / Sim</span></div>
+        <div class="flex justify-between"><span>Suporte prioritário</span><span class="font-semibold">— / 2h / Dedicado</span></div>
+      </div>
+    </div>
+
+    <!-- Métodos de pagamento -->
+    <div class="bg-white rounded-2xl p-5 mb-6 border border-gray-100">
+      <h3 class="font-display text-sm font-bold text-gray-800 mb-3 flex items-center gap-2">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="5" width="12" height="8" rx="1.5"/><path d="M2 9h12"/></svg>
+        Formas de Pagamento
+      </h3>
+      <div class="grid grid-cols-3 gap-3">
+        <div class="flex flex-col items-center gap-2 p-3 bg-gray-50 rounded-xl border border-gray-100">
+          <div class="w-10 h-10 bg-blue-100 rounded-xl flex items-center justify-center">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="2" y="5" width="20" height="14" rx="2" stroke="#2563eb" stroke-width="1.8"/><path d="M2 10h20" stroke="#2563eb" stroke-width="1.8"/></svg>
+          </div>
+          <span class="text-xs font-semibold text-gray-700">Cartão</span>
+        </div>
+        <div class="flex flex-col items-center gap-2 p-3 bg-gray-50 rounded-xl border-2 border-marca-300">
+          <div class="w-10 h-10 bg-green-100 rounded-xl flex items-center justify-center">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5z" stroke="#16a34a" stroke-width="1.8" stroke-linejoin="round"/><path d="M2 17l10 5 10-5" stroke="#16a34a" stroke-width="1.8" stroke-linejoin="round"/><path d="M2 12l10 5 10-5" stroke="#16a34a" stroke-width="1.8" stroke-linejoin="round"/></svg>
+          </div>
+          <span class="text-xs font-bold text-marca-700">Pix</span>
+        </div>
+        <div class="flex flex-col items-center gap-2 p-3 bg-gray-50 rounded-xl border border-gray-100">
+          <div class="w-10 h-10 bg-purple-100 rounded-xl flex items-center justify-center">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="4" y="3" width="16" height="18" rx="2" stroke="#7c3aed" stroke-width="1.8"/><path d="M4 9h16" stroke="#7c3aed" stroke-width="1.8"/><path d="M9 3v18" stroke="#7c3aed" stroke-width="1.2"/></svg>
+          </div>
+          <span class="text-xs font-semibold text-gray-700">Boleto</span>
+        </div>
+      </div>
+      <p class="text-[11px] text-gray-400 mt-3 text-center">Pagamento seguro com criptografia SSL · Dados protegidos</p>
+    </div>
+
+    <!-- Selo de garantia -->
+    <div class="bg-gradient-to-r from-green-50 to-emerald-50 rounded-2xl p-5 mb-6 border border-green-100">
+      <div class="flex items-start gap-4">
+        <div class="w-14 h-14 bg-green-100 rounded-2xl flex items-center justify-center flex-shrink-0">
+          <svg width="28" height="28" fill="none" viewBox="0 0 24 24"><path d="M12 2L3 6v5c0 5.5 4 10.7 9 12 5-1.3 9-6.5 9-12V6l-9-4z" stroke="#16a34a" stroke-width="1.8" stroke-linejoin="round"/><path d="M9 12l2 2 4-4" stroke="#16a34a" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div>
+          <h3 class="font-display text-sm font-bold text-green-800 mb-1">Garantia de 7 dias</h3>
+          <p class="text-xs text-green-700/80 leading-relaxed">Se não ficar satisfeito nos primeiros 7 dias, devolvemos 100% do seu dinheiro. Sem perguntas, sem burocracia.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ rápido -->
+    <div class="space-y-2 mb-6">
+      <h3 class="font-display text-sm font-bold text-gray-800 px-1">Perguntas frequentes</h3>
+      <div onclick="planos_toggleFaq(this)" class="bg-white rounded-xl p-4 border border-gray-100 cursor-pointer active:bg-gray-50 transition-colors">
+        <div class="flex items-center justify-between">
+          <span class="text-sm font-medium text-gray-800">Posso mudar de plano a qualquer momento?</span>
+          <svg class="faq-arrow w-4 h-4 text-gray-400 transition-transform" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M3 8l3 3 7-7"/></svg>
+        </div>
+        <div class="faq-content hidden mt-3 text-xs text-gray-600 leading-relaxed">Sim! Você pode fazer upgrade ou downgrade do seu plano a qualquer momento. A diferença de valor é calculada proporcionalmente ao período restante da sua assinatura atual.</div>
+      </div>
+      <div onclick="planos_toggleFaq(this)" class="bg-white rounded-xl p-4 border border-gray-100 cursor-pointer active:bg-gray-50 transition-colors">
+        <div class="flex items-center justify-between">
+          <span class="text-sm font-medium text-gray-800">Como funciona a cobrança?</span>
+          <svg class="faq-arrow w-4 h-4 text-gray-400 transition-transform" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M3 8l3 3 7-7"/></svg>
+        </div>
+        <div class="faq-content hidden mt-3 text-xs text-gray-600 leading-relaxed">A cobrança é feita automaticamente no mesmo dia de cada mês, de acordo com a data da sua primeira assinatura. Você receberá um e-mail e uma notificação antes de cada cobrança.</div>
+      </div>
+      <div onclick="planos_toggleFaq(this)" class="bg-white rounded-xl p-4 border border-gray-100 cursor-pointer active:bg-gray-50 transition-colors">
+        <div class="flex items-center justify-between">
+          <span class="text-sm font-medium text-gray-800">O que acontece se eu exceder o limite?</span>
+          <svg class="faq-arrow w-4 h-4 text-gray-400 transition-transform" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M3 8l3 3 7-7"/></svg>
+        </div>
+        <div class="faq-content hidden mt-3 text-xs text-gray-600 leading-relaxed">Quando você se aproxima do limite (80%), receberá uma notificação. Você pode fazer upgrade do plano ou aguardar o próximo ciclo. Automações extras são cobradas separadamente.</div>
+      </div>
+      <div onclick="planos_toggleFaq(this)" class="bg-white rounded-xl p-4 border border-gray-100 cursor-pointer active:bg-gray-50 transition-colors">
+        <div class="flex items-center justify-between">
+          <span class="text-sm font-medium text-gray-800">Posso cancelar quando quiser?</span>
+          <svg class="faq-arrow w-4 h-4 text-gray-400 transition-transform" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M3 8l3 3 7-7"/></svg>
+        </div>
+        <div class="faq-content hidden mt-3 text-xs text-gray-600 leading-relaxed">Sim! O cancelamento pode ser feito a qualquer momento sem multas ou taxas adicionais. Seu acesso continua ativo até o fim do período pago.</div>
+      </div>
+    </div>
+
+    <!-- Botão falar com suporte -->
+    <button onclick="mostrarTela('suporte-humano')" class="w-full bg-gray-900 text-white font-semibold text-sm py-3.5 rounded-2xl active:scale-95 transition-all hover:bg-gray-800 flex items-center justify-center gap-2 mb-2">
+      <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 9a2 2 0 01-2 2H6.5l-2.6 2.6a1 1 0 01-1.7-.7V4.7a1 1 0 01.7-1.7L6.5 2H12a2 2 0 012 2v5z"/></svg>
+      Falar com Suporte Humano
+    </button>
+  </div>
+</section>
+
+<script>
+function planos_voltar() {
+  mostrarTela('painel-principal');
+}
+
+function planos_abrirDetalhes(plano) {
+  const dados = {
+    basico: {
+      nome: 'Básico', preco: 29, cor: 'marca', badge: '',
+      recursos: ['100 automações/mês', '1 canal conectado', 'Modelos pré-prontos', 'Suporte por e-mail', 'Relatórios básicos'],
+      sem: ['IA avançada', 'Multi-canal', 'Suporte prioritário', 'API personalizada']
+    },
+    pro: {
+      nome: 'Pro', preco: 79, cor: 'marca', badge: '<span class="badge bg-marca-100 text-marca-700 text-[10px] font-bold px-2 py-0.5 rounded-full">Atual</span>',
+      recursos: ['1.000 automações/mês', '3 canais conectados', 'IA avançada com GPT-4', 'Suporte prioritário (2h)', 'Relatórios completos', 'Webhooks e integrações'],
+      sem: ['Automações ilimitadas', 'Gerente de conta dedicado']
+    },
+    empresarial: {
+      nome: 'Empresarial', preco: 199, cor: 'amber', badge: '',
+      recursos: ['Automações ilimitadas', 'Todos os canais', 'IA avançada + fine-tuning', 'Suporte prioritário', 'Gerente de conta dedicado', 'API personalizada', 'SLA garantido', 'Onboarding exclusivo'],
+      sem: []
+    }
+  };
+  const d = dados[plano];
+  const badgeStr = d.badge || '';
+  let html = '<div class="space-y-4">';
+  html += '<div class="flex items-center justify-between">';
+  html += '<h3 class="font-display text-lg font-bold text-gray-900">' + d.nome + ' ' + badgeStr + '</h3>';
+  html += '<div class="text-right"><span class="text-2xl font-bold text-gray-900">R$ ' + d.preco + '</span><span class="text-sm text-gray-500">/mês</span></div>';
+  html += '</div>';
+  html += '<div class="bg-marca-50 rounded-xl p-4"><h4 class="text-xs font-bold text-marca-700 uppercase tracking-wide mb-2">Incluído</h4><div class="space-y-2">';
+  d.recursos.forEach(function(r) {
+    html += '<div class="flex items-center gap-2.5 text-sm text-gray-700"><svg width="16" height="16" fill="none" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 16 16"><path d="M3 8l3 3 7-7"/></svg>' + r + '</div>';
+  });
+  html += '</div></div>';
+  if (d.sem.length > 0) {
+    html += '<div class="bg-gray-50 rounded-xl p-4"><h4 class="text-xs font-bold text-gray-500 uppercase tracking-wide mb-2">Não incluído</h4><div class="space-y-2">';
+    d.sem.forEach(function(r) {
+      html += '<div class="flex items-center gap-2.5 text-sm text-gray-400 line-through decoration-gray-300">' + r + '</div>';
+    });
+    html += '</div></div>';
+  }
+  html += '<div class="bg-gray-50 rounded-xl p-4"><h4 class="text-xs font-bold text-gray-700 uppercase tracking-wide mb-2">Formas de pagamento</h4>';
+  html += '<div class="flex gap-3">';
+  html += '<div class="flex items-center gap-2 text-xs text-gray-600 bg-white px-3 py-2 rounded-lg border border-gray-200"><svg width="14" height="14" fill="none" stroke="#2563eb" stroke-width="2" viewBox="0 0 16 16"><rect x="2" y="4" width="12" height="8" rx="1"/><path d="M2 8h12"/></svg>Cartão</div>';
+  html += '<div class="flex items-center gap-2 text-xs text-gray-600 bg-white px-3 py-2 rounded-lg border border-gray-200"><svg width="14" height="14" fill="none" stroke="#16a34a" stroke-width="2" viewBox="0 0 16 16"><path d="M3 8l3 3 7-7"/></svg>Pix</div>';
+  html += '<div class="flex items-center gap-2 text-xs text-gray-600 bg-white px-3 py-2 rounded-lg border border-gray-200"><svg width="14" height="14" fill="none" stroke="#7c3aed" stroke-width="2" viewBox="0 0 16 16"><rect x="3" y="3" width="10" height="10" rx="1"/></svg>Boleto</div>';
+  html += '</div></div>';
+  html += '<button onclick="fecharModal(); planos_assinar(\'' + plano + '\')" class="w-full bg-marca-600 text-white font-semibold text-sm py-3 rounded-xl active:scale-95 transition-all hover:bg-marca-700 shadow-md">Assinar Agora</button>';
+  html += '</div>';
+  abrirModal(html, 'Detalhes do Plano');
+}
+
+function planos_assinar(plano) {
+  var nomes = { basico: 'Básico', pro: 'Pro', empresarial: 'Empresarial' };
+  toast('Plano ' + nomes[plano] + ' assinado com sucesso!', 'ok');
+}
+
+function planos_abrirModalAssinar(plano) {
+  var nomes = { basico: 'Básico', empresarial: 'Empresarial' };
+  var precos = { basico: 29, empresarial: 199 };
+  var html = '<div class="space-y-4">';
+  html += '<p class="text-sm text-gray-600">Você está assinando o plano <strong>' + nomes[plano] + '</strong> por <strong>R$ ' + precos[plano] + '/mês</strong>.</p>';
+  html += '<div class="space-y-2">';
+  html += '<div><label class="text-xs font-semibold text-gray-700 block mb-1">Nome no cartão</label><input type="text" placeholder="Nome completo" class="w-full border border-gray-300 rounded-xl px-4 py-2.5 text-sm focus:ring-2 focus:ring-marca-500 focus:border-marca-500 outline-none transition-all"></div>';
+  html += '<div><label class="text-xs font-semibold text-gray-700 block mb-1">Número do cartão</label><input type="text" placeholder="0000 0000 0000 0000" class="w-full border border-gray-300 rounded-xl px-4 py-2.5 text-sm focus:ring-2 focus:ring-marca-500 focus:border-marca-500 outline-none transition-all"></div>';
+  html += '<div class="grid grid-cols-2 gap-3">';
+  html += '<div><label class="text-xs font-semibold text-gray-700 block mb-1">Validade</label><input type="text" placeholder="MM/AA" class="w-full border border-gray-300 rounded-xl px-4 py-2.5 text-sm focus:ring-2 focus:ring-marca-500 focus:border-marca-500 outline-none transition-all"></div>';
+  html += '<div><label class="text-xs font-semibold text-gray-700 block mb-1">CVV</label><input type="text" placeholder="000" class="w-full border border-gray-300 rounded-xl px-4 py-2.5 text-sm focus:ring-2 focus:ring-marca-500 focus:border-marca-500 outline-none transition-all"></div>';
+  html += '</div></div>';
+  html += '<div class="bg-amber-50 rounded-xl p-3 flex items-start gap-2"><svg width="16" height="16" fill="none" stroke="#d97706" stroke-width="2" stroke-linecap="round" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6.5"/><path d="M8 5v3.5l2.5 1.5"/></svg><p class="text-xs text-amber-800">Você tem 7 dias de garantia. Cancele quando quiser sem custos.</p></div>';
+  html += '<button onclick="planos_processarPagamento(\'' + plano + '\')" class="w-full bg-marca-600 text-white font-semibold text-sm py-3 rounded-xl active:scale-95 transition-all hover:bg-marca-700 shadow-md">Confirmar Assinatura</button>';
+  html += '</div>';
+  abrirModal(html, 'Assinar ' + nomes[plano]);
+}
+
+function planos_abrirModalGerenciar() {
+  var html = '<div class="space-y-3">';
+  html += '<div class="bg-marca-50 rounded-xl p-4"><div class="flex items-center justify-between"><div><p class="text-xs text-marca-600 font-medium">Plano atual</p><p class="font-display font-bold text-marca-800">Pro</p></div><span class="badge bg-marca-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">Ativo</span></div><div class="mt-2 flex items-baseline gap-1"><span class="text-2xl font-bold text-gray-900">R$ 79</span><span class="text-xs text-gray-500">/mês</span></div><p class="text-xs text-gray-500 mt-1">Renova em 15/07/2025</p></div>';
+  html += '<div class="bg-gray-50 rounded-xl p-4"><h4 class="text-xs font-bold text-gray-700 uppercase tracking-wide mb-2">Uso atual</h4><div class="space-y-2"><div><div class="flex justify-between text-xs mb-1"><span class="text-gray-600">Automações</span><span class="font-semibold">847 / 1.000</span></div><div class="w-full h-2 bg-gray-200 rounded-full"><div class="h-2 bg-marca-500 rounded-full" style="width:84.7%"></div></div></div><div><div class="flex justify-between text-xs mb-1"><span class="text-gray-600">Canais</span><span class="font-semibold">2 / 3</span></div><div class="w-full h-2 bg-gray-200 rounded-full"><div class="h-2 bg-green-500 rounded-full" style="width:66.6%"></div></div></div></div></div>';
+  html += '<div class="space-y-2">';
+  html += '<button onclick="fecharModal(); planos_abrirModalMudar()" class="w-full bg-white border-2 border-gray-200 text-gray-700 font-semibold text-sm py-3 rounded-xl active:scale-95 transition-all hover:bg-gray-50">Mudar de Plano</button>';
+  html += '<button onclick="fecharModal(); planos_abrirModalCancelar()" class="w-full bg-red-50 border border-red-200 text-red-600 font-semibold text-sm py-3 rounded-xl active:scale-95 transition-all hover:bg-red-100">Cancelar Assinatura</button>';
+  html += '</div></div>';
+  abrirModal(html, 'Gerenciar Assinatura');
+}
+
+function planos_abrirModalMudar() {
+  var html = '<div class="space-y-4">';
+  html += '<h3 class="font-display font-bold text-gray-900">Escolha um novo plano</h3>';
+  var planos = [
+    { nome: 'Básico', preco: 29, cor: 'marca', atual: false, tem: 'Atual' },
+    { nome: 'Pro', preco: 79, cor: 'marca', atual: true, tem: 'Atual' },
+    { nome: 'Empresarial', preco: 199, cor: 'amber', atual: false, tem: 'Upgrade' }
+  ];
+  planos.forEach(function(p) {
+    var borderClass = p.atual ? 'border-marca-400 bg-marca-50/50' : 'border-gray-200';
+    html += '<div onclick="planos_selecionarPlano(this, \'' + p.nome + '\', ' + p.preco + ')" class="plano-opcao card bg-white rounded-xl p-4 border-2 ' + borderClass + ' cursor-pointer transition-all active:scale-[0.98]"><div class="flex items-center justify-between"><div class="flex items-center gap-3"><div class="w-5 h-5 rounded-full border-2 ' + (p.atual ? 'border-marca-500 bg-marca-500' : 'border-gray-300') + ' flex items-center justify-center"><svg class="' + (p.atual ? '' : 'hidden') + '" width="12" height="12" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" viewBox="0 0 16 16"><path d="M3 8l3 3 7-7"/></svg></div><div><p class="font-semibold text-sm text-gray-900">' + p.nome + '</p><p class="text-xs text-gray-500">R$ ' + p.preco + '/mês</p></div></div>';
+    if (p.atual) html += '<span class="badge bg-marca-100 text-marca-700 text-[10px] font-bold px-2 py-0.5 rounded-full">Atual</span>';
+    html += '</div></div>';
+  });
+  html += '<button onclick="planos_confirmarMudanca()" class="w-full bg-marca-600 text-white font-semibold text-sm py-3 rounded-xl active:scale-95 transition-all hover:bg-marca-700 shadow-md">Confirmar Mudança</button>';
+  html += '</div>';
+  abrirModal(html, 'Mudar de Plano');
+}
+
+function planos_selecionarPlano(el, nome, preco) {
+  document.querySelectorAll('.plano-opcao').forEach(function(c) {
+    c.classList.remove('border-marca-400', 'bg-marca-50/50');
+    c.classList.add('border-gray-200');
+    c.querySelector('.rounded-full').classList.remove('border-marca-500', 'bg-marca-500');
+    c.querySelector('.rounded-full').classList.add('border-gray-300');
+    c.querySelector('svg').classList.add('hidden');
+  });
+  el.classList.remove('border-gray-200');
+  el.classList.add('border-marca-400', 'bg-marca-50/50');
+  var radio = el.querySelector('.rounded-full');
+  radio.classList.remove('border-gray-300');
+  radio.classList.add('border-marca-500', 'bg-marca-500');
+  radio.querySelector('svg').classList.remove('hidden');
+  el.dataset.planoSelecionado = nome;
+  el.dataset.planoPreco = preco;
+}
+
+function planos_confirmarMudanca() {
+  var selecionado = document.querySelector('.plano-opcao[data-plano-selecionado]');
+  if (!selecionado) { toast('Selecione um plano', 'erro'); return; }
+  var nome = selecionado.dataset.planoSelecionado;
+  fecharModal();
+  toast('Plano alterado para ' + nome + ' com sucesso!', 'ok');
+}
+
+function planos_abrirModalCancelar() {
+  var html = '<div class="space-y-4 text-center">';
+  html += '<div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto"><svg width="32" height="32" fill="none" stroke="#dc2626" stroke-width="2" stroke-linecap="round" viewBox="0 0 32 32"><path d="M8 8l16 16M24 8L8 24"/></svg></div>';
+  html += '<h3 class="font-display text-lg font-bold text-gray-900">Cancelar assinatura?</h3>';
+  html += '<p class="text-sm text-gray-500 leading-relaxed">Você perderá acesso a todas as automações, canais e recursos do plano Pro ao final do período pago (15/07/2025).</p>';
+  html += '<div class="bg-amber-50 rounded-xl p-3 text-left"><p class="text-xs text-amber-800 font-medium mb-1">💡 Antes de cancelar:</p><ul class="text-xs text-amber-700 space-y-1 list-disc list-inside"><li>Seus dados ficam salvos por 30 dias</li><li>Você pode reativar sem perder nada</li><li>A garantia de 7 dias ainda vale</li></ul></div>';
+  html += '<div class="flex gap-2">';
+  html += '<button onclick="fecharModal()" class="flex-1 bg-gray-100 text-gray-700 font-semibold text-sm py-3 rounded-xl active:scale-95 transition-all hover:bg-gray-200">Manter Plano</button>';
+  html += '<button onclick="fecharModal(); planos_cancelar()" class="flex-1 bg-red-600 text-white font-semibold text-sm py-3 rounded-xl active:scale-95 transition-all hover:bg-red-700">Cancelar</button>';
+  html += '</div></div>';
+  abrirModal(html, 'Cancelar Assinatura');
+}
+
+function planos_cancelar() {
+  toast('Sua assinatura foi cancelada. Acesso até 15/07/2025.', 'info');
+}
+
+function planos_processarPagamento(plano) {
+  var nomes = { basico: 'Básico', empresarial: 'Empresarial' };
+  var btn = document.querySelector('.modal-content button:last-child');
+  if (btn) { btn.innerHTML = '<svg class="inline animate-spin -ml-1 mr-2" width="16" height="16" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path></svg>Processando...'; btn.disabled = true; btn.classList.add('opacity-70'); }
+  setTimeout(function() {
+    fecharModal();
+    toast('Plano ' + nomes[plano] + ' assinado! Redirecionando...', 'ok');
+    setTimeout(function() { mostrarTela('automacoes'); }, 800);
+  }, 1800);
+}
+
+function planos_toggleFaq(el) {
+  var content = el.querySelector('.faq-content');
+  var arrow = el.querySelector('.faq-arrow');
+  if (content.classList.contains('hidden')) {
+    content.classList.remove('hidden');
+    arrow.style.transform = 'rotate(180deg)';
+    el.classList.add('bg-gray-50');
+  } else {
+    content.classList.add('hidden');
+    arrow.style.transform = 'rotate(0deg)';
+    el.classList.remove('bg-gray-50');
+  }
+}
+</script>
+
     <!-- TELAS -->
         </main>
 
