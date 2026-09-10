@@ -2420,6 +2420,340 @@ function planos_toggleFaq(el) {
       notificacoes_renderizar();
     </script>
 
+    <section data-tela="suporte-humano" class="hidden">
+  <div id="suporte-container" class="hidden"></div>
+
+  <div id="suporte-humano-content" class="px-5 py-5 space-y-5">
+
+    <!-- Cabeçalho -->
+    <div>
+      <h1 class="font-display text-2xl font-bold text-gray-900 tracking-tight">Suporte Humano</h1>
+      <p class="mt-1 text-sm text-gray-500">Fale diretamente com nossa equipe de especialistas</p>
+    </div>
+
+    <!-- Card: Boas-vindas -->
+    <div class="rounded-2xl border border-gray-100 bg-gradient-to-br from-emerald-50 to-teal-50 p-5">
+      <div class="flex items-start gap-3">
+        <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-emerald-100 text-emerald-600">
+          <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+        </div>
+        <div>
+          <p class="font-display font-semibold text-gray-900">Vou conectar você com um especialista!</p>
+          <p class="mt-0.5 text-sm text-gray-600">Nosso time responde em até 2 minutos. Escolha o canal que preferir para começar:</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Atendimento ativo (mostrado quando há atendimento em andamento) -->
+    <div id="atendimento-ativo" class="hidden rounded-2xl border border-emerald-200 bg-emerald-50/70 p-4">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="relative">
+            <div class="flex h-11 w-11 items-center justify-center rounded-full bg-emerald-100 text-emerald-700 font-display font-bold text-sm">LS</div>
+            <span class="absolute -bottom-0.5 -right-0.5 h-3.5 w-3.5 rounded-full border-2 border-emerald-50 bg-emerald-500"></span>
+          </div>
+          <div>
+            <p class="font-display font-semibold text-sm text-gray-900">Larissa Santos</p>
+            <p class="text-xs text-gray-500">Especialista de Suporte</p>
+          </div>
+        </div>
+        <div class="text-right">
+          <span class="inline-flex items-center gap-1.5 rounded-full bg-emerald-100 px-2.5 py-1 text-xs font-medium text-emerald-700">
+            <span class="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse"></span>Em atendimento
+          </span>
+          <p class="mt-1 text-xs text-gray-400">há 4 min</p>
+        </div>
+      </div>
+      <div class="mt-3 flex gap-2">
+        <button onclick="suporte_humano_fecharAtendimento()" class="flex-1 rounded-xl border border-gray-200 bg-white px-3 py-2 text-xs font-medium text-gray-700 transition hover:bg-gray-50 active:scale-95">Encerrar atendimento</button>
+        <button onclick="mostrarTela('chat-com-ia')" class="flex-1 rounded-xl bg-emerald-600 px-3 py-2 text-xs font-medium text-white transition hover:bg-emerald-700 active:scale-95">Ir para o chat</button>
+      </div>
+    </div>
+
+    <!-- Canais de atendimento -->
+    <div>
+      <h2 class="font-display text-sm font-semibold text-gray-500 uppercase tracking-wider mb-3">Canais de Atendimento</h2>
+      <div class="grid grid-cols-1 gap-3">
+
+        <!-- Chat ao vivo -->
+        <button onclick="suporte_humano_abrirChat()" class="card group flex items-center gap-4 !p-4 text-left transition hover:shadow-md active:scale-[0.98]">
+          <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-emerald-100 text-emerald-600 transition group-hover:bg-emerald-600 group-hover:text-white">
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 01-2.555-.337A5.972 5.972 0 013 21V12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25z"/></svg>
+          </div>
+          <div class="flex-1 min-w-0">
+            <p class="font-display font-semibold text-gray-900">Chat ao vivo</p>
+            <p class="text-sm text-gray-500">Tempo médio: 2 minutos</p>
+          </div>
+          <div class="flex items-center gap-1 text-emerald-600">
+            <span class="text-xs font-medium">Iniciar</span>
+            <svg class="h-4 w-4 transition group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+          </div>
+        </button>
+
+        <!-- Chamada de vídeo -->
+        <button onclick="suporte_humano_agendarVideo()" class="card group flex items-center gap-4 !p-4 text-left transition hover:shadow-md active:scale-[0.98]">
+          <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-teal-100 text-teal-600 transition group-hover:bg-teal-600 group-hover:text-white">
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5l4.72-4.72a.75.75 0 011.28.53v11.38a.75.75 0 01-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 002.25-2.25v-9a2.25 2.25 0 00-2.25-2.25h-9A2.25 2.25 0 002.25 7.5v9a2.25 2.25 0 002.25 2.25z"/></svg>
+          </div>
+          <div class="flex-1 min-w-0">
+            <p class="font-display font-semibold text-gray-900">Chamada de vídeo</p>
+            <p class="text-sm text-gray-500">Agende para hoje</p>
+          </div>
+          <div class="flex items-center gap-1 text-teal-600">
+            <span class="text-xs font-medium">Agendar</span>
+            <svg class="h-4 w-4 transition group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+          </div>
+        </button>
+
+        <!-- WhatsApp -->
+        <button onclick="suporte_humano_abrirWhatsApp()" class="card group flex items-center gap-4 !p-4 text-left transition hover:shadow-md active:scale-[0.98]">
+          <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-green-100 text-green-600 transition group-hover:bg-green-600 group-hover:text-white">
+            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          </div>
+          <div class="flex-1 min-w-0">
+            <p class="font-display font-semibold text-gray-900">WhatsApp direto</p>
+            <p class="text-sm text-gray-500">Mensagem pré-preenchida</p>
+          </div>
+          <div class="flex items-center gap-1 text-green-600">
+            <span class="text-xs font-medium">Abrir</span>
+            <svg class="h-4 w-4 transition group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+          </div>
+        </button>
+      </div>
+    </div>
+
+    <!-- Formulário rápido -->
+    <div class="rounded-2xl border border-gray-100 bg-white p-5">
+      <h2 class="font-display text-sm font-semibold text-gray-500 uppercase tracking-wider mb-3">Formulário rápido</h2>
+      <form id="form-suporte" onsubmit="suporte_humano_enviarFormulario(event)" class="space-y-3">
+        <div>
+          <label for="sup-nome" class="block text-sm font-medium text-gray-700 mb-1">Seu nome</label>
+          <input id="sup-nome" type="text" placeholder="Digite seu nome completo" class="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-2.5 text-sm text-gray-900 placeholder-gray-400 outline-none transition focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200" required>
+        </div>
+        <div>
+          <label for="sup-assunto" class="block text-sm font-medium text-gray-700 mb-1">Assunto</label>
+          <select id="sup-assunto" class="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-2.5 text-sm text-gray-900 outline-none transition focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200" required>
+            <option value="">Selecione o assunto</option>
+            <option>Dúvida técnica</option>
+            <option>Configuração</option>
+            <option>Pagamento</option>
+            <option>Outro</option>
+          </select>
+        </div>
+        <div>
+          <label for="sup-descricao" class="block text-sm font-medium text-gray-700 mb-1">Descrição breve</label>
+          <textarea id="sup-descricao" rows="3" placeholder="Descreva seu problema ou dúvida em poucas palavras..." class="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-2.5 text-sm text-gray-900 placeholder-gray-400 outline-none transition focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200 resize-none" required></textarea>
+        </div>
+        <button type="submit" class="btn w-full py-3 text-sm font-semibold">Enviar solicitação</button>
+      </form>
+    </div>
+
+    <!-- Histórico de atendimentos -->
+    <div>
+      <h2 class="font-display text-sm font-semibold text-gray-500 uppercase tracking-wider mb-3">Histórico de atendimentos</h2>
+      <div class="mb-3">
+        <div class="relative">
+          <svg class="absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"/></svg>
+          <input id="busca-historico" oninput="suporte_humano_filtrarHistorico()" type="text" placeholder="Buscar por assunto ou atendente..." class="w-full rounded-xl border border-gray-200 bg-gray-50 pl-10 pr-4 py-2.5 text-sm text-gray-900 placeholder-gray-400 outline-none transition focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200">
+        </div>
+      </div>
+      <div id="lista-historico" class="space-y-2"></div>
+      <div id="historico-vazio" class="hidden rounded-2xl border border-dashed border-gray-200 p-8 text-center">
+        <svg class="mx-auto h-10 w-10 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.182 16.318A4.486 4.486 0 0012.016 15a4.486 4.486 0 00-3.198 1.318M21 12a9 9 0 11-18 0 9 9 0 0118 0zM7.5 10.5a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0zM16.5 10.5a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0z"/></svg>
+        <p class="mt-2 text-sm text-gray-500">Nenhum atendimento encontrado</p>
+      </div>
+    </div>
+
+    <div class="h-6"></div>
+  </div>
+
+  <!-- Modal: Agendamento de vídeo -->
+  <div id="modal-video" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50 p-5">
+    <div class="w-full max-w-sm rounded-2xl bg-white p-5 shadow-xl">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="font-display font-bold text-gray-900">Agendar Chamada de Vídeo</h3>
+        <button onclick="fecharModal()" class="rounded-lg p-1 text-gray-400 transition hover:text-gray-600">
+          <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <div class="space-y-3">
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">Data</label>
+          <input type="date" id="video-data" class="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-2.5 text-sm outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200">
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">Horário preferido</label>
+          <select id="video-horario" class="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-2.5 text-sm outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200">
+            <option>09:00</option><option>10:00</option><option>11:00</option>
+            <option>13:00</option><option>14:00</option><option>15:00</option><option>16:00</option>
+          </select>
+        </div>
+        <button onclick="suporte_humano_confirmarAgendamento()" class="btn w-full py-3 text-sm font-semibold">Confirmar agendamento</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Detalhe do atendimento -->
+  <div id="modal-detalhe-atendimento" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50 p-5">
+    <div class="w-full max-w-sm rounded-2xl bg-white shadow-xl max-h-[80vh] overflow-y-auto">
+      <div id="detalhe-atendimento-conteudo" class="p-5"></div>
+    </div>
+  </div>
+
+  <script>
+    var suporte_humano_atendimentos = [
+      { id: 1, nome: "Rafael Mendes", assunto: "Dúvida técnica", descricao: "Automação de relatórios não está gerando PDF corretamente.", data: "2026-01-18", atendente: "Marina Costa", status: "concluido", nota: 5, canal: "Chat ao vivo" },
+      { id: 2, nome: "Ana Oliveira", assunto: "Pagamento", descricao: "Cobrança duplicada no cartão de crédito.", data: "2026-01-22", atendente: "Carlos Lima", status: "concluido", nota: 4, canal: "WhatsApp" },
+      { id: 3, nome: "Carlos Souza", assunto: "Configuração", descricao: "Como configurar webhook para notificações do bot?", data: "2026-02-03", atendente: "Fernanda Rocha", status: "concluido", nota: 5, canal: "Chamada de vídeo" },
+      { id: 4, nome: "Juliana Pereira", assunto: "Dúvida técnica", descricao: "Bot não responde em certos horários, preciso de ajuda.", data: "2026-02-10", atendente: "Marina Costa", status: "concluido", nota: 4, canal: "Chat ao vivo" },
+      { id: 5, nome: "Ricardo Barros", assunto: "Pagamento", descricao: "Plano Pro não aplicou desconto promocional.", data: "2026-02-15", atendente: "Larissa Santos", status: "em_andamento", nota: null, canal: "Chat ao vivo" },
+      { id: 6, nome: "Patrícia Almeida", assunto: "Configuração", descricao: "Integração com CRM não funciona, token expirado.", data: "2026-02-20", atendente: "Carlos Lima", status: "concluido", nota: 3, canal: "WhatsApp" },
+      { id: 7, nome: "Fernando Dias", assunto: "Outro", descricao: "Gostaria de solicitar recurso de relatório personalizado.", data: "2026-02-25", atendente: "Fernanda Rocha", status: "concluido", nota: 5, canal: "Chat ao vivo" },
+    ];
+
+    var suporte_humano_statusMap = {
+      concluido: { label: "Concluído", classe: "bg-emerald-100 text-emerald-700" },
+      em_andamento: { label: "Em andamento", classe: "bg-amber-100 text-amber-700" },
+      cancelado: { label: "Cancelado", classe: "bg-red-100 text-red-700" },
+      pendente: { label: "Pendente", classe: "bg-blue-100 text-blue-700" }
+    };
+
+    function suporte_humano_init() {
+      suporte_humano_verificarAtendimentoAtivo();
+      suporte_humano_renderHistorico(suporte_humano_atendimentos);
+      var hoje = new Date();
+      var dataStr = hoje.toISOString().split("T")[0];
+      var el = document.getElementById("video-data");
+      if (el) { el.value = dataStr; el.min = dataStr; }
+    }
+
+    function suporte_humano_verificarAtendimentoAtivo() {
+      var temAtivo = suporte_humano_atendimentos.some(function(a) { return a.status === "em_andamento"; });
+      var el = document.getElementById("atendimento-ativo");
+      if (el) { el.classList.toggle("hidden", !temAtivo); }
+    }
+
+    function suporte_humano_renderHistorico(lista) {
+      var container = document.getElementById("lista-historico");
+      var vazio = document.getElementById("historico-vazio");
+      if (!container) return;
+      if (lista.length === 0) {
+        container.innerHTML = "";
+        vazio.classList.remove("hidden");
+        return;
+      }
+      vazio.classList.add("hidden");
+      container.innerHTML = lista.map(function(att) {
+        var s = suporte_humano_statusMap[att.status] || suporte_humano_statusMap.pendente;
+        var iniciais = att.nome.split(" ").map(function(w) { return w.charAt(0); }).join("").slice(0, 2).toUpperCase();
+        var cores = ["bg-emerald-100 text-emerald-700", "bg-teal-100 text-teal-700", "bg-amber-100 text-amber-700", "bg-blue-100 text-blue-700", "bg-indigo-100 text-indigo-700", "bg-cyan-100 text-cyan-700", "bg-lime-100 text-lime-700"];
+        var cor = cores[att.id % cores.length];
+        return "<button onclick=\"suporte_humano_verDetalhe(" + att.id + ")\" class=\"card w-full flex items-center gap-3 !p-3.5 text-left transition hover:shadow-md active:scale-[0.98]\">" +
+          "<div class=\"flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-xs font-display font-bold " + cor + "\">" + iniciais + "</div>" +
+          "<div class=\"flex-1 min-w-0\">" +
+            "<p class=\"text-sm font-medium text-gray-900 truncate\">" + att.assunto + "</p>" +
+            "<p class=\"text-xs text-gray-500\">" + dataBR(att.data) + " · " + att.canal + "</p>" +
+          "</div>" +
+          "<span class=\"badge text-xs " + s.classe + "\">" + s.label + "</span>" +
+        "</button>";
+      }).join("");
+    }
+
+    function suporte_humano_filtrarHistorico() {
+      var termo = document.getElementById("busca-historico").value.toLowerCase().trim();
+      if (!termo) { suporte_humano_renderHistorico(suporte_humano_atendimentos); return; }
+      var filtrados = suporte_humano_atendimentos.filter(function(att) {
+        return att.assunto.toLowerCase().includes(termo) || att.atendente.toLowerCase().includes(termo) || att.nome.toLowerCase().includes(termo);
+      });
+      suporte_humano_renderHistorico(filtrados);
+    }
+
+    function suporte_humano_verDetalhe(id) {
+      var att = suporte_humano_atendimentos.find(function(a) { return a.id === id; });
+      if (!att) return;
+      var s = suporte_humano_statusMap[att.status] || suporte_humano_statusMap.pendente;
+      var iniciais = att.nome.split(" ").map(function(w) { return w.charAt(0); }).join("").slice(0, 2).toUpperCase();
+      var html = "<div class=\"space-y-4\">" +
+        "<div class=\"flex items-center gap-3\">" +
+          "<div class=\"flex h-12 w-12 items-center justify-center rounded-full bg-emerald-100 text-emerald-700 font-display font-bold\">" + iniciais + "</div>" +
+          "<div><p class=\"font-display font-semibold text-gray-900\">" + att.nome + "</p><p class=\"text-xs text-gray-500\">" + att.atendente + " · " + att.canal + "</p></div>" +
+        "</div>" +
+        "<div class=\"grid grid-cols-2 gap-3\">" +
+          "<div class=\"rounded-xl bg-gray-50 p-3\"><p class=\"text-xs text-gray-500\">Data</p><p class=\"text-sm font-medium text-gray-900\">" + dataBR(att.data) + "</p></div>" +
+          "<div class=\"rounded-xl bg-gray-50 p-3\"><p class=\"text-xs text-gray-500\">Status</p><p class=\"text-sm font-medium\"><span class=\"badge text-xs " + s.classe + "\">" + s.label + "</span></p></div>" +
+          "<div class=\"rounded-xl bg-gray-50 p-3\"><p class=\"text-xs text-gray-500\">Assunto</p><p class=\"text-sm font-medium text-gray-900\">" + att.assunto + "</p></div>" +
+          (att.nota !== null ? "<div class=\"rounded-xl bg-gray-50 p-3\"><p class=\"text-xs text-gray-500\">Avaliação</p><p class=\"text-sm font-medium text-gray-900\">" + "★".repeat(att.nota) + "☆".repeat(5 - att.nota) + "</p></div>" : "") +
+        "</div>" +
+        "<div class=\"rounded-xl bg-gray-50 p-3\"><p class=\"text-xs text-gray-500 mb-1\">Descrição</p><p class=\"text-sm text-gray-800\">" + att.descricao + "</p></div>" +
+        (att.status === "em_andamento"
+          ? "<button onclick=\"fecharModal(); mostrarTela('chat-com-ia')\" class=\"btn w-full py-3 text-sm font-semibold\">Ir para o chat</button>"
+          : "<button onclick=\"fecharModal()\" class=\"w-full rounded-xl border border-gray-200 py-3 text-sm font-medium text-gray-700 transition hover:bg-gray-50 active:scale-95\">Fechar</button>") +
+      "</div>";
+      abrirModal(html, "Detalhe do Atendimento");
+    }
+
+    function suporte_humano_enviarFormulario(e) {
+      e.preventDefault();
+      var nome = document.getElementById("sup-nome").value.trim();
+      var assunto = document.getElementById("sup-assunto").value;
+      var descricao = document.getElementById("sup-descricao").value.trim();
+      if (!nome || !assunto || !descricao) { toast("Preencha todos os campos.", "erro"); return; }
+      var hoje = new Date();
+      var novo = { id: suporte_humano_atendimentos.length + 1, nome: nome, assunto: assunto, descricao: descricao, data: hoje.toISOString().split("T")[0], atendente: "Aguardando", status: "pendente", nota: null, canal: "Formulário" };
+      suporte_humano_atendimentos.unshift(novo);
+      suporte_humano_renderHistorico(suporte_humano_atendimentos);
+      document.getElementById("form-suporte").reset();
+      toast("Solicitação enviada com sucesso! Entraremos em contato em breve.", "ok");
+    }
+
+    function suporte_humano_abrirChat() {
+      abrirModal(
+        "<div class=\"text-center space-y-4\">" +
+          "<div class=\"mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-emerald-100 text-emerald-600\"><svg class=\"h-8 w-8\" fill=\"none\" viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-width=\"1.8\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 01-2.555-.337A5.972 5.972 0 013 21V12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25z\"/></svg></div>" +
+          "<p class=\"font-display font-semibold text-gray-900\">Conectando ao chat...</p>" +
+          "<p class=\"text-sm text-gray-500\">Tempo médio de espera: <span class=\"font-semibold text-emerald-600\">2 minutos</span></p>" +
+          "<div class=\"flex items-center justify-center gap-1\"><span class=\"h-2 w-2 rounded-full bg-emerald-500 animate-bounce\" style=\"animation-delay:0ms\"></span><span class=\"h-2 w-2 rounded-full bg-emerald-500 animate-bounce\" style=\"animation-delay:150ms\"></span><span class=\"h-2 w-2 rounded-full bg-emerald-500 animate-bounce\" style=\"animation-delay:300ms\"></span></div>" +
+          "<button onclick=\"fecharModal(); mostrarTela('chat-com-ia')\" class=\"btn w-full py-3 text-sm font-semibold\">Abrir chat agora</button>" +
+        "</div>",
+        "Chat ao Vivo"
+      );
+    }
+
+    function suporte_humano_agendarVideo() {
+      document.getElementById("modal-video").classList.remove("hidden");
+      document.getElementById("modal-video").classList.add("flex");
+    }
+
+    function suporte_humano_confirmarAgendamento() {
+      var data = document.getElementById("video-data").value;
+      var horario = document.getElementById("video-horario").value;
+      if (!data) { toast("Selecione uma data.", "erro"); return; }
+      fecharModal();
+      toast("Chamada de vídeo agendada para " + dataBR(data) + " às " + horario + ".", "ok");
+    }
+
+    function suporte_humano_abrirWhatsApp() {
+      var tel = "5511999999999";
+      var msg = encodeURIComponent("Olá! Gostaria de atendimento com um especialista do AutoBot.");
+      window.open("https://wa.me/" + tel + "?text=" + msg, "_blank");
+      toast("Abrindo WhatsApp...", "info");
+    }
+
+    function suporte_humano_fecharAtendimento() {
+      var ativo = suporte_humano_atendimentos.find(function(a) { return a.status === "em_andamento"; });
+      if (ativo) {
+        ativo.status = "concluido";
+        ativo.nota = 5;
+      }
+      suporte_humano_verificarAtendimentoAtivo();
+      suporte_humano_renderHistorico(suporte_humano_atendimentos);
+      toast("Atendimento encerrado com sucesso.", "ok");
+    }
+
+    suporte_humano_init();
+  </script>
+</section>
+
     <!-- TELAS -->
         </main>
 
