@@ -962,6 +962,422 @@
   </script>
 </section>
 
+    <section data-tela="historico" class="hidden">
+      <div class="px-4 pt-4 pb-24">
+        <!-- Header -->
+        <div class="flex items-start justify-between mb-1">
+          <div>
+            <h2 class="font-display text-2xl font-bold text-gray-900">Histórico</h2>
+            <p class="text-sm text-gray-500 mt-0.5">Suas interações com o bot</p>
+          </div>
+          <button onclick="historico_exportar()" class="flex items-center gap-1.5 bg-marca-900 text-white text-xs font-semibold px-3 py-2 rounded-xl active:scale-95 transition-all shadow-md shadow-marca-900/20">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+            Exportar
+          </button>
+        </div>
+
+        <!-- Indicadores -->
+        <div class="grid grid-cols-3 gap-2.5 mt-4 mb-4">
+          <div class="card p-3 text-center">
+            <svg class="w-5 h-5 mx-auto text-marca-600 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+            <p class="font-display text-lg font-bold text-gray-900" id="hist-total">24</p>
+            <p class="text-[10px] text-gray-500 uppercase tracking-wide">Total</p>
+          </div>
+          <div class="card p-3 text-center">
+            <svg class="w-5 h-5 mx-auto text-emerald-500 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <p class="font-display text-lg font-bold text-gray-900" id="hist-concluidas">19</p>
+            <p class="text-[10px] text-gray-500 uppercase tracking-wide">Concluídas</p>
+          </div>
+          <div class="card p-3 text-center">
+            <svg class="w-5 h-5 mx-auto text-amber-500 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <p class="font-display text-lg font-bold text-gray-900" id="hist-interrompidas">5</p>
+            <p class="text-[10px] text-gray-500 uppercase tracking-wide">Interrompidas</p>
+          </div>
+        </div>
+
+        <!-- Gráfico semanal SVG -->
+        <div class="card p-4 mb-4">
+          <p class="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-3">Interações na semana</p>
+          <svg viewBox="0 0 300 100" class="w-full h-24">
+            <line x1="20" y1="85" x2="280" y2="85" stroke="#e5e7eb" stroke-width="1"/>
+            <line x1="20" y1="65" x2="280" y2="65" stroke="#f3f4f6" stroke-width="1"/>
+            <line x1="20" y1="45" x2="280" y2="45" stroke="#f3f4f6" stroke-width="1"/>
+            <line x1="20" y1="25" x2="280" y2="25" stroke="#f3f4f6" stroke-width="1"/>
+            <rect x="25" y="55" width="28" height="30" rx="4" fill="var(--tw-text-opacity, #1e3a5f)" class="fill-marca-800" opacity="0.8"/>
+            <rect x="65" y="40" width="28" height="45" rx="4" fill="var(--tw-text-opacity, #1e3a5f)" class="fill-marca-700" opacity="0.8"/>
+            <rect x="105" y="50" width="28" height="35" rx="4" fill="var(--tw-text-opacity, #1e3a5f)" class="fill-marca-800" opacity="0.8"/>
+            <rect x="145" y="25" width="28" height="60" rx="4" fill="var(--tw-text-opacity, #1e3a5f)" class="fill-marca-600" opacity="0.9"/>
+            <rect x="185" y="35" width="28" height="50" rx="4" fill="var(--tw-text-opacity, #1e3a5f)" class="fill-marca-700" opacity="0.8"/>
+            <rect x="225" y="15" width="28" height="70" rx="4" fill="var(--tw-text-opacity, #1e3a5f)" class="fill-marca-500" opacity="0.95"/>
+            <rect x="265" y="30" width="28" height="55" rx="4" fill="var(--tw-text-opacity, #1e3a5f)" class="fill-marca-700" opacity="0.8"/>
+            <text x="39" y="98" text-anchor="middle" class="text-[8px] fill-gray-400">Seg</text>
+            <text x="79" y="98" text-anchor="middle" class="text-[8px] fill-gray-400">Ter</text>
+            <text x="119" y="98" text-anchor="middle" class="text-[8px] fill-gray-400">Qua</text>
+            <text x="159" y="98" text-anchor="middle" class="text-[8px] fill-gray-400">Qui</text>
+            <text x="199" y="98" text-anchor="middle" class="text-[8px] fill-gray-400">Sex</text>
+            <text x="239" y="98" text-anchor="middle" class="text-[8px] fill-gray-400">Sáb</text>
+            <text x="279" y="98" text-anchor="middle" class="text-[8px] fill-gray-400">Dom</text>
+          </svg>
+        </div>
+
+        <!-- Busca -->
+        <div class="relative mb-3">
+          <svg class="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+          <input type="text" id="hist-busca" placeholder="Buscar por palavra-chave..." oninput="historico_filtrar()" class="w-full bg-white border border-gray-200 rounded-xl pl-9 pr-4 py-2.5 text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-marca-500/30 focus:border-marca-400 transition-all">
+        </div>
+
+        <!-- Filtros -->
+        <div class="flex gap-2 mb-4 overflow-x-auto pb-1 -mx-1 px-1 scrollbar-hide">
+          <div class="flex bg-gray-100 rounded-lg p-0.5 shrink-0">
+            <button onclick="historico_setPeriodo('7d', this)" class="hist-periodo text-xs font-medium px-3 py-1.5 rounded-md bg-white text-gray-900 shadow-sm transition-all">7 dias</button>
+            <button onclick="historico_setPeriodo('30d', this)" class="hist-periodo text-xs font-medium px-3 py-1.5 rounded-md text-gray-500 hover:text-gray-700 transition-all">30 dias</button>
+            <button onclick="historico_setPeriodo('90d', this)" class="hist-periodo text-xs font-medium px-3 py-1.5 rounded-md text-gray-500 hover:text-gray-700 transition-all">90 dias</button>
+          </div>
+          <select onchange="historico_setTipo(this.value)" class="bg-gray-100 border-0 rounded-lg text-xs font-medium text-gray-700 px-3 py-1.5 focus:ring-2 focus:ring-marca-500/30 shrink-0 cursor-pointer">
+            <option value="todos">Todos os tipos</option>
+            <option value="email">Automação de E-mail</option>
+            <option value="pedido">Status de Pedido</option>
+            <option value="financeiro">Financeiro</option>
+            <option value="suporte">Suporte</option>
+          </select>
+        </div>
+
+        <!-- Lista de histórico -->
+        <div id="hist-lista" class="space-y-5">
+          <!-- Dia: Hoje -->
+          <div class="hist-dia" data-dia="hoje">
+            <p class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2 flex items-center gap-2">
+              Hoje
+              <span class="flex-1 h-px bg-gray-200"></span>
+            </p>
+            <div class="space-y-2.5" id="hist-hoje"></div>
+          </div>
+
+          <!-- Dia: Ontem -->
+          <div class="hist-dia" data-dia="ontem">
+            <p class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2 flex items-center gap-2">
+              Ontem
+              <span class="flex-1 h-px bg-gray-200"></span>
+            </p>
+            <div class="space-y-2.5" id="hist-ontem"></div>
+          </div>
+
+          <!-- Dia: 15 de Janeiro -->
+          <div class="hist-dia" data-dia="2026-01-15">
+            <p class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2 flex items-center gap-2">
+              15 de Janeiro
+              <span class="flex-1 h-px bg-gray-200"></span>
+            </p>
+            <div class="space-y-2.5" id="hist-2026-01-15"></div>
+          </div>
+
+          <!-- Dia: 14 de Janeiro -->
+          <div class="hist-dia" data-dia="2026-01-14">
+            <p class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2 flex items-center gap-2">
+              14 de Janeiro
+              <span class="flex-1 h-px bg-gray-200"></span>
+            </p>
+            <div class="space-y-2.5" id="hist-2026-01-14"></div>
+          </div>
+
+          <!-- Dia: 12 de Janeiro -->
+          <div class="hist-dia" data-dia="2026-01-12">
+            <p class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2 flex items-center gap-2">
+              12 de Janeiro
+              <span class="flex-1 h-px bg-gray-200"></span>
+            </p>
+            <div class="space-y-2.5" id="hist-2026-01-12"></div>
+          </div>
+
+          <!-- Dia: 10 de Janeiro -->
+          <div class="hist-dia" data-dia="2026-01-10">
+            <p class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2 flex items-center gap-2">
+              10 de Janeiro
+              <span class="flex-1 h-px bg-gray-200"></span>
+            </p>
+            <div class="space-y-2.5" id="hist-2026-01-10"></div>
+          </div>
+
+          <!-- Dia: 08 de Janeiro -->
+          <div class="hist-dia" data-dia="2026-01-08">
+            <p class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2 flex items-center gap-2">
+              8 de Janeiro
+              <span class="flex-1 h-px bg-gray-200"></span>
+            </p>
+            <div class="space-y-2.5" id="hist-2026-01-08"></div>
+          </div>
+
+          <!-- Dia: 05 de Janeiro -->
+          <div class="hist-dia" data-dia="2026-01-05">
+            <p class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2 flex items-center gap-2">
+              5 de Janeiro
+              <span class="flex-1 h-px bg-gray-200"></span>
+            </p>
+            <div class="space-y-2.5" id="hist-2026-01-05"></div>
+          </div>
+        </div>
+
+        <!-- Estado vazio -->
+        <div id="hist-vazio" class="hidden text-center py-16">
+          <svg class="w-16 h-16 mx-auto text-gray-300 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+          <p class="font-display text-lg font-semibold text-gray-600">Nenhum resultado</p>
+          <p class="text-sm text-gray-400 mt-1">Tente outro termo ou filtro</p>
+        </div>
+      </div>
+
+      <script>
+      (function(){
+        const dados = [
+          { id: 1, dia: 'hoje', hora: '14:32', titulo: 'Consulta de Status de Pedido #28471', tipo: 'pedido', msgs: 8, concluido: true, resumo: 'Pedido em trânsito, previsão de entrega amanhã', detalhes: [
+            {de: 'Você', txt: 'Quero saber o status do meu pedido #28471'},
+            {de: 'Bot', txt: 'Olá! Seu pedido #28471 está em trânsito. A previsão de entrega é amanhã, até às 18h.'},
+            {de: 'Você', txt: 'Consigo alterar o endereço de entrega?'},
+            {de: 'Bot', txt: 'Sim! O endereço pode ser alterado enquanto o pedido estiver em trânsito. Deseja fazer a alteração agora?'},
+            {de: 'Você', txt: 'Não, está tudo certo. Obrigado!'},
+            {de: 'Bot', txt: 'Perfeito! Qualquer dúvida, é só chamar. Bom dia! 😊'},
+          ]},
+          { id: 2, dia: 'hoje', hora: '10:15', titulo: 'Automação de E-mail Marketing', tipo: 'email', msgs: 12, concluido: true, resumo: 'Fluxo de boas-vindas configurado para novos leads', detalhes: [
+            {de: 'Você', txt: 'Quero configurar um e-mail de boas-vindas automático.'},
+            {de: 'Bot', txt: 'Ótimo! Vou te ajudar a configurar o fluxo. Qual o nome da sua lista de contatos?'},
+            {de: 'Você', txt: 'Lista "Clientes BlueCircuit"'},
+            {de: 'Bot', txt: 'Perfeito. Agora, qual o assunto do primeiro e-mail?'},
+            {de: 'Você', txt: '"Bem-vindo à BlueCircuit! 🚀"'},
+            {de: 'Bot', txt: 'Pronto! Configurei o fluxo: e-mail enviado 5 minutos após o cadastro. Quer agendar um follow-up?'},
+          ]},
+          { id: 3, dia: 'ontem', hora: '18:45', titulo: 'Financeiro — 2ª via de boleto', tipo: 'financeiro', msgs: 5, concluido: true, resumo: 'Boleto gerado e enviado por e-mail', detalhes: [
+            {de: 'Você', txt: 'Preciso da 2ª via do boleto de janeiro'},
+            {de: 'Bot', txt: 'Encontrei seu boleto! Vencimento em 15/01. Vou gerar a 2ª via agora.'},
+            {de: 'Bot', txt: 'Pronto! O boleto foi enviado para o e-mail cadastrado. Deseja copiar o código de barras?'},
+            {de: 'Você', txt: 'Sim, por favor'},
+            {de: 'Bot', txt: '23793.39161 20312.218452 60004.220007 8 8345000002279'},
+          ]},
+          { id: 4, dia: 'ontem', hora: '09:22', titulo: 'Suporte — Problema com login', tipo: 'suporte', msgs: 7, concluido: false, resumo: 'Interrompido pelo usuário', detalhes: [
+            {de: 'Você', txt: 'Não consigo fazer login na minha conta'},
+            {de: 'Bot', txt: 'Vou te ajudar! Você está usando o e-mail cadastrado? Lembre-se de verificar se o CAPS LOCK está desligado.'},
+            {de: 'Você', txt: 'Sim, estou usando o mesmo e-mail'},
+            {de: 'Bot', txt: 'Posso enviar um link de redefinição de senha para o seu e-mail. Deseja?'},
+          ]},
+          { id: 5, dia: '2026-01-15', hora: '16:10', titulo: 'Automação de E-mail — Follow-up de Carrinho', tipo: 'email', msgs: 10, concluido: true, resumo: 'Fluxo de recuperação de carrinho abandonado criado', detalhes: [
+            {de: 'Você', txt: 'Quero criar um e-mail para quem abandona o carrinho.'},
+            {de: 'Bot', txt: 'Excelente ideia! Esse tipo de automação pode recuperar até 30% das vendas perdidas.'},
+            {de: 'Você', txt: 'Quero 3 e-mails: 1h, 24h e 72h depois'},
+            {de: 'Bot', txt: 'Criado! Os e-mails de recuperação de carrinho foram agendados. Cada um terá um desconto progressivo.'},
+          ]},
+          { id: 6, dia: '2026-01-15', hora: '11:33', titulo: 'Consulta de Status de Pedido #28465', tipo: 'pedido', msgs: 4, concluido: true, resumo: 'Pedido entregue com sucesso', detalhes: [
+            {de: 'Você', txt: 'Meu pedido #28465 chegou?'},
+            {de: 'Bot', txt: 'Sim! O pedido foi entregue em 14/01 às 15:42. O código de rastreamento foi fechado.'},
+            {de: 'Você', txt: 'Perfeito, obrigado!'},
+            {de: 'Bot', txt: 'De nada! Ficamos felizes que chegou tudo certo. Avalie sua experiência! ⭐'},
+          ]},
+          { id: 7, dia: '2026-01-14', hora: '20:05', titulo: 'Financeiro — Pagamento via PIX', tipo: 'financeiro', msgs: 6, concluido: true, resumo: 'Pagamento confirmado em 12 segundos', detalhes: [
+            {de: 'Você', txt: 'Quero pagar o plano Pro via PIX'},
+            {de: 'Bot', txt: 'Gerando QR Code... Pronto! Escaneie com o app do seu banco.'},
+            {de: 'Bot', txt: 'Pagamento confirmado! R$ 97,00. Seu plano Pro já está ativo. 🎉'},
+          ]},
+          { id: 8, dia: '2026-01-14', hora: '15:48', titulo: 'Suporte — Alteração de plano', tipo: 'suporte', msgs: 9, concluido: true, resumo: 'Upgrade de Starter para Pro realizado', detalhes: [
+            {de: 'Você', txt: 'Quero mudar para o plano Pro'},
+            {de: 'Bot', txt: 'Ótima escolha! O plano Pro inclui: 500 automações/mês, suporte prioritário e analytics avançado. Confirmar upgrade?'},
+            {de: 'Você', txt: 'Sim, confirmo!'},
+            {de: 'Bot', txt: 'Upgrade realizado! Bem-vindo ao plano Pro. Acesse o painel para explorar as novas funcionalidades.'},
+          ]},
+          { id: 9, dia: '2026-01-12', hora: '13:20', titulo: 'Automação de WhatsApp — Notificação de Estoque', tipo: 'email', msgs: 11, concluido: true, resumo: 'Notificação automática quando produto fica abaixo do mínimo', detalhes: [
+            {de: 'Você', txt: 'Quero ser avisado quando algum produto acabar'},
+            {de: 'Bot', txt: 'Perfeito! Vamos configurar as notificações. Qual o nível mínimo de estoque para cada produto?'},
+            {de: 'Você', txt: '5 unidades para a maioria, 10 para os best-sellers'},
+            {de: 'Bot', txt: 'Configurado! Você receberá uma notificação via WhatsApp quando qualquer produto atingir o nível mínimo.'},
+          ]},
+          { id: 10, dia: '2026-01-10', hora: '17:55', titulo: 'Consulta de Status de Pedido #28412', tipo: 'pedido', msgs: 6, concluido: false, resumo: 'Interrompido — usuário encerrou sem concluir', detalhes: [
+            {de: 'Você', txt: 'Onde está meu pedido #28412?'},
+            {de: 'Bot', txt: 'Encontrei! O pedido está no centro de distribuição, previsto para envio hoje à noite.'},
+            {de: 'Você', txt: 'Consigo mudar a forma de pagamento?'},
+          ]},
+          { id: 11, dia: '2026-01-08', hora: '09:41', titulo: 'Automação de E-mail — Aniversário de Cliente', tipo: 'email', msgs: 8, concluido: true, resumo: 'Fluxo de aniversário com cupom de 20% criado', detalhes: [
+            {de: 'Você', txt: 'Quero enviar um e-mail automático no aniversário do cliente'},
+            {de: 'Bot', txt: 'Ótima iniciativa! Vou configurar o envio automático. Quer incluir um cupom de desconto?'},
+            {de: 'Você', txt: 'Sim, 20% de desconto válido por 7 dias'},
+            {de: 'Bot', txt: 'Pronto! O fluxo está ativo. Todo cliente receberá o e-mail no dia do aniversário às 10h.'},
+          ]},
+          { id: 12, dia: '2026-01-05', hora: '14:12', titulo: 'Financeiro — Cancelamento de assinatura', tipo: 'financeiro', msgs: 4, concluido: true, resumo: 'Assinatura cancelada com sucesso', detalhes: [
+            {de: 'Você', txt: 'Quero cancelar minha assinatura'},
+            {de: 'Bot', txt: 'Tem certeza? Você perderá acesso a todas as automações no final do ciclo. Posso oferecer um plano mais barato?'},
+            {de: 'Você', txt: 'Não, quero cancelar mesmo'},
+            {de: 'Bot', txt: 'Entendido. Assinatura cancelada. Você ainda tem acesso até 05/02. Obrigado por usar a BlueCircuit!'},
+          ]},
+        ];
+
+        const iconesTipo = {
+          email: '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>',
+          pedido: '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>',
+          financeiro: '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>',
+          suporte: '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"/></svg>',
+        };
+
+        const coresTipo = {
+          email: 'bg-violet-50 text-violet-600 border-violet-200',
+          pedido: 'bg-sky-50 text-sky-600 border-sky-200',
+          financeiro: 'bg-emerald-50 text-emerald-600 border-emerald-200',
+          suporte: 'bg-amber-50 text-amber-600 border-amber-200',
+        };
+
+        const bgTipo = {
+          email: 'bg-violet-100 text-violet-700',
+          pedido: 'bg-sky-100 text-sky-700',
+          financeiro: 'bg-emerald-100 text-emerald-700',
+          suporte: 'bg-amber-100 text-amber-700',
+        };
+
+        window.historico_render = function(lista) {
+          const containers = {};
+          document.querySelectorAll('.hist-dia').forEach(d => {
+            containers[d.dataset.dia] = d.querySelector('[id^="hist-"]');
+            d.style.display = 'none';
+          });
+
+          if (!lista || lista.length === 0) {
+            document.getElementById('hist-vazio').classList.remove('hidden');
+            document.getElementById('hist-lista').classList.add('hidden');
+            return;
+          }
+          document.getElementById('hist-vazio').classList.add('hidden');
+          document.getElementById('hist-lista').classList.remove('hidden');
+
+          Object.values(containers).forEach(c => { if(c) c.innerHTML = ''; });
+
+          lista.forEach(item => {
+            const container = containers[item.dia];
+            if (!container) return;
+            container.closest('.hist-dia').style.display = '';
+
+            const card = document.createElement('div');
+            card.className = 'card p-3.5 active:scale-[0.98] transition-all cursor-pointer touch-manipulation';
+            card.onclick = function(){ historico_abrir(item); };
+            card.innerHTML = `
+              <div class="flex items-start gap-3">
+                <div class="w-9 h-9 rounded-xl ${bgTipo[item.tipo]} flex items-center justify-center shrink-0 mt-0.5">
+                  ${iconesTipo[item.tipo]}
+                </div>
+                <div class="flex-1 min-w-0">
+                  <div class="flex items-center gap-2 mb-0.5">
+                    <h4 class="text-sm font-semibold text-gray-900 truncate">${item.titulo}</h4>
+                  </div>
+                  <p class="text-xs text-gray-500 line-clamp-1 mb-1.5">${item.resumo}</p>
+                  <div class="flex items-center gap-3">
+                    <span class="text-[11px] text-gray-400 flex items-center gap-1">
+                      <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                      ${item.hora}
+                    </span>
+                    <span class="text-[11px] text-gray-400 flex items-center gap-1">
+                      <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+                      ${item.msgs} msg${item.msgs > 1 ? 's' : ''}
+                    </span>
+                    <span class="ml-auto flex items-center gap-1 text-[11px] font-semibold ${item.concluido ? 'text-emerald-600' : 'text-amber-600'}">
+                      ${item.concluido
+                        ? '<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>Concluída'
+                        : '<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>Interrompida'}
+                    </span>
+                  </div>
+                </div>
+                <svg class="w-4 h-4 text-gray-300 shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+              </div>`;
+            container.appendChild(card);
+          });
+
+          let total = lista.length, concluidas = 0, interrompidas = 0;
+          lista.forEach(i => { if(i.concluido) concluidas++; else interrompidas++; });
+          const tEl = document.getElementById('hist-total');
+          const cEl = document.getElementById('hist-concluidas');
+          const iEl = document.getElementById('hist-interrompidas');
+          if(tEl) tEl.textContent = total;
+          if(cEl) cEl.textContent = concluidas;
+          if(iEl) iEl.textContent = interrompidas;
+        };
+
+        window.historico_abrir = function(item) {
+          let html = '<div class="space-y-3">';
+          html += '<div class="flex items-center gap-3 pb-3 border-b border-gray-100">';
+          html += '<div class="w-10 h-10 rounded-xl ' + bgTipo[item.tipo] + ' flex items-center justify-center">' + iconesTipo[item.tipo] + '</div>';
+          html += '<div><p class="text-sm font-semibold text-gray-900">' + item.titulo + '</p>';
+          html += '<p class="text-xs text-gray-500">' + item.hora + ' · ' + item.msgs + ' mensagens</p></div></div>';
+          html += '<p class="text-xs text-gray-500 bg-gray-50 rounded-lg p-2.5">' + item.resumo + '</p>';
+          html += '<div class="space-y-2.5 max-h-72 overflow-y-auto pr-1">';
+          item.detalhes.forEach(m => {
+            const isUser = m.de === 'Você';
+            html += '<div class="flex ' + (isUser ? 'justify-end' : 'justify-start') + '">';
+            html += '<div class="max-w-[80%] ' + (isUser ? 'bg-marca-900 text-white rounded-2xl rounded-br-sm' : 'bg-gray-100 text-gray-800 rounded-2xl rounded-bl-sm') + ' px-3 py-2 text-xs leading-relaxed">';
+            html += '<p class="text-[10px] font-semibold mb-0.5 ' + (isUser ? 'text-marca-200' : 'text-gray-400') + '">' + m.de + '</p>' + m.txt + '</div></div>';
+          });
+          html += '</div>';
+          html += '<div class="flex gap-2 pt-2">';
+          html += '<button onclick="fecharModal(); mostrarTela(\'chat-com-ia\')" class="flex-1 bg-marca-900 text-white text-xs font-semibold py-2.5 rounded-xl active:scale-95 transition-all">Continuar conversa</button>';
+          html += '<button onclick="historico_exportarConversa(' + item.id + ')" class="bg-gray-100 text-gray-700 text-xs font-semibold px-4 py-2.5 rounded-xl active:scale-95 transition-all">Exportar</button>';
+          html += '</div></div>';
+          abrirModal(html, 'Conversa — ' + item.titulo);
+        };
+
+        window.historico_filtrar = function() {
+          const termo = document.getElementById('hist-busca').value.toLowerCase().trim();
+          if (!termo) { window.historico_render(dados); return; }
+          const filtrados = dados.filter(d => d.titulo.toLowerCase().includes(termo) || d.resumo.toLowerCase().includes(termo) || d.detalhes.some(m => m.txt.toLowerCase().includes(termo)));
+          window.historico_render(filtrados);
+        };
+
+        window.historico_setPeriodo = function(p, btn) {
+          document.querySelectorAll('.hist-periodo').forEach(b => {
+            b.classList.remove('bg-white','text-gray-900','shadow-sm');
+            b.classList.add('text-gray-500');
+          });
+          btn.classList.add('bg-white','text-gray-900','shadow-sm');
+          btn.classList.remove('text-gray-500');
+          window.historico_render(dados);
+          toast('Filtro aplicado: ' + (p === '7d' ? 'últimos 7 dias' : p === '30d' ? 'últimos 30 dias' : 'últimos 90 dias'), 'info');
+        };
+
+        window.historico_setTipo = function(t) {
+          const filtrados = t === 'todos' ? dados : dados.filter(d => d.tipo === t);
+          window.historico_render(filtrados);
+          if (t !== 'todos') toast('Filtro: ' + t, 'info');
+        };
+
+        window.historico_exportar = function() {
+          toast('Histórico exportado em PDF!', 'ok');
+        };
+
+        window.historico_exportarConversa = function(id) {
+          const item = dados.find(d => d.id === id);
+          if(item) {
+            toast('Conversa exportada com sucesso!', 'ok');
+            fecharModal();
+          }
+        };
+
+        // Swipe
+        let startX = 0;
+        document.addEventListener('touchstart', function(e) {
+          const card = e.target.closest('.card');
+          if(card) startX = e.touches[0].clientX;
+        }, { passive: true });
+
+        document.addEventListener('touchend', function(e) {
+          const card = e.target.closest('.card');
+          if(card && startX) {
+            const diff = e.changedTouches[0].clientX - startX;
+            if (Math.abs(diff) > 80) {
+              if(diff < 0) {
+                card.style.transition = 'transform 0.3s, opacity 0.3s';
+                card.style.transform = 'translateX(-100%)';
+                card.style.opacity = '0';
+                setTimeout(function(){ card.style.transform = ''; card.style.opacity = ''; card.style.transition = ''; toast('Item removido da visualização', 'info'); }, 300);
+              }
+            }
+            startX = 0;
+          }
+        }, { passive: true });
+
+        window.historico_render(dados);
+      })();
+      </script>
+    </section>
+
     <!-- TELAS -->
         </main>
 
