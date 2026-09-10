@@ -620,6 +620,348 @@
       </script>
     </section>
 
+    <section data-tela="chat-com-ia" class="hidden">
+  <div class="flex flex-col h-full bg-gray-50">
+    <!-- Cabeçalho do chat -->
+    <div class="bg-white border-b border-gray-200 px-4 py-3 flex items-center gap-3 shrink-0">
+      <button onclick="mostrarTela('painel-principal')" class="p-1 rounded-lg hover:bg-gray-100 active:scale-90 transition-all duration-150" aria-label="Voltar">
+        <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5"/></svg>
+      </button>
+      <div class="w-10 h-10 rounded-full bg-marca-100 flex items-center justify-center shrink-0">
+        <svg class="w-5 h-5 text-marca-700" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 00-2.455 2.456z"/></svg>
+      </div>
+      <div class="flex-1 min-w-0">
+        <h1 class="font-display font-semibold text-gray-900 text-sm leading-tight">AutoBot IA</h1>
+        <div class="flex items-center gap-1.5 mt-0.5">
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          <span class="text-xs text-emerald-600 font-medium" id="bot-status-text">Online agora</span>
+        </div>
+      </div>
+      <div class="flex items-center gap-1">
+        <button onclick="chat_com_ia_toggle_info()" class="p-2 rounded-lg hover:bg-gray-100 active:scale-90 transition-all duration-150" aria-label="Informações">
+          <svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z"/></svg>
+        </button>
+        <button onclick="mostrarTela('suporte-humano')" class="p-2 rounded-lg hover:bg-gray-100 active:scale-90 transition-all duration-150 relative" aria-label="Transferir para humano">
+          <svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/></svg>
+          <span class="absolute -top-0.5 -right-0.5 w-4 h-4 bg-marca-600 text-white text-[10px] font-bold rounded-full flex items-center justify-center">1</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Área de mensagens -->
+    <div id="chat-messages" class="flex-1 overflow-y-auto px-4 py-4 space-y-3 scroll-smooth">
+      <!-- Mensagem do bot - boas vindas -->
+      <div class="flex items-start gap-2 animate-fade-in">
+        <div class="w-8 h-8 rounded-full bg-marca-100 flex items-center justify-center shrink-0 mt-1">
+          <svg class="w-4 h-4 text-marca-700" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg>
+        </div>
+        <div class="max-w-[80%]">
+          <div class="bg-white border border-gray-200 rounded-2xl rounded-tl-sm px-4 py-3 shadow-sm">
+            <p class="text-sm text-gray-800 leading-relaxed">Olá! Sou o <strong>AutoBot</strong>, seu assistente de automação. Em que posso ajudar você hoje?</p>
+            <span class="text-[10px] text-gray-400 mt-1.5 block">09:15</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mensagem do bot - sugestões -->
+      <div class="flex items-start gap-2 animate-fade-in" style="animation-delay:0.1s">
+        <div class="w-8 h-8 rounded-full bg-marca-100 flex items-center justify-center shrink-0 mt-1">
+          <svg class="w-4 h-4 text-marca-700" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg>
+        </div>
+        <div class="max-w-[80%]">
+          <div class="bg-white border border-gray-200 rounded-2xl rounded-tl-sm px-4 py-3 shadow-sm">
+            <p class="text-sm text-gray-800 leading-relaxed mb-2">Você pode começar escolhendo uma das opções abaixo ou digitar sua pergunta:</p>
+            <div class="flex flex-wrap gap-1.5 mt-2">
+              <button onclick="chat_com_ia_enviar_sugestao(this)" class="px-3 py-1.5 bg-marca-50 text-marca-700 border border-marca-200 rounded-full text-xs font-medium hover:bg-marca-100 active:scale-95 transition-all duration-150">Criar fluxo</button>
+              <button onclick="chat_com_ia_enviar_sugestao(this)" class="px-3 py-1.5 bg-marca-50 text-marca-700 border border-marca-200 rounded-full text-xs font-medium hover:bg-marca-100 active:scale-95 transition-all duration-150">Consultar status</button>
+              <button onclick="chat_com_ia_enviar_sugestao(this)" class="px-3 py-1.5 bg-marca-50 text-marca-700 border border-marca-200 rounded-full text-xs font-medium hover:bg-marca-100 active:scale-95 transition-all duration-150">Falar com humano</button>
+            </div>
+            <span class="text-[10px] text-gray-400 mt-2 block">09:15</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Indicador de digitação do bot -->
+      <div id="bot-typing" class="hidden flex items-start gap-2">
+        <div class="w-8 h-8 rounded-full bg-marca-100 flex items-center justify-center shrink-0 mt-1">
+          <svg class="w-4 h-4 text-marca-700" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg>
+        </div>
+        <div class="bg-white border border-gray-200 rounded-2xl rounded-tl-sm px-4 py-3 shadow-sm">
+          <div class="flex gap-1">
+            <span class="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style="animation-delay:0ms"></span>
+            <span class="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style="animation-delay:150ms"></span>
+            <span class="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style="animation-delay:300ms"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sugestões rápidas (chips) -->
+    <div id="quick-suggestions" class="shrink-0 px-4 pb-2">
+      <div class="flex gap-2 overflow-x-auto pb-1 scrollbar-hide" style="-webkit-overflow-scrolling:touch">
+        <button onclick="chat_com_ia_enviar_sugestao(this)" class="shrink-0 px-3 py-1.5 bg-white border border-gray-200 text-gray-600 rounded-full text-xs font-medium hover:border-marca-300 hover:text-marca-700 active:scale-95 transition-all duration-150">Criar fluxo</button>
+        <button onclick="chat_com_ia_enviar_sugestao(this)" class="shrink-0 px-3 py-1.5 bg-white border border-gray-200 text-gray-600 rounded-full text-xs font-medium hover:border-marca-300 hover:text-marca-700 active:scale-95 transition-all duration-150">Consultar status</button>
+        <button onclick="chat_com_ia_enviar_sugestao(this)" class="shrink-0 px-3 py-1.5 bg-white border border-gray-200 text-gray-600 rounded-full text-xs font-medium hover:border-marca-300 hover:text-marca-700 active:scale-95 transition-all duration-150">Falar com humano</button>
+        <button onclick="chat_com_ia_enviar_sugestao(this)" class="shrink-0 px-3 py-1.5 bg-white border border-gray-200 text-gray-600 rounded-full text-xs font-medium hover:border-marca-300 hover:text-marca-700 active:scale-95 transition-all duration-150">Novo automatização</button>
+        <button onclick="chat_com_ia_enviar_sugestao(this)" class="shrink-0 px-3 py-1.5 bg-white border border-gray-200 text-gray-600 rounded-full text-xs font-medium hover:border-marca-300 hover:text-marca-700 active:scale-95 transition-all duration-150">Ver planos</button>
+      </div>
+    </div>
+
+    <!-- Campo de entrada -->
+    <div class="bg-white border-t border-gray-200 px-3 py-2.5 shrink-0">
+      <div class="flex items-end gap-2">
+        <button onclick="chat_com_ia_anexar()" class="p-2 rounded-full hover:bg-gray-100 active:scale-90 transition-all duration-150 shrink-0 self-end" aria-label="Anexar arquivo">
+          <svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M18.375 12.739l-7.693 7.693a4.5 4.5 0 01-6.364-6.364l10.94-10.94A3 3 0 1119.5 7.372L8.552 18.32m.009-.01l-.01.01m5.699-5.699l-.01.01"/></svg>
+        </button>
+        <div class="flex-1 relative">
+          <textarea id="chat-input" rows="1" placeholder="Digite sua mensagem..."
+            class="w-full resize-none border border-gray-300 rounded-2xl px-4 py-2.5 pr-10 text-sm text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-marca-500 focus:border-transparent transition-all duration-200 font-body"
+            onkeydown="chat_com_ia_handle_key(event)"
+            oninput="chat_com_ia_auto_resize(this)"></textarea>
+        </div>
+        <button onclick="chat_com_ia_enviar_texto()" id="btn-send" class="p-2.5 rounded-full bg-marca-600 hover:bg-marca-700 active:scale-90 transition-all duration-150 shrink-0 self-end disabled:opacity-40 disabled:cursor-not-allowed" aria-label="Enviar mensagem">
+          <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12z"/></svg>
+        </button>
+        <button onclick="chat_com_ia_microfone()" id="btn-mic" class="p-2.5 rounded-full bg-gray-100 hover:bg-gray-200 active:scale-90 transition-all duration-150 shrink-0 self-end" aria-label="Mensagem de voz">
+          <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18.75a6 6 0 006-6v-1.5m-6 6.75a6 6 0 01-6-6v-1.5m6 6.75v-3.75m0 0a3.001 3.001 0 013.003-3.003M15 11.997a3.001 3.001 0 00-3.003-3.003M9 11.997a3.001 3.001 0 013.003-3.003"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal de transferência para suporte humano -->
+  <div id="modal-transferir" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
+    <div class="bg-white rounded-2xl shadow-2xl w-full max-w-sm overflow-hidden animate-fade-in">
+      <div class="px-5 py-4 border-b border-gray-100 flex items-center justify-between">
+        <h3 class="font-display font-semibold text-gray-900">Transferir para suporte</h3>
+        <button onclick="fecharModal()" class="p-1 rounded-lg hover:bg-gray-100 active:scale-90 transition-all">
+          <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <div class="p-5">
+        <p class="text-sm text-gray-600 mb-4">Deseja transferir esta conversa para um atendente humano? O AutoBot enviará o histórico da conversa.</p>
+        <div class="flex items-center gap-3 mb-5 p-3 bg-amber-50 border border-amber-200 rounded-xl">
+          <svg class="w-5 h-5 text-amber-500 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z"/></svg>
+          <span class="text-xs text-amber-700">Tempo de espera estimado: <strong>2 minutos</strong></span>
+        </div>
+        <div class="flex gap-2">
+          <button onclick="fecharModal(); toast('Conversa transferida com sucesso!', 'ok')" class="flex-1 py-2.5 bg-marca-600 text-white rounded-xl text-sm font-semibold hover:bg-marca-700 active:scale-95 transition-all duration-150">Confirmar</button>
+          <button onclick="fecharModal()" class="flex-1 py-2.5 bg-gray-100 text-gray-700 rounded-xl text-sm font-semibold hover:bg-gray-200 active:scale-95 transition-all duration-150">Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const chat_com_ia_mensagens = [
+      { tipo: 'bot', texto: 'Olá! Sou o AutoBot, seu assistente de automação. Em que posso ajudar você hoje?', hora: '09:15' },
+      { tipo: 'bot', texto: 'Você pode começar escolhendo uma das opções abaixo ou digitar sua pergunta:', hora: '09:15', sugestoes: ['Criar fluxo', 'Consultar status', 'Falar com humano'] },
+    ];
+
+    const chat_com_ia_respostas = {
+      'criar fluxo': { texto: 'Perfeito! Para criar um novo fluxo de automação, vou precisar de algumas informações:\n\n1. Qual o nome do fluxo?\n2. Qual gatilho deve iniciá-lo? (mensagem recebida, horário, evento)\n3. Quais ações devem ser executadas?\n\nVocê pode me responder cada item separadamente, ou usar o formulário guiado.', sugestoes: ['Usar formulário guiado', 'Ver exemplos de fluxo', 'Voltar'] },
+      'consultar status': { texto: 'Aqui está o resumo das suas automações:\n\n🟢 Fluxo de boas-vindas — Rodando (99.8% uptime)\n🟢 Resposta automática — Rodando\n🟡 Relatório semanal — Pausado (configuração pendente)\n\nDeseja ver detalhes de algum fluxo específico?', sugestoes: ['Ver detalhes', 'Reativar relatório', 'Nova consulta'] },
+      'falar com humano': { texto: 'Claro! Vou transferir você para um atendente humano. Por favor, aguarde alguns instantes enquanto busco um especialista disponível.', sugestoes: ['Confirmar transferência', 'Continuar com o bot'] },
+      'novo automatização': { texto: 'Ótima escolha! A plataforma oferece várias categorias de automação:\n\n🤖 Atendimento ao cliente\n📧 E-mail marketing\n📱 Notificações push\n💬 Chatbot WhatsApp\n📊 Relatórios automáticos\n\nQual área você quer automatizar primeiro?', sugestoes: ['Atendimento', 'E-mail marketing', 'Notificações', 'Ver todos'] },
+      'ver planos': { texto: 'Temos 3 planos disponíveis:\n\n🟢 Starter — R$ 29/mês — 5 fluxos\n🔵 Profissional — R$ 79/mês — 25 fluxos + IA avançada\n🟣 Enterprise — Sob consulta — Ilimitado\n\nTodos com 14 dias de teste grátis. Quer mais detalhes?', sugestoes: ['Ver Starter', 'Ver Profissional', 'Ver Enterprise'] },
+      'default': { texto: 'Entendi! Estou processando sua solicitação. Posso ajudar com criação de fluxos, consulta de status das automações ou transferir para um atendente humano. O que prefere?', sugestoes: ['Criar fluxo', 'Consultar status', 'Falar com humano'] }
+    };
+
+    function chat_com_ia_auto_resize(el) {
+      el.style.height = 'auto';
+      el.style.height = Math.min(el.scrollHeight, 120) + 'px';
+    }
+
+    function chat_com_ia_handle_key(e) {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        chat_com_ia_enviar_texto();
+      }
+    }
+
+    function chat_com_ia_adicionar_mensagem(texto, tipo, hora) {
+      const container = document.getElementById('chat-messages');
+      const typing = document.getElementById('bot-typing');
+      const div = document.createElement('div');
+      div.className = 'flex items-start gap-2 animate-fade-in';
+
+      if (tipo === 'user') {
+        div.className = 'flex items-start gap-2 justify-end animate-fade-in';
+        div.innerHTML = `<div class="max-w-[80%]">
+          <div class="bg-marca-600 text-white rounded-2xl rounded-tr-sm px-4 py-3 shadow-sm">
+            <p class="text-sm leading-relaxed">${texto}</p>
+            <span class="text-[10px] text-marca-200 mt-1.5 block text-right">${hora}</span>
+          </div>
+        </div>`;
+      } else {
+        div.innerHTML = `<div class="w-8 h-8 rounded-full bg-marca-100 flex items-center justify-center shrink-0 mt-1">
+          <svg class="w-4 h-4 text-marca-700" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg>
+        </div>
+        <div class="max-w-[80%]">
+          <div class="bg-white border border-gray-200 rounded-2xl rounded-tl-sm px-4 py-3 shadow-sm">
+            <p class="text-sm text-gray-800 leading-relaxed whitespace-pre-line">${texto}</p>
+            <span class="text-[10px] text-gray-400 mt-1.5 block">${hora}</span>
+          </div>
+        </div>`;
+      }
+
+      container.insertBefore(div, typing);
+      container.scrollTop = container.scrollHeight;
+    }
+
+    function chat_com_ia_bot_responder(textoUsuario) {
+      const typing = document.getElementById('bot-typing');
+      const statusText = document.getElementById('bot-status-text');
+      const quickSugg = document.getElementById('quick-suggestions');
+
+      typing.classList.remove('hidden');
+      statusText.textContent = 'Digitando...';
+      quickSugg.classList.add('opacity-50', 'pointer-events-none');
+
+      const container = document.getElementById('chat-messages');
+      container.scrollTop = container.scrollHeight;
+
+      setTimeout(() => {
+        typing.classList.add('hidden');
+        statusText.textContent = 'Online agora';
+        quickSugg.classList.remove('opacity-50', 'pointer-events-none');
+
+        const key = textoUsuario.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+        const resposta = chat_com_ia_respostas[key] || chat_com_ia_respostas['default'];
+        const agora = new Date();
+        const hora = agora.getHours().toString().padStart(2,'0') + ':' + agora.getMinutes().toString().padStart(2,'0');
+
+        chat_com_ia_adicionar_mensagem(resposta.texto, 'bot', hora);
+
+        // Atualizar sugestões
+        if (resposta.sugestoes && resposta.sugestoes.length > 0) {
+          const sugContainer = document.getElementById('quick-suggestions').querySelector('.flex');
+          sugContainer.innerHTML = '';
+          resposta.sugestoes.forEach(s => {
+            const btn = document.createElement('button');
+            btn.textContent = s;
+            btn.onclick = function() { chat_com_ia_enviar_sugestao(this); };
+            btn.className = 'shrink-0 px-3 py-1.5 bg-white border border-gray-200 text-gray-600 rounded-full text-xs font-medium hover:border-marca-300 hover:text-marca-700 active:scale-95 transition-all duration-150';
+            sugContainer.appendChild(btn);
+          });
+        }
+      }, 1200 + Math.random() * 800);
+    }
+
+    function chat_com_ia_enviar_texto() {
+      const input = document.getElementById('chat-input');
+      const texto = input.value.trim();
+      if (!texto) return;
+
+      const agora = new Date();
+      const hora = agora.getHours().toString().padStart(2,'0') + ':' + agora.getMinutes().toString().padStart(2,'0');
+
+      chat_com_ia_adicionar_mensagem(texto, 'user', hora);
+      input.value = '';
+      input.style.height = 'auto';
+
+      chat_com_ia_bot_responder(texto);
+    }
+
+    function chat_com_ia_enviar_sugestao(btn) {
+      const texto = btn.textContent.trim();
+      const agora = new Date();
+      const hora = agora.getHours().toString().padStart(2,'0') + ':' + agora.getMinutes().toString().padStart(2,'0');
+
+      chat_com_ia_adicionar_mensagem(texto, 'user', hora);
+
+      // Destacar chip selecionado
+      const container = document.getElementById('quick-suggestions').querySelector('.flex');
+      container.querySelectorAll('button').forEach(b => {
+        b.classList.remove('border-marca-500', 'text-marca-700', 'bg-marca-50');
+        b.classList.add('border-gray-200', 'text-gray-600', 'bg-white');
+      });
+      btn.classList.remove('border-gray-200', 'text-gray-600', 'bg-white');
+      btn.classList.add('border-marca-500', 'text-marca-700', 'bg-marca-50');
+
+      if (texto === 'Falar com humano') {
+        setTimeout(() => {
+          abrirModal(`
+            <div class="p-4">
+              <div class="flex items-center gap-3 mb-4">
+                <div class="w-12 h-12 rounded-full bg-emerald-100 flex items-center justify-center">
+                  <svg class="w-6 h-6 text-emerald-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                </div>
+                <div>
+                  <p class="font-display font-semibold text-gray-900">Solicitação recebida!</p>
+                  <p class="text-xs text-gray-500">Um atendente entrará em contato em instantes.</p>
+                </div>
+              </div>
+              <p class="text-sm text-gray-600 mb-4">Posição na fila: <strong class="text-marca-700">1ª</strong> | Tempo estimado: <strong>~2 min</strong></p>
+              <button onclick="fecharModal(); mostrarTela('suporte-humano')" class="w-full py-2.5 bg-marca-600 text-white rounded-xl text-sm font-semibold hover:bg-marca-700 active:scale-95 transition-all duration-150">Ir para suporte</button>
+            </div>
+          `, 'Conectando ao suporte');
+        }, 600);
+        return;
+      }
+
+      chat_com_ia_bot_responder(texto);
+    }
+
+    function chat_com_ia_microfone() {
+      const btnMic = document.getElementById('btn-mic');
+      btnMic.classList.toggle('bg-red-100');
+      if (btnMic.classList.contains('bg-red-100')) {
+        btnMic.innerHTML = '<svg class="w-5 h-5 text-red-600" fill="currentColor" viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="2"/></svg>';
+        toast('Gravando mensagem de voz...', 'info');
+        setTimeout(() => {
+          btnMic.classList.remove('bg-red-100');
+          btnMic.innerHTML = '<svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18.75a6 6 0 006-6v-1.5m-6 6.75a6 6 0 01-6-6v-1.5m6 6.75v-3.75m0 0a3.001 3.001 0 013.003-3.003M15 11.997a3.001 3.001 0 00-3.003-3.003M9 11.997a3.001 3.001 0 013.003-3.003"/></svg>';
+          toast('Mensagem de voz enviada!', 'ok');
+          const agora = new Date();
+          const hora = agora.getHours().toString().padStart(2,'0') + ':' + agora.getMinutes().toString().padStart(2,'0');
+          chat_com_ia_adicionar_mensagem('🎤 Mensagem de voz (0:12)', 'user', hora);
+          setTimeout(() => chat_com_ia_bot_responder('Gravei sua mensagem de voz! Vou processar o conteúdo e te responder em instantes. Enquanto isso, você pode digitar se preferir.'), 800);
+        }, 2000);
+      }
+    }
+
+    function chat_com_ia_anexar() {
+      toast('Funcionalidade de anexo disponível em breve', 'info');
+    }
+
+    function chat_com_ia_toggle_info() {
+      abrirModal(`
+        <div class="p-4 space-y-3">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="w-12 h-12 rounded-full bg-marca-100 flex items-center justify-center">
+              <svg class="w-6 h-6 text-marca-700" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg>
+            </div>
+            <div>
+              <p class="font-display font-semibold text-gray-900">AutoBot IA</p>
+              <p class="text-xs text-emerald-600">● Online agora</p>
+            </div>
+          </div>
+          <div class="bg-gray-50 rounded-xl p-3 space-y-2">
+            <p class="text-xs text-gray-500 uppercase tracking-wider font-semibold">Sobre</p>
+            <p class="text-sm text-gray-700">Assistente de automação inteligente. Crie fluxos, gerencie automações e otimize processos sem precisar de conhecimento técnico.</p>
+          </div>
+          <div class="bg-gray-50 rounded-xl p-3 space-y-2">
+            <p class="text-xs text-gray-500 uppercase tracking-wider font-semibold">Funcionalidades</p>
+            <ul class="text-sm text-gray-700 space-y-1">
+              <li class="flex items-center gap-2"><svg class="w-4 h-4 text-emerald-500 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>Criação de fluxos guiada</li>
+              <li class="flex items-center gap-2"><svg class="w-4 h-4 text-emerald-500 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>Consultas em linguagem natural</li>
+              <li class="flex items-center gap-2"><svg class="w-4 h-4 text-emerald-500 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>Transferência para suporte humano</li>
+              <li class="flex items-center gap-2"><svg class="w-4 h-4 text-emerald-500 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>Mensagens de voz</li>
+            </ul>
+          </div>
+          <button onclick="fecharModal()" class="w-full py-2.5 bg-marca-600 text-white rounded-xl text-sm font-semibold hover:bg-marca-700 active:scale-95 transition-all duration-150">Fechar</button>
+        </div>
+      `, 'Sobre o AutoBot');
+    }
+
+    chat_com_ia_scrollToBottom = function() {
+      const container = document.getElementById('chat-messages');
+      container.scrollTop = container.scrollHeight;
+    };
+  </script>
+</section>
+
     <!-- TELAS -->
         </main>
 
