@@ -1378,6 +1378,478 @@
       </script>
     </section>
 
+    <section data-tela="automacoes" class="hidden">
+  <div class="px-5 pt-2 pb-6 space-y-5">
+    <div class="flex items-start justify-between">
+      <div>
+        <h1 class="font-display text-2xl font-bold text-gray-900 tracking-tight">Automações</h1>
+        <p class="text-sm text-gray-500 mt-0.5">Gerencie seus fluxos inteligentes</p>
+      </div>
+      <button onclick="automacoes_nova()" class="bg-marca-600 hover:bg-marca-700 active:scale-95 text-white text-xs font-semibold px-4 py-2.5 rounded-xl transition-all duration-200 shadow-lg shadow-marca-600/25 flex items-center gap-1.5">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"/></svg>
+        Nova
+      </button>
+    </div>
+
+    <div class="grid grid-cols-2 gap-3">
+      <div class="bg-white rounded-2xl p-3.5 border border-gray-100 shadow-sm">
+        <div class="flex items-center gap-2 mb-1.5">
+          <div class="w-8 h-8 rounded-lg bg-green-50 flex items-center justify-center">
+            <svg class="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+          </div>
+          <span class="text-[11px] font-medium text-gray-500 uppercase tracking-wide">Ativas</span>
+        </div>
+        <p class="font-display text-xl font-bold text-gray-900" id="automacoes-ativas">5</p>
+        <span class="text-[11px] text-green-600 font-medium">+2 este mês</span>
+      </div>
+      <div class="bg-white rounded-2xl p-3.5 border border-gray-100 shadow-sm">
+        <div class="flex items-center gap-2 mb-1.5">
+          <div class="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center">
+            <svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+          </div>
+          <span class="text-[11px] font-medium text-gray-500 uppercase tracking-wide">Execuções</span>
+        </div>
+        <p class="font-display text-xl font-bold text-gray-900" id="automacoes-execucoes">1.847</p>
+        <span class="text-[11px] text-blue-600 font-medium">este mês</span>
+      </div>
+      <div class="bg-white rounded-2xl p-3.5 border border-gray-100 shadow-sm">
+        <div class="flex items-center gap-2 mb-1.5">
+          <div class="w-8 h-8 rounded-lg bg-emerald-50 flex items-center justify-center">
+            <svg class="w-4 h-4 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </div>
+          <span class="text-[11px] font-medium text-gray-500 uppercase tracking-wide">Sucesso</span>
+        </div>
+        <p class="font-display text-xl font-bold text-gray-900">96.8%</p>
+        <span class="text-[11px] text-emerald-600 font-medium">+1.2% vs mês</span>
+      </div>
+      <div class="bg-white rounded-2xl p-3.5 border border-gray-100 shadow-sm">
+        <div class="flex items-center gap-2 mb-1.5">
+          <div class="w-8 h-8 rounded-lg bg-amber-50 flex items-center justify-center">
+            <svg class="w-4 h-4 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </div>
+          <span class="text-[11px] font-medium text-gray-500 uppercase tracking-wide">Pausadas</span>
+        </div>
+        <p class="font-display text-xl font-bold text-gray-900" id="automacoes-pausadas">2</p>
+        <span class="text-[11px] text-amber-600 font-medium">em manutenção</span>
+      </div>
+    </div>
+
+    <div class="bg-white rounded-2xl p-3.5 border border-gray-100 shadow-sm">
+      <div class="flex items-center justify-between mb-2">
+        <span class="text-[11px] font-medium text-gray-500 uppercase tracking-wide">Execuções nos últimos 7 dias</span>
+      </div>
+      <svg viewBox="0 0 320 80" class="w-full h-20">
+        <defs>
+          <linearGradient id="barGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#6366f1" stop-opacity="0.8"/>
+            <stop offset="100%" stop-color="#6366f1" stop-opacity="0.2"/>
+          </linearGradient>
+        </defs>
+        <line x1="0" y1="70" x2="320" y2="70" stroke="#f3f4f6" stroke-width="1"/>
+        <rect x="8" y="45" width="24" height="25" rx="4" fill="url(#barGrad)"/>
+        <rect x="44" y="30" width="24" height="40" rx="4" fill="url(#barGrad)"/>
+        <rect x="80" y="38" width="24" height="32" rx="4" fill="url(#barGrad)"/>
+        <rect x="116" y="20" width="24" height="50" rx="4" fill="url(#barGrad)"/>
+        <rect x="152" y="15" width="24" height="55" rx="4" fill="url(#barGrad)"/>
+        <rect x="188" y="25" width="24" height="45" rx="4" fill="url(#barGrad)"/>
+        <rect x="224" y="18" width="24" height="52" rx="4" fill="url(#barGrad)"/>
+        <rect x="260" y="35" width="24" height="35" rx="4" fill="url(#barGrad)"/>
+        <text x="20" y="78" text-anchor="middle" fill="#9ca3af" font-size="9">S</text>
+        <text x="56" y="78" text-anchor="middle" fill="#9ca3af" font-size="9">T</text>
+        <text x="92" y="78" text-anchor="middle" fill="#9ca3af" font-size="9">Q</text>
+        <text x="128" y="78" text-anchor="middle" fill="#9ca3af" font-size="9">Q</text>
+        <text x="164" y="78" text-anchor="middle" fill="#9ca3af" font-size="9">S</text>
+        <text x="200" y="78" text-anchor="middle" fill="#9ca3af" font-size="9">S</text>
+        <text x="236" y="78" text-anchor="middle" fill="#9ca3af" font-size="9">D</text>
+        <text x="272" y="78" text-anchor="middle" fill="#9ca3af" font-size="9">S</text>
+      </svg>
+    </div>
+
+    <div class="relative">
+      <div class="absolute inset-y-0 left-3 flex items-center pointer-events-none">
+        <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+      </div>
+      <input id="automacoes-search" type="text" placeholder="Buscar automações..."
+        oninput="automacoes_filtrar(this.value)"
+        class="w-full bg-white border border-gray-200 rounded-xl pl-10 pr-4 py-3 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-marca-500/30 focus:border-marca-400 transition-all">
+    </div>
+
+    <div class="flex gap-2 overflow-x-auto pb-1 -mx-5 px-5 scrollbar-hide">
+      <button onclick="automacoes_filtro_tipo('todos')" data-filtro="todos" class="automacoes-filtro-btn whitespace-nowrap text-xs font-semibold px-4 py-2 rounded-full bg-marca-600 text-white transition-all active:scale-95">Todos</button>
+      <button onclick="automacoes_filtro_tipo('whatsapp')" data-filtro="whatsapp" class="automacoes-filtro-btn whitespace-nowrap text-xs font-semibold px-4 py-2 rounded-full bg-white text-gray-600 border border-gray-200 transition-all active:scale-95 hover:border-green-300 hover:text-green-700">WhatsApp</button>
+      <button onclick="automacoes_filtro_tipo('email')" data-filtro="email" class="automacoes-filtro-btn whitespace-nowrap text-xs font-semibold px-4 py-2 rounded-full bg-white text-gray-600 border border-gray-200 transition-all active:scale-95 hover:border-blue-300 hover:text-blue-700">E-mail</button>
+      <button onclick="automacoes_filtro_tipo('push')" data-filtro="push" class="automacoes-filtro-btn whitespace-nowrap text-xs font-semibold px-4 py-2 rounded-full bg-white text-gray-600 border border-gray-200 transition-all active:scale-95 hover:border-purple-300 hover:text-purple-700">Push</button>
+      <button onclick="automacoes_filtro_tipo('sms')" data-filtro="sms" class="automacoes-filtro-btn whitespace-nowrap text-xs font-semibold px-4 py-2 rounded-full bg-white text-gray-600 border border-gray-200 transition-all active:scale-95 hover:border-amber-300 hover:text-amber-700">SMS</button>
+    </div>
+
+    <div id="automacoes-lista" class="space-y-3">
+    </div>
+
+    <div id="automacoes-vazio" class="hidden text-center py-12">
+      <div class="w-16 h-16 mx-auto rounded-full bg-gray-50 flex items-center justify-center mb-4">
+        <svg class="w-8 h-8 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.172 16.172a4 4 0 015.656 0M9 12h6m-6 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      </div>
+      <p class="text-sm font-medium text-gray-500">Nenhuma automação encontrada</p>
+      <p class="text-xs text-gray-400 mt-1">Tente outro filtro ou crie uma nova</p>
+    </div>
+  </div>
+
+  <div class="fixed bottom-6 right-5 z-50">
+    <button onclick="automacoes_nova()" class="w-14 h-14 bg-marca-600 hover:bg-marca-700 active:scale-90 text-white rounded-full shadow-2xl shadow-marca-600/40 flex items-center justify-center transition-all duration-200">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"/></svg>
+    </button>
+  </div>
+</section>
+
+<script>
+function automacoes_render(lista) {
+  const container = document.getElementById('automacoes-lista');
+  const vazio = document.getElementById('automacoes-vazio');
+  if (!lista || lista.length === 0) {
+    container.innerHTML = '';
+    vazio.classList.remove('hidden');
+    return;
+  }
+  vazio.classList.add('hidden');
+  container.innerHTML = lista.map((a, i) => {
+    const icones = {
+      whatsapp: '<svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>',
+      email: '<svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4L12 13 2 4"/></svg>',
+      push: '<svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>',
+      sms: '<svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>'
+    };
+    const cores = {
+      whatsapp: 'bg-green-500',
+      email: 'bg-blue-500',
+      push: 'bg-purple-500',
+      sms: 'bg-amber-500'
+    };
+    const textoCor = {
+      whatsapp: 'text-green-700 bg-green-50 border-green-200',
+      email: 'text-blue-700 bg-blue-50 border-blue-200',
+      push: 'text-purple-700 bg-purple-50 border-purple-200',
+      sms: 'text-amber-700 bg-amber-50 border-amber-200'
+    };
+    const isActive = a.ativo;
+    return `
+      <div class="automacao-card bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md hover:border-gray-200 transition-all duration-200 active:scale-[0.98] cursor-pointer overflow-hidden"
+           data-tipo="${a.tipo}" data-nome="${a.nome.toLowerCase()}" data-ativo="${isActive ? 'sim' : 'nao'}">
+        <div class="p-4">
+          <div class="flex items-start justify-between mb-3">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl ${cores[a.tipo]} bg-opacity-10 flex items-center justify-center ${textoCor[a.tipo].split(' ')[0]}">
+                ${icones[a.tipo]}
+              </div>
+              <div>
+                <h3 class="font-display text-sm font-semibold text-gray-900 leading-tight">${a.nome}</h3>
+                <span class="text-[11px] text-gray-400 capitalize">${a.tipo === 'whatsapp' ? 'WhatsApp' : a.tipo === 'email' ? 'E-mail' : a.tipo === 'push' ? 'Push Notification' : 'SMS'}</span>
+              </div>
+            </div>
+            <div class="relative inline-flex items-center cursor-pointer" onclick="event.stopPropagation(); automacoes_toggle('${a.id}', this)">
+              <div class="w-9 h-5 rounded-full ${isActive ? 'bg-green-500' : 'bg-gray-300'} transition-colors duration-300"></div>
+              <div class="absolute left-0.5 top-0.5 w-4 h-4 bg-white rounded-full shadow transition-transform duration-300 ${isActive ? 'translate-x-4' : ''}"></div>
+            </div>
+          </div>
+          <div class="flex items-center gap-3 text-xs">
+            <div class="flex items-center gap-1 ${textoCor[a.tipo].split(' ')[0]}">
+              <span class="font-semibold">${a.execucoes.toLocaleString('pt-BR')}</span>
+              <span class="text-gray-400">exec.</span>
+            </div>
+            <div class="w-px h-3 bg-gray-200"></div>
+            <div class="flex items-center gap-1 ${a.taxaSucesso >= 95 ? 'text-green-600' : a.taxaSucesso >= 85 ? 'text-amber-600' : 'text-red-500'}">
+              <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+              <span class="font-semibold">${a.taxaSucesso}%</span>
+              <span class="text-gray-400">sucesso</span>
+            </div>
+            <div class="ml-auto">
+              <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold ${isActive ? 'text-green-700 bg-green-50' : 'text-gray-500 bg-gray-100'}">
+                <span class="w-1.5 h-1.5 rounded-full ${isActive ? 'bg-green-500 animate-pulse' : 'bg-gray-400'} mr-1"></span>
+                ${isActive ? 'Ativo' : 'Pausado'}
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="border-t border-gray-50 px-4 py-2.5 flex items-center justify-between bg-gray-50/50" onclick="event.stopPropagation(); automacoes_detalhe('${a.id}')">
+          <span class="text-[11px] text-gray-400">Toque para configurar</span>
+          <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+function automacoes_filtrar(termo) {
+  automacoes_filtro_atual = { tipo: automacoes_filtro_atual.tipo, termo: termo };
+  automacoes_aplicar_filtros();
+}
+
+function automacoes_filtro_tipo(tipo) {
+  document.querySelectorAll('.automacoes-filtro-btn').forEach(b => {
+    b.className = 'automacoes-filtro-btn whitespace-nowrap text-xs font-semibold px-4 py-2 rounded-full bg-white text-gray-600 border border-gray-200 transition-all active:scale-95 hover:border-gray-300';
+  });
+  const btn = document.querySelector(`[data-filtro="${tipo}"]`);
+  btn.className = 'automacoes-filtro-btn whitespace-nowrap text-xs font-semibold px-4 py-2 rounded-full bg-marca-600 text-white transition-all active:scale-95';
+  automacoes_filtro_atual.tipo = tipo;
+  automacoes_aplicar_filtros();
+}
+
+function automacoes_aplicar_filtros() {
+  const { tipo, termo } = automacoes_filtro_atual;
+  const lista = automacoes_dados.filter(a => {
+    const matchTipo = tipo === 'todos' || a.tipo === tipo;
+    const matchTermo = !termo || a.nome.toLowerCase().includes(termo.toLowerCase());
+    return matchTipo && matchTermo;
+  });
+  automacoes_render(lista);
+}
+
+function automacoes_toggle(id, el) {
+  const a = automacoes_dados.find(x => x.id === id);
+  if (!a) return;
+  a.ativo = !a.ativo;
+  const circle = el.querySelector('.w-9');
+  const dot = el.querySelector('.absolute');
+  if (a.ativo) {
+    circle.classList.remove('bg-gray-300');
+    circle.classList.add('bg-green-500');
+    dot.classList.add('translate-x-4');
+    dot.classList.remove('translate-x-0');
+    toast(`"${a.nome}" ativada com sucesso`, 'ok');
+  } else {
+    circle.classList.remove('bg-green-500');
+    circle.classList.add('bg-gray-300');
+    dot.classList.remove('translate-x-4');
+    dot.classList.add('translate-x-0');
+    toast(`"${a.nome}" pausada`, 'info');
+  }
+  automacoes_atualizar_contadores();
+  automacoes_aplicar_filtros();
+}
+
+function automacoes_atualizar_contadores() {
+  const ativas = automacoes_dados.filter(a => a.ativo).length;
+  const pausadas = automacoes_dados.filter(a => !a.ativo).length;
+  const totalExec = automacoes_dados.reduce((s, a) => s + a.execucoes, 0);
+  const elAtivas = document.getElementById('automacoes-ativas');
+  const elPausadas = document.getElementById('automacoes-pausadas');
+  const elExec = document.getElementById('automacoes-execucoes');
+  if (elAtivas) elAtivas.textContent = ativas;
+  if (elPausadas) elPausadas.textContent = pausadas;
+  if (elExec) elExec.textContent = totalExec.toLocaleString('pt-BR');
+}
+
+function automacoes_detalhe(id) {
+  const a = automacoes_dados.find(x => x.id === id);
+  if (!a) return;
+  const passos = a.passos.map((p, i) => {
+    const seta = i > 0 ? `<div class="flex justify-center -my-1"><svg class="w-4 h-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg></div>` : '';
+    const tipoCores = {
+      gatilho: 'border-purple-200 bg-purple-50',
+      condicao: 'border-amber-200 bg-amber-50',
+      acao: 'border-green-200 bg-green-50'
+    };
+    const tipoLabels = { gatilho: 'Gatilho', condicao: 'Condição', acao: 'Ação' };
+    return `${seta}<div class="border ${tipoCores[p.tipo]} rounded-xl p-3">
+      <span class="text-[10px] font-bold uppercase tracking-wider ${p.tipo === 'gatilho' ? 'text-purple-600' : p.tipo === 'condicao' ? 'text-amber-600' : 'text-green-600'}">${tipoLabels[p.tipo]}</span>
+      <p class="text-xs text-gray-700 mt-1 font-medium">${p.descricao}</p>
+    </div>`;
+  }).join('');
+
+  const detalhes = `
+    <div class="space-y-5">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="w-12 h-12 rounded-2xl bg-marca-50 flex items-center justify-center text-marca-600">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+          </div>
+          <div>
+            <h3 class="font-display text-lg font-bold text-gray-900">${a.nome}</h3>
+            <p class="text-xs text-gray-500">Criada em ${a.criacao} • Atualizada ${a.atualizacao}</p>
+          </div>
+        </div>
+        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold ${a.ativo ? 'text-green-700 bg-green-50' : 'text-gray-500 bg-gray-100'}">
+          <span class="w-1.5 h-1.5 rounded-full ${a.ativo ? 'bg-green-500' : 'bg-gray-400'} mr-1.5"></span>
+          ${a.ativo ? 'Ativo' : 'Pausado'}
+        </span>
+      </div>
+
+      <div class="grid grid-cols-3 gap-3">
+        <div class="bg-gray-50 rounded-xl p-3 text-center">
+          <p class="font-display text-lg font-bold text-gray-900">${a.execucoes.toLocaleString('pt-BR')}</p>
+          <p class="text-[10px] text-gray-500 uppercase tracking-wide">Execuções</p>
+        </div>
+        <div class="bg-gray-50 rounded-xl p-3 text-center">
+          <p class="font-display text-lg font-bold ${a.taxaSucesso >= 95 ? 'text-green-600' : 'text-amber-600'}">${a.taxaSucesso}%</p>
+          <p class="text-[10px] text-gray-500 uppercase tracking-wide">Sucesso</p>
+        </div>
+        <div class="bg-gray-50 rounded-xl p-3 text-center">
+          <p class="font-display text-lg font-bold text-gray-900">${a.passos.length}</p>
+          <p class="text-[10px] text-gray-500 uppercase tracking-wide">Passos</p>
+        </div>
+      </div>
+
+      <div>
+        <h4 class="text-xs font-bold text-gray-700 uppercase tracking-wider mb-3">Fluxo da Automação</h4>
+        <div class="space-y-1">
+          ${passos}
+        </div>
+      </div>
+
+      <div class="bg-blue-50 border border-blue-100 rounded-xl p-4">
+        <h4 class="text-xs font-bold text-blue-800 uppercase tracking-wider mb-2">Mensagem Configurada</h4>
+        <p class="text-sm text-blue-900 italic">"${a.mensagem}"</p>
+      </div>
+
+      <div class="flex gap-3 pt-2">
+        <button onclick="automacoes_editar('${a.id}')" class="flex-1 bg-marca-600 hover:bg-marca-700 active:scale-95 text-white text-sm font-semibold py-3 rounded-xl transition-all shadow-sm">
+          Editar Fluxo
+        </button>
+        <button onclick="automacoes_testar('${a.id}')" class="px-4 py-3 border border-gray-200 rounded-xl text-sm font-semibold text-gray-600 hover:bg-gray-50 active:scale-95 transition-all">
+          Testar
+        </button>
+      </div>
+    </div>
+  `;
+  abrirModal(detalhes, a.nome);
+}
+
+function automacoes_editar(id) {
+  fecharModal();
+  const a = automacoes_dados.find(x => x.id === id);
+  if (!a) return;
+  const icones = { whatsapp: '💬', email: '📧', push: '🔔', sms: '📱' };
+  toast(`Editando: ${a.nome}`, 'info');
+  setTimeout(() => {
+    const edit = document.getElementById('automacoes-edit-overlay');
+    if (edit) edit.classList.remove('hidden');
+  }, 400);
+}
+
+function automacoes_testar(id) {
+  fecharModal();
+  const a = automacoes_dados.find(x => x.id === id);
+  if (!a) return;
+  toast('Executando simulação...', 'info');
+  setTimeout(() => {
+    toast('Teste executado com sucesso!', 'ok');
+  }, 2000);
+}
+
+function automacoes_nova() {
+  const edit = document.getElementById('automacoes-edit-overlay');
+  if (edit) edit.classList.remove('hidden');
+}
+
+var automacoes_dados = [
+  { id: 'auto-1', nome: 'Resposta Automática WhatsApp', tipo: 'whatsapp', ativo: true, execucoes: 423, taxaSucesso: 98.2, criacao: '15/01/2025', atualizacao: 'Hoje', passos: [{ tipo: 'gatilho', descricao: 'Mensagem recebida no WhatsApp' }, { tipo: 'condicao', descricao: 'Horário comercial (08h-18h) E mensagem não é spam' }, { tipo: 'acao', descricao: 'Enviar resposta automática personalizada' }], mensagem: 'Olá! Recebemos sua mensagem e já estamos verificando. Em breve entraremos em contato! 🚀' },
+  { id: 'auto-2', nome: 'Boas-vindas por E-mail', tipo: 'email', ativo: true, execucoes: 312, taxaSucesso: 97.5, criacao: '22/01/2025', atualizacao: 'Ontem', passos: [{ tipo: 'gatilho', descricao: 'Novo cadastro confirmado' }, { tipo: 'condicao', descricao: 'E-mail válido E não é descarte' }, { tipo: 'acao', descricao: 'Enviar e-mail de boas-vindas com apresentação' }], mensagem: 'Bem-vindo(a) à nossa plataforma! Estamos felizes em tê-lo(a) conosco. Explore todas as funcionalidades.' },
+  { id: 'auto-3', nome: 'Lembrete de Pagamento', tipo: 'sms', ativo: true, execucoes: 187, taxaSucesso: 94.3, criacao: '03/02/2025', atualizacao: '12/03/2025', passos: [{ tipo: 'gatilho', descricao: 'Fatura gerada E vencimento em 3 dias' }, { tipo: 'condicao', descricao: 'Cliente não está em dia com pagamentos' }, { tipo: 'acao', descricao: 'Enviar SMS de lembrete com link de pagamento' }], mensagem: 'Olá! Sua fatura vence em 3 dias. Acesse o link para pagar: https://app.com/pagar' },
+  { id: 'auto-4', nome: 'Notificação Push de Oferta', tipo: 'push', ativo: true, execucoes: 892, taxaSucesso: 99.1, criacao: '10/02/2025', atualizacao: 'Hoje', passos: [{ tipo: 'gatilho', descricao: 'Novo produto/serviço publicado' }, { tipo: 'condicao', descricao: 'Usuário tem notificações ativadas' }, { tipo: 'acao', descricao: 'Enviar push com título e imagem da oferta' }], mensagem: '🔥 Novidade! Confira o lançamento que acabou de chegar para você.' },
+  { id: 'auto-5', nome: 'Follow-up Pós-Venda', tipo: 'email', ativo: true, execucoes: 56, taxaSucesso: 91.8, criacao: '18/02/2025', atualizacao: '05/03/2025', passos: [{ tipo: 'gatilho', descricao: 'Pedido entregue (+7 dias)' }, { tipo: 'condicao', descricao: 'Cliente não respondeu ao e-mail de satisfação' }, { tipo: 'acao', descricao: 'Enviar follow-up com pesquisa NPS' }], mensagem: 'Como foi sua experiência? Queremos saber sua opinião para continuar melhorando!' },
+  { id: 'auto-6', nome: 'Recuperação de Carrinho', tipo: 'whatsapp', ativo: false, execucoes: 134, taxaSucesso: 45.2, criacao: '01/03/2025', atualizacao: '10/03/2025', passos: [{ tipo: 'gatilho', descricao: 'Carrinho abandonado (+2 horas)' }, { tipo: 'condicao', descricao: 'Valor do carrinho > R$ 50 E cliente não tem promoção ativa' }, { tipo: 'acao', descricao: 'Enviar WhatsApp com desconto de 5%' }], mensagem: 'Ei! Vimos que você deixou itens no carrinho. Use o cupom VOLTA5 e ganhe 5% OFF!' },
+  { id: 'auto-7', nome: 'Alerta de Estoque Baixo', tipo: 'push', ativo: true, execucoes: 23, taxaSucesso: 100, criacao: '08/03/2025', atualizacao: '08/03/2025', passos: [{ tipo: 'gatilho', descricao: 'Estoque atual < estoque mínimo' }, { tipo: 'condicao', descricao: 'Produto está ativo na loja' }, { tipo: 'acao', descricao: 'Enviar push ao administrador com detalhes' }], mensagem: '⚠️ Alerta: Produto X está com estoque baixo (3 unidades restantes).' },
+  { id: 'auto-8', nome: 'Confirmação de Agendamento', tipo: 'sms', ativo: false, execucoes: 67, taxaSucesso: 88.5, criacao: '12/03/2025', atualizacao: '14/03/2025', passos: [{ tipo: 'gatilho', descricao: 'Agendamento criado pelo cliente' }, { tipo: 'condicao', descricao: 'Telefone confirmado E agenda não está cheia' }, { tipo: 'acao', descricao: 'Enviar SMS com dados do agendamento' }], mensagem: 'Agendamento confirmado! Data: 20/03 às 14h. Responda CANCELAR para desmarcar.' }
+];
+
+var automacoes_filtro_atual = { tipo: 'todos', termo: '' };
+
+automacoes_render(automacoes_dados);
+automacoes_atualizar_contadores();
+
+const editOverlay = document.getElementById('automacoes-edit-overlay');
+if (editOverlay) {
+  editOverlay.innerHTML = `
+    <div class="fixed inset-0 bg-black/50 z-[60] flex items-end sm:items-center justify-center p-0 sm:p-4" onclick="if(event.target===this){document.getElementById('automacoes-edit-overlay').classList.add('hidden')}">
+      <div class="bg-white rounded-t-3xl sm:rounded-3xl w-full max-w-[400px] max-h-[85vh] overflow-y-auto shadow-2xl animate-slide-up">
+        <div class="sticky top-0 bg-white border-b border-gray-100 px-5 pt-4 pb-3 flex items-center justify-between z-10">
+          <h3 class="font-display text-lg font-bold text-gray-900">Nova Automação</h3>
+          <button onclick="document.getElementById('automacoes-edit-overlay').classList.add('hidden')" class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center hover:bg-gray-200 transition-colors active:scale-90">
+            <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          </button>
+        </div>
+        <div class="p-5 space-y-5">
+          <div>
+            <label class="block text-xs font-semibold text-gray-700 mb-1.5">Nome da Automação</label>
+            <input id="auto-nome" type="text" placeholder="Ex: Boas-vindas Instagram" class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-marca-500/30 focus:border-marca-400 transition-all" value="">
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-gray-700 mb-1.5">Canal</label>
+            <div class="grid grid-cols-4 gap-2">
+              ${['whatsapp','email','push','sms'].map((t, i) => {
+                const labels = ['WhatsApp', 'E-mail', 'Push', 'SMS'];
+                const icons = [
+                  '<svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>',
+                  '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4L12 13 2 4"/></svg>',
+                  '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>',
+                  '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>'
+                ];
+                return `<button onclick="automacoes_select_canal(this, '${t}')" data-canal="${t}" class="auto-canal-btn flex flex-col items-center gap-1.5 p-3 rounded-xl border-2 ${i === 0 ? 'border-marca-500 bg-marca-50' : 'border-gray-200'} transition-all active:scale-95 hover:border-marca-300">
+                  <span class="${i === 0 ? 'text-marca-600' : 'text-gray-400'}">${icons[i]}</span>
+                  <span class="text-[10px] font-semibold ${i === 0 ? 'text-marca-700' : 'text-gray-500'}">${labels[i]}</span>
+                </button>`;
+              }).join('')}
+            </div>
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-gray-700 mb-1.5">Mensagem da Automação</label>
+            <textarea id="auto-msg" rows="3" placeholder="Digite a mensagem que será enviada..." class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-marca-500/30 focus:border-marca-400 transition-all resize-none"></textarea>
+            <p class="text-[10px] text-gray-400 mt-1">Use {{nome}} para personalizar com o nome do cliente</p>
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-gray-700 mb-2">Gatilho</label>
+            <select class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-marca-500/30 bg-white">
+              <option>Quando uma mensagem for recebida</option>
+              <option>Quando um novo cliente se cadastrar</option>
+              <option>Quando uma compra for finalizada</option>
+              <option>Quando um agendamento for criado</option>
+              <option>Baseado em horário agendado</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-gray-700 mb-2">Condição</label>
+            <div class="space-y-2">
+              <label class="flex items-center gap-3 p-3 rounded-xl border border-gray-200 cursor-pointer hover:bg-gray-50 transition-colors">
+                <input type="checkbox" checked class="w-4 h-4 rounded text-marca-600 focus:ring-marca-500">
+                <span class="text-sm text-gray-700">Horário comercial (08h às 18h)</span>
+              </label>
+              <label class="flex items-center gap-3 p-3 rounded-xl border border-gray-200 cursor-pointer hover:bg-gray-50 transition-colors">
+                <input type="checkbox" class="w-4 h-4 rounded text-marca-600 focus:ring-marca-500">
+                <span class="text-sm text-gray-700">Apenas primeira interação</span>
+              </label>
+              <label class="flex items-center gap-3 p-3 rounded-xl border border-gray-200 cursor-pointer hover:bg-gray-50 transition-colors">
+                <input type="checkbox" checked class="w-4 h-4 rounded text-marca-600 focus:ring-marca-500">
+                <span class="text-sm text-gray-700">Ignorar mensagens de spam</span>
+              </label>
+            </div>
+          </div>
+          <div class="bg-amber-50 border border-amber-100 rounded-xl p-3.5">
+            <div class="flex gap-2.5">
+              <svg class="w-5 h-5 text-amber-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              <div>
+                <p class="text-xs font-semibold text-amber-800">Limite do plano</p>
+                <p class="text-[11px] text-amber-600 mt-0.5">Você pode criar até 10 automações. Disponível: <strong>2</strong> vagas.</p>
+              </div>
+            </div>
+          </div>
+          <button onclick="automacoes_salvar()" class="w-full bg-marca-600 hover:bg-marca-700 active:scale-95 text-white text-sm font-bold py-3.5 rounded-xl transition-all shadow-lg shadow-marca-600/20">
+            Salvar Automação
+          </button>
+        </div>
+      </div>
+    </div>`;
+}
+</script>
+
+<style>
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+.scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+@keyframes slideUp {
+  from { transform: translateY(100%); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+.animate-slide-up { animation: slideUp 0.35s cubic-bezier(0.16, 1, 0.3, 1); }
+</style>
+
     <!-- TELAS -->
         </main>
 
