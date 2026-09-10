@@ -3341,6 +3341,400 @@ function planos_toggleFaq(el) {
 })();
 </script>
 
+    <section data-tela="gestao-de-usuarios" class="hidden">
+      <div class="px-5 pt-2 pb-6 space-y-5">
+        <div class="flex items-start justify-between">
+          <div>
+            <h1 class="font-display text-2xl font-bold text-gray-900 tracking-tight">Gestão de Usuários</h1>
+            <p class="text-sm text-gray-500 mt-1">Gerencie clientes, planos e automações</p>
+          </div>
+          <button onclick="gestao_de_usuarios_novoUsuario()" class="bg-marca-700 hover:bg-marca-800 active:scale-95 text-white text-sm font-medium px-4 py-2.5 rounded-xl shadow-lg shadow-marca-700/20 transition-all flex items-center gap-2 shrink-0">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"/></svg>
+            <span class="hidden sm:inline">Novo</span>
+          </button>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div class="bg-white rounded-2xl p-3.5 shadow-sm border border-gray-100">
+            <div class="flex items-center gap-2 mb-1">
+              <div class="w-8 h-8 rounded-lg bg-marca-50 flex items-center justify-center">
+                <svg class="w-4 h-4 text-marca-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+              </div>
+              <span class="text-xs text-gray-500 font-medium">Total</span>
+            </div>
+            <p class="font-display text-2xl font-bold text-gray-900" id="stat-total">1.247</p>
+            <span class="text-xs text-emerald-600 font-medium">↑ 12% este mês</span>
+          </div>
+          <div class="bg-white rounded-2xl p-3.5 shadow-sm border border-gray-100">
+            <div class="flex items-center gap-2 mb-1">
+              <div class="w-8 h-8 rounded-lg bg-emerald-50 flex items-center justify-center">
+                <svg class="w-4 h-4 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              </div>
+              <span class="text-xs text-gray-500 font-medium">Ativos</span>
+            </div>
+            <p class="font-display text-2xl font-bold text-gray-900" id="stat-ativos">1.089</p>
+            <span class="text-xs text-gray-400">87% do total</span>
+          </div>
+          <div class="bg-white rounded-2xl p-3.5 shadow-sm border border-gray-100">
+            <div class="flex items-center gap-2 mb-1">
+              <div class="w-8 h-8 rounded-lg bg-amber-50 flex items-center justify-center">
+                <svg class="w-4 h-4 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg>
+              </div>
+              <span class="text-xs text-gray-500 font-medium">Plano Pro</span>
+            </div>
+            <p class="font-display text-2xl font-bold text-gray-900" id="stat-pro">456</p>
+            <span class="text-xs text-emerald-600 font-medium">↑ 8% este mês</span>
+          </div>
+          <div class="bg-white rounded-2xl p-3.5 shadow-sm border border-gray-100">
+            <div class="flex items-center gap-2 mb-1">
+              <div class="w-8 h-8 rounded-lg bg-marca-50 flex items-center justify-center">
+                <svg class="w-4 h-4 text-marca-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+              </div>
+              <span class="text-xs text-gray-500 font-medium">Automações</span>
+            </div>
+            <p class="font-display text-2xl font-bold text-gray-900" id="stat-automacoes">2.843</p>
+            <span class="text-xs text-gray-400">média 2,3 por usuário</span>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl p-4 shadow-sm border border-gray-100">
+          <p class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">Cadastros últimos 6 meses</p>
+          <svg viewBox="0 0 300 80" class="w-full h-20">
+            <defs>
+              <linearGradient id="barGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#1e3a5f" stop-opacity="0.8"/>
+                <stop offset="100%" stop-color="#1e3a5f" stop-opacity="0.2"/>
+              </linearGradient>
+            </defs>
+            <line x1="0" y1="70" x2="300" y2="70" stroke="#e5e7eb" stroke-width="1"/>
+            <rect x="10" y="25" width="22" height="45" rx="4" fill="url(#barGrad)"/>
+            <rect x="52" y="15" width="22" height="55" rx="4" fill="url(#barGrad)"/>
+            <rect x="94" y="30" width="22" height="40" rx="4" fill="url(#barGrad)"/>
+            <rect x="136" y="10" width="22" height="60" rx="4" fill="url(#barGrad)" opacity="0.5"/>
+            <rect x="178" y="5" width="22" height="65" rx="4" fill="url(#barGrad)"/>
+            <rect x="220" y="18" width="22" height="52" rx="4" fill="url(#barGrad)" opacity="0.5"/>
+            <rect x="262" y="2" width="22" height="68" rx="4" fill="url(#barGrad)"/>
+            <text x="21" y="78" text-anchor="middle" class="text-[8px] fill-gray-400 font-body">Jul</text>
+            <text x="63" y="78" text-anchor="middle" class="text-[8px] fill-gray-400 font-body">Ago</text>
+            <text x="105" y="78" text-anchor="middle" class="text-[8px] fill-gray-400 font-body">Set</text>
+            <text x="147" y="78" text-anchor="middle" class="text-[8px] fill-gray-400 font-body">Out</text>
+            <text x="189" y="78" text-anchor="middle" class="text-[8px] fill-gray-400 font-body">Nov</text>
+            <text x="231" y="78" text-anchor="middle" class="text-[8px] fill-gray-400 font-body">Dez</text>
+            <text x="273" y="78" text-anchor="middle" class="text-[8px] fill-gray-400 font-body">Jan</text>
+          </svg>
+        </div>
+
+        <div class="space-y-2.5" id="lista-usuarios"></div>
+
+        <div id="estado-vazio" class="hidden text-center py-10">
+          <div class="w-16 h-16 mx-auto rounded-full bg-gray-50 flex items-center justify-center mb-3">
+            <svg class="w-8 h-8 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+          </div>
+          <p class="text-sm font-medium text-gray-600">Nenhum usuário encontrado</p>
+          <p class="text-xs text-gray-400 mt-1">Tente ajustar os filtros ou a busca</p>
+        </div>
+      </div>
+
+      <div id="barra-acoes-massa" class="hidden fixed bottom-0 left-0 right-0 bg-white/90 backdrop-blur-lg border-t border-gray-200 px-5 py-3 z-40">
+        <div class="max-w-[430px] mx-auto flex items-center justify-between">
+          <span class="text-sm font-medium text-gray-700"><span id="contagem-selecao">0</span> selecionados</span>
+          <div class="flex gap-2">
+            <button onclick="gestao_de_usuarios_acaoMassa('plano')" class="text-xs font-medium text-marca-700 bg-marca-50 px-3 py-1.5 rounded-lg active:scale-95 transition">Alterar Plano</button>
+            <button onclick="gestao_de_usuarios_acaoMassa('suspender')" class="text-xs font-medium text-red-700 bg-red-50 px-3 py-1.5 rounded-lg active:scale-95 transition">Suspender</button>
+            <button onclick="gestao_de_usuarios_acaoMassa('notificar')" class="text-xs font-medium text-emerald-700 bg-emerald-50 px-3 py-1.5 rounded-lg active:scale-95 transition">Notificar</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="modal-conteudo"></div>
+
+      <script>
+      (function(){
+        const usuarios = [
+          { id:1, nome:'Mariana Costa Silva', email:'mariana.costa@email.com', telefone:'(11) 98765-4321', cpf:'123.456.789-00', plano:'Pro', status:'ativa', cadastro:'2024-08-15', ultimoAcesso:'2025-06-10', automacoes:['Agendamento Inteligente','Resumo Diário por E-mail','Integração WhatsApp','Faturamento Automático'], automacoesAtivas:3, pagamentos:[{desc:'Plano Pro — Jun/2025',valor:79.90,data:'2025-06-01',status:'pago'},{desc:'Plano Pro — Mai/2025',valor:79.90,data:'2025-05-01',status:'pago'},{desc:'Plano Pro — Abr/2025',valor:79.90,data:'2025-04-01',status:'pago'}], logs:[{acao:'Automacao criada: Faturamento Automatico',data:'2025-06-08 14:32'},{acao:'Login via app Android',data:'2025-06-10 09:15'},{acao:'Plano alterado: Basico → Pro',data:'2024-09-01 10:00'},{acao:'Pagamento confirmado',data:'2025-06-01 08:22'}] },
+          { id:2, nome:'Lucas Oliveira Santos', email:'lucas.oliveira@email.com', telefone:'(21) 97654-3210', cpf:'987.654.321-00', plano:'Básico', status:'ativa', cadastro:'2024-11-20', ultimoAcesso:'2025-06-09', automacoes:['Resumo Diário por E-mail'], automacoesAtivas:1, pagamentos:[{desc:'Plano Básico — Jun/2025',valor:29.90,data:'2025-06-01',status:'pago'},{desc:'Plano Básico — Mai/2025',valor:29.90,data:'2025-05-01',status:'pago'}], logs:[{acao:'Login via web',data:'2025-06-09 16:45'},{acao:'Cadastro realizado',data:'2024-11-20 11:30'}] },
+          { id:3, nome:'Fernanda Lima Pereira', email:'fernanda.lima@email.com', telefone:'(31) 96543-2109', cpf:'456.789.123-00', plano:'Empresarial', status:'ativa', cadastro:'2024-03-10', ultimoAcesso:'2025-06-10', automacoes:['Agendamento Inteligente','Resumo Diário por E-mail','Integração WhatsApp','Faturamento Automático','Relatórios Semanais','Chatbot de Suporte','Análise de Sentimento','Multi-usuário'], automacoesAtivas:7, pagamentos:[{desc:'Plano Empresarial — Jun/2025',valor:199.90,data:'2025-06-01',status:'pago'},{desc:'Plano Empresarial — Mai/2025',valor:199.90,data:'2025-05-01',status:'pago'},{desc:'Plano Empresarial — Abr/2025',valor:199.90,data:'2025-04-01',status:'pago'}], logs:[{acao:'Usuário convidado: carlos@empresa.com',data:'2025-06-09 10:00'},{acao:'Automacao criada: Multi-usuário',data:'2025-05-20 08:15'},{acao:'Login via app iOS',data:'2025-06-10 07:30'}] },
+          { id:4, nome:'Rafael Souza Almeida', email:'rafael.souza@email.com', telefone:'(41) 95432-1098', cpf:'321.654.987-00', plano:'Pro', status:'suspensa', cadastro:'2024-09-05', ultimoAcesso:'2025-05-20', automacoes:['Agendamento Inteligente','Resumo Diário por E-mail'], automacoesAtivas:2, pagamentos:[{desc:'Plano Pro — Jun/2025',valor:79.90,data:'2025-06-01',status:'pendente'},{desc:'Plano Pro — Mai/2025',valor:79.90,data:'2025-05-01',status:'pago'}], logs:[{acao:'Conta suspensa — pagamento pendente',data:'2025-05-20 12:00'},{acao:'Alerta de pagamento enviado',data:'2025-06-01 08:00'}] },
+          { id:5, nome:'Juliana Ferreira Dias', email:'juliana.ferreira@email.com', telefone:'(51) 94321-0987', cpf:'654.987.321-00', plano:'Básico', status:'ativa', cadastro:'2025-01-12', ultimoAcesso:'2025-06-08', automacoes:['Integração WhatsApp'], automacoesAtivas:1, pagamentos:[{desc:'Plano Básico — Jun/2025',valor:29.90,data:'2025-06-01',status:'pago'}], logs:[{acao:'Login via web',data:'2025-06-08 20:10'},{acao:'Primeira automação criada',data:'2025-02-14 16:00'}] },
+          { id:6, nome:'Pedro Henrique Barbosa', email:'pedro.barbosa@email.com', telefone:'(61) 93210-9876', cpf:'789.123.456-00', plano:'Pro', status:'ativa', cadastro:'2024-07-22', ultimoAcesso:'2025-06-10', automacoes:['Agendamento Inteligente','Integração WhatsApp','Faturamento Automático','Relatórios Semanais'], automacoesAtivas:4, pagamentos:[{desc:'Plano Pro — Jun/2025',valor:79.90,data:'2025-06-01',status:'pago'},{desc:'Plano Pro — Mai/2025',valor:79.90,data:'2025-05-01',status:'pago'}], logs:[{acao:'Automacao alterada: Relatorios Semanais',data:'2025-06-05 11:20'},{acao:'Login via app Android',data:'2025-06-10 08:45'}] },
+          { id:7, nome:'Carolina Nascimento Rocha', email:'carolina.n@email.com', telefone:'(71) 92109-8765', cpf:'147.258.369-00', plano:'Empresarial', status:'ativa', cadastro:'2024-01-30', ultimoAcesso:'2025-06-09', automacoes:['Agendamento Inteligente','Resumo Diário por E-mail','Integração WhatsApp','Faturamento Automático','Relatórios Semanais','Chatbot de Suporte','Análise de Sentimento','Multi-usuário','API Webhook','Dashboard Personalizado'], automacoesAtivas:9, pagamentos:[{desc:'Plano Empresarial — Jun/2025',valor:199.90,data:'2025-06-01',status:'pago'},{desc:'Plano Empresarial — Mai/2025',valor:199.90,data:'2025-05-01',status:'pago'}], logs:[{acao:'API Webhook configurada',data:'2025-06-07 09:00'},{acao:'Dashboard Personalizado criado',data:'2025-06-02 15:30'},{acao:'Login via web',data:'2025-06-09 18:00'}] },
+          { id:8, nome:'Thiago Martins Vieira', email:'thiago.martins@email.com', telefone:'(81) 91098-7654', cpf:'369.852.147-00', plano:'Básico', status:'suspensa', cadastro:'2024-12-01', ultimoAcesso:'2025-04-15', automacoes:[], automacoesAtivas:0, pagamentos:[{desc:'Plano Básico — Dez/2024',valor:29.90,data:'2024-12-01',status:'pago'},{desc:'Plano Básico — Jan/2025',valor:29.90,data:'2025-01-01',status:'cancelado'}], logs:[{acao:'Conta suspensa — inatividade',data:'2025-04-15 10:00'},{acao:'Pagamento cancelado',data:'2025-01-05 09:00'}] }
+        ];
+
+        let selecionados = new Set();
+        let filtroPlano = 'todos';
+        let filtroStatus = 'todos';
+        let buscaTexto = '';
+
+        const avatarCores = ['bg-marca-100 text-marca-700','bg-emerald-100 text-emerald-700','bg-amber-100 text-amber-700','bg-rose-100 text-rose-700','bg-sky-100 text-sky-700','bg-violet-100 text-violet-700','bg-teal-100 text-teal-700','bg-orange-100 text-orange-700'];
+        const planoBadge = { 'Básico':'bg-gray-100 text-gray-700','Pro':'bg-marca-100 text-marca-700','Empresarial':'bg-amber-100 text-amber-700' };
+        const statusBadge = { 'ativa':'bg-emerald-100 text-emerald-700','suspensa':'bg-red-100 text-red-700' };
+        const statusLabel = { 'ativa':'Ativa','suspensa':'Suspensa' };
+        const planoLabel = { 'Básico':'Básico','Pro':'Pro','Empresarial':'Empresarial' };
+
+        function getIniciais(nome) {
+          const p = nome.split(' ');
+          return (p[0][0] + (p.length > 1 ? p[p.length-1][0] : '')).toUpperCase();
+        }
+
+        function renderLista() {
+          const lista = document.getElementById('lista-usuarios');
+          const vazio = document.getElementById('estado-vazio');
+          let filtrados = usuarios.filter(u => {
+            const matchBusca = !buscaTexto || u.nome.toLowerCase().includes(buscaTexto.toLowerCase()) || u.email.toLowerCase().includes(buscaTexto.toLowerCase());
+            const matchPlano = filtroPlano === 'todos' || u.plano === filtroPlano;
+            const matchStatus = filtroStatus === 'todos' || u.status === filtroStatus;
+            return matchBusca && matchPlano && matchStatus;
+          });
+          document.getElementById('stat-total').textContent = usuarios.length.toLocaleString('pt-BR');
+          const ativos = usuarios.filter(u => u.status === 'ativa').length;
+          document.getElementById('stat-ativos').textContent = ativos.toLocaleString('pt-BR');
+          const pros = usuarios.filter(u => u.plano === 'Pro').length;
+          document.getElementById('stat-pro').textContent = pros.toLocaleString('pt-BR');
+          const totalAuto = usuarios.reduce((s,u) => s + u.automacoesAtivas, 0);
+          document.getElementById('stat-automacoes').textContent = totalAuto.toLocaleString('pt-BR');
+
+          if (filtrados.length === 0) {
+            lista.innerHTML = '';
+            vazio.classList.remove('hidden');
+            return;
+          }
+          vazio.classList.add('hidden');
+          lista.innerHTML = filtrados.map((u, i) => {
+            const corIdx = (u.id - 1) % avatarCores.length;
+            const selecionado = selecionados.has(u.id);
+            return `
+            <div class="bg-white rounded-2xl p-4 shadow-sm border ${selecionado ? 'border-marca-400 ring-2 ring-marca-100' : 'border-gray-100'} transition-all active:scale-[0.98] cursor-pointer" onclick="gestao_de_usuarios_abrirDetalhe(${u.id})">
+              <div class="flex items-start gap-3">
+                <div class="relative shrink-0">
+                  <div class="w-11 h-11 rounded-full ${avatarCores[corIdx]} flex items-center justify-center font-display font-bold text-sm">${getIniciais(u.nome)}</div>
+                  <div class="absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 rounded-full border-2 border-white ${u.status === 'ativa' ? 'bg-emerald-400' : 'bg-red-400'}"></div>
+                </div>
+                <div class="flex-1 min-w-0">
+                  <div class="flex items-center justify-between gap-2">
+                    <p class="font-display font-semibold text-sm text-gray-900 truncate">${u.nome}</p>
+                    <div class="flex items-center gap-1.5 shrink-0">
+                      <span class="text-[10px] font-semibold px-2 py-0.5 rounded-full ${planoBadge[u.plano]}">${planoLabel[u.plano]}</span>
+                    </div>
+                  </div>
+                  <p class="text-xs text-gray-400 mt-0.5 truncate">${u.email}</p>
+                  <div class="flex items-center gap-3 mt-2">
+                    <span class="text-[10px] font-semibold px-2 py-0.5 rounded-full ${statusBadge[u.status]}">${statusLabel[u.status]}</span>
+                    <span class="text-[10px] text-gray-400 flex items-center gap-1">
+                      <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                      ${u.automacoesAtivas} ativas
+                    </span>
+                    <span class="text-[10px] text-gray-400">${dataBR(u.cadastro)}</span>
+                  </div>
+                </div>
+              </div>
+            </div>`;
+          }).join('');
+        }
+
+      window.gestao_de_usuarios_filtrar = function() {
+        buscaTexto = document.getElementById('busca-usuarios').value;
+        filtroPlano = document.getElementById('filtro-plano').value;
+        filtroStatus = document.getElementById('filtro-status').value;
+        renderLista();
+      };
+
+      window.gestao_de_usuarios_abrirDetalhe = function(id) {
+        const u = usuarios.find(x => x.id === id);
+        if (!u) return;
+        const corIdx = (u.id - 1) % avatarCores.length;
+        const html = `
+          <div class="p-5 space-y-5 max-h-[75vh] overflow-y-auto">
+            <div class="flex items-center gap-4">
+              <div class="w-14 h-14 rounded-full ${avatarCores[corIdx]} flex items-center justify-center font-display font-bold text-lg">${getIniciais(u.nome)}</div>
+              <div>
+                <p class="font-display font-bold text-lg text-gray-900">${u.nome}</p>
+                <p class="text-sm text-gray-500">${u.email}</p>
+                <div class="flex gap-2 mt-1">
+                  <span class="text-[10px] font-semibold px-2 py-0.5 rounded-full ${planoBadge[u.plano]}">${planoLabel[u.plano]}</span>
+                  <span class="text-[10px] font-semibold px-2 py-0.5 rounded-full ${statusBadge[u.status]}">${statusLabel[u.status]}</span>
+                </div>
+              </div>
+            </div>
+            <div class="bg-gray-50 rounded-xl p-4 space-y-2">
+              <p class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Dados Pessoais</p>
+              <div class="grid grid-cols-2 gap-y-2 gap-x-4 text-sm">
+                <div><span class="text-gray-400 text-xs">Telefone</span><p class="text-gray-800 font-medium">${u.telefone}</p></div>
+                <div><span class="text-gray-400 text-xs">CPF</span><p class="text-gray-800 font-medium">${u.cpf}</p></div>
+                <div><span class="text-gray-400 text-xs">Cadastro</span><p class="text-gray-800 font-medium">${dataBR(u.cadastro)}</p></div>
+                <div><span class="text-gray-400 text-xs">Último acesso</span><p class="text-gray-800 font-medium">${dataBR(u.ultimoAcesso)}</p></div>
+              </div>
+            </div>
+            <div>
+              <p class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Histórico de Pagamentos</p>
+              <div class="space-y-2">
+                ${u.pagamentos.map(p => `
+                  <div class="flex items-center justify-between bg-white border border-gray-100 rounded-xl px-3 py-2.5">
+                    <div>
+                      <p class="text-sm font-medium text-gray-800">${p.desc}</p>
+                      <p class="text-xs text-gray-400">${dataBR(p.data)}</p>
+                    </div>
+                    <div class="text-right">
+                      <p class="text-sm font-semibold ${p.status === 'pago' ? 'text-emerald-600' : p.status === 'pendente' ? 'text-amber-600' : 'text-red-500'}">${brl(p.valor)}</p>
+                      <span class="text-[10px] font-semibold uppercase ${p.status === 'pago' ? 'text-emerald-600' : p.status === 'pendente' ? 'text-amber-600' : 'text-red-500'}">${p.status}</span>
+                    </div>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+            <div>
+              <p class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Automações Configuradas</p>
+              <div class="space-y-1.5">
+                ${u.automacoes.map(a => `
+                  <div class="flex items-center gap-2.5 bg-white border border-gray-100 rounded-xl px-3 py-2">
+                    <svg class="w-4 h-4 text-marca-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                    <span class="text-sm text-gray-700">${a}</span>
+                  </div>
+                `).join('')}
+                ${u.automacoes.length === 0 ? '<p class="text-sm text-gray-400 italic">Nenhuma automação configurada</p>' : ''}
+              </div>
+            </div>
+            <div>
+              <p class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Logs de Uso</p>
+              <div class="space-y-1.5">
+                ${u.logs.map(l => `
+                  <div class="flex items-start gap-2.5 bg-white border border-gray-100 rounded-xl px-3 py-2">
+                    <div class="w-1.5 h-1.5 rounded-full bg-marca-300 mt-1.5 shrink-0"></div>
+                    <div>
+                      <p class="text-sm text-gray-700">${l.acao}</p>
+                      <p class="text-[10px] text-gray-400">${l.data}</p>
+                    </div>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+            <div class="grid grid-cols-2 gap-2 pt-1">
+              <button onclick="gestao_de_usuarios_acaoUsuario(${u.id}, 'plano')" class="text-xs font-medium text-marca-700 bg-marca-50 px-3 py-2.5 rounded-xl active:scale-95 transition">Alterar Plano</button>
+              <button onclick="gestao_de_usuarios_acaoUsuario(${u.id}, 'suspender')" class="text-xs font-medium ${u.status === 'ativa' ? 'text-red-700 bg-red-50' : 'text-emerald-700 bg-emerald-50'} px-3 py-2.5 rounded-xl active:scale-95 transition">${u.status === 'ativa' ? 'Suspender Conta' : 'Reativar Conta'}</button>
+              <button onclick="gestao_de_usuarios_acaoUsuario(${u.id}, 'senha')" class="text-xs font-medium text-amber-700 bg-amber-50 px-3 py-2.5 rounded-xl active:scale-95 transition">Redefinir Senha</button>
+              <button onclick="gestao_de_usuarios_acaoUsuario(${u.id}, 'notificar')" class="text-xs font-medium text-emerald-700 bg-emerald-50 px-3 py-2.5 rounded-xl active:scale-95 transition">Enviar Notificação</button>
+            </div>
+          </div>`;
+        abrirModal(html, 'Detalhes do Usuário');
+      };
+
+      window.gestao_de_usuarios_novoUsuario = function() {
+        const html = `
+          <div class="p-5 space-y-4">
+            <div>
+              <label class="text-xs font-semibold text-gray-500 uppercase tracking-wider block mb-1.5">Nome Completo</label>
+              <input id="novo-nome" type="text" placeholder="Ex: Ana Carolina Souza" class="w-full text-sm border border-gray-200 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-marca-500 focus:border-transparent transition">
+            </div>
+            <div>
+              <label class="text-xs font-semibold text-gray-500 uppercase tracking-wider block mb-1.5">E-mail</label>
+              <input id="novo-email" type="email" placeholder="Ex: ana@email.com" class="w-full text-sm border border-gray-200 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-marca-500 focus:border-transparent transition">
+            </div>
+            <div>
+              <label class="text-xs font-semibold text-gray-500 uppercase tracking-wider block mb-1.5">Telefone</label>
+              <input id="novo-telefone" type="tel" placeholder="(00) 00000-0000" maxlength="15" oninput="this.value = this.value.replace(/[^0-9()\\-\\s]/g, '')" class="w-full text-sm border border-gray-200 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-marca-500 focus:border-transparent transition">
+            </div>
+            <div>
+              <label class="text-xs font-semibold text-gray-500 uppercase tracking-wider block mb-1.5">Plano</label>
+              <select id="novo-plano" class="w-full text-sm border border-gray-200 rounded-xl px-4 py-2.5 bg-white focus:outline-none focus:ring-2 focus:ring-marca-500 transition">
+                <option value="Básico">Básico — R$ 29,90/mês</option>
+                <option value="Pro" selected>Pro — R$ 79,90/mês</option>
+                <option value="Empresarial">Empresarial — R$ 199,90/mês</option>
+              </select>
+            </div>
+            <button onclick="gestao_de_usuarios_salvarNovo()" class="w-full bg-marca-700 hover:bg-marca-800 active:scale-[0.98] text-white font-medium text-sm py-3 rounded-xl shadow-lg shadow-marca-700/20 transition-all">Cadastrar Usuário</button>
+          </div>`;
+        abrirModal(html, 'Novo Usuário');
+      };
+
+      window.gestao_de_usuarios_salvarNovo = function() {
+        const nome = document.getElementById('novo-nome').value.trim();
+        const email = document.getElementById('novo-email').value.trim();
+        const telefone = document.getElementById('novo-telefone').value.trim();
+        const plano = document.getElementById('novo-plano').value;
+        if (!nome || !email) { toast('Preencha nome e e-mail', 'erro'); return; }
+        const novo = {
+          id: usuarios.length > 0 ? Math.max(...usuarios.map(u=>u.id)) + 1 : 1,
+          nome, email, telefone: telefone || '(00) 00000-0000', cpf:'000.000.000-00',
+          plano, status:'ativa',
+          cadastro: new Date().toISOString().slice(0,10),
+          ultimoAcesso: new Date().toISOString().slice(0,10),
+          automacoes: [], automacoesAtivas: 0,
+          pagamentos: [{desc:'Plano ' + plano + ' — ' + new Date().toLocaleDateString('pt-BR',{month:'long',year:'numeric'}),valor: plano==='Básico'?29.90:plano==='Pro'?79.90:199.90,data:new Date().toISOString().slice(0,10),status:'pendente'}],
+          logs: [{acao:'Cadastro manual pelo administrador',data:new Date().toISOString().slice(0,10)+' '+new Date().toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'})}]
+        };
+        usuarios.push(novo);
+        fecharModal();
+        renderLista();
+        toast('Usuário "' + nome + '" cadastrado com sucesso!', 'ok');
+      };
+
+      window.gestao_de_usuarios_acaoUsuario = function(id, acao) {
+        const u = usuarios.find(x => x.id === id);
+        if (!u) return;
+        if (acao === 'suspender') {
+          if (u.status === 'ativa') { u.status = 'suspensa'; toast('Conta de ' + u.nome + ' suspensa', 'info'); }
+          else { u.status = 'ativa'; toast('Conta de ' + u.nome + ' reativada', 'ok'); }
+        } else if (acao === 'senha') {
+          toast('E-mail de redefinição enviado para ' + u.email, 'ok');
+        } else if (acao === 'notificar') {
+          toast('Notificação push enviada para ' + u.nome, 'ok');
+        } else if (acao === 'plano') {
+          const planos = ['Básico','Pro','Empresarial'];
+          const idx = planos.indexOf(u.plano);
+          u.plano = planos[(idx + 1) % 3];
+          toast('Plano de ' + u.nome + ' alterado para ' + u.plano, 'ok');
+        }
+        fecharModal();
+        renderLista();
+      };
+
+      window.gestao_de_usuarios_acaoMassa = function(acao) {
+        const count = selecionados.size;
+        if (count === 0) return;
+        if (acao === 'suspender') {
+          selecionados.forEach(id => { const u = usuarios.find(x=>x.id===id); if(u) u.status='suspensa'; });
+          toast(count + ' conta(s) suspensa(s)', 'info');
+        } else if (acao === 'notificar') {
+          toast('Notificação enviada para ' + count + ' usuário(s)', 'ok');
+        } else if (acao === 'plano') {
+          const ids = [...selecionados];
+          const primeiro = usuarios.find(u=>u.id===ids[0]);
+          const planos = ['Básico','Pro','Empresarial'];
+          const idx = planos.indexOf(primeiro.plano);
+          const novoPlano = planos[(idx + 1) % 3];
+          ids.forEach(id => { const u = usuarios.find(x=>x.id===id); if(u) u.plano=novoPlano; });
+          toast('Plano alterado para ' + novoPlano + ' em ' + count + ' usuário(s)', 'ok');
+        }
+        selecionados.clear();
+        document.getElementById('barra-acoes-massa').classList.add('hidden');
+        renderLista();
+      };
+
+      renderLista();
+      })();
+      </script>
+
+      <div class="px-5 pb-8 pt-3 space-y-3">
+        <div class="relative">
+          <svg class="w-4 h-4 text-gray-400 absolute left-3.5 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+          <input id="busca-usuarios" type="text" placeholder="Buscar por nome ou e-mail..." oninput="gestao_de_usuarios_filtrar()" class="w-full text-sm border border-gray-200 rounded-xl pl-10 pr-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-marca-500 focus:border-transparent transition bg-white">
+        </div>
+        <div class="flex gap-2">
+          <select id="filtro-plano" onchange="gestao_de_usuarios_filtrar()" class="flex-1 text-sm border border-gray-200 rounded-xl px-3 py-2.5 bg-white focus:outline-none focus:ring-2 focus:ring-marca-500 transition appearance-none">
+            <option value="todos">Todos os planos</option>
+            <option value="Básico">Básico</option>
+            <option value="Pro">Pro</option>
+            <option value="Empresarial">Empresarial</option>
+          </select>
+          <select id="filtro-status" onchange="gestao_de_usuarios_filtrar()" class="flex-1 text-sm border border-gray-200 rounded-xl px-3 py-2.5 bg-white focus:outline-none focus:ring-2 focus:ring-marca-500 transition appearance-none">
+            <option value="todos">Todos os status</option>
+            <option value="ativa">Ativa</option>
+            <option value="suspensa">Suspensa</option>
+          </select>
+        </div>
+      </div>
+    </section>
+
     <!-- TELAS -->
         </main>
 
