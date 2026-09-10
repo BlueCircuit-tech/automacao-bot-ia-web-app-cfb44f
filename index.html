@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Flow — Automação Inteligente</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        marca: { 50:'#edf5f4',100:'#d1e8e5',200:'#a3d1cb',300:'#75b9b1',400:'#47a297',500:'#1f8c7e',600:'#18706a',700:'#115456',800:'#0a3842',900:'#031c2e' },
+                        destaque: { 50:'#fff8eb',100:'#ffefc6',200:'#ffdf8d',300:'#ffcf54',400:'#ffbf1b',500:'#e6a800',600:'#b38300',700:'#806000',800:'#4d3d00',900:'#1a1900' },
+                        neutro: { 0:'#ffffff',50:'#f6f8fb',100:'#e8ecf3',200:'#d1d7e3',300:'#a3adc4',400:'#7585a5',500:'#475d86',600:'#334568',700:'#202d4a',800:'#111c32',900:'#070f1c' },
+                    },
+                    fontFamily: { display:['Outfit','sans-serif'], body:['Sora','sans-serif'] },
+                    borderRadius: { '2xs':'4px','xs':'8px','sm':'12px','md':'16px','lg':'20px','xl':'24px','2xl':'28px','3xl':'32px','full':'9999px' },
+                    boxShadow: { 'nav':'0 -4px 24px rgba(0,0,0,0.07)','card':'0 2px 12px rgba(0,0,0,0.05)','modal':'0 24px 80px rgba(0,0,0,0.35)','btn':'0 4px 16px rgba(31,140,126,0.35)','btn-d':'0 4px 16px rgba(0,0,0,0.2)','up':'0 -8px 32px rgba(0,0,0,0.12)','glow':'0 0 40px rgba(31,140,126,0.2)' },
+                }
+            }
+        }
+    </script>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+        html,body{height:100%;overflow:hidden;background:#070f1c;font-family:'Sora',sans-serif}
+        ::-webkit-scrollbar{width:3px}
+        ::-webkit-scrollbar-track{background:transparent}
+        ::-webkit-scrollbar-thumb{background:#a3adc4;border-radius:3px}
+        :focus-visible{outline:2px solid #1f8c7e;outline-offset:2px;border-radius:8px}
+        @keyframes fe{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+        @keyframes sl{from{opacity:0;transform:translateX(10px)}to{opacity:1;transform:translateX(0)}}
+        @keyframes pulse-ring{0%{transform:scale(.85);opacity:.7}100%{transform:scale(1.35);opacity:0}}
+        @keyframes shim{0%{background-position:-200% 0}100%{background-position:200% 0}}
+        @keyframes tsin{from{opacity:0;transform:translateY(-16px) scale(.96)}to{opacity:1;transform:translateY(0) scale(1)}}
+        @keyframes tsot{from{opacity:1;transform:translateY(0) scale(1)}to{opacity:0;transform:translateY(-16px) scale(.96)}}
+        [data-tela]{animation:fe .3s ease,sl .28s ease}
+        .badge{display:inline-flex;align-items:center;padding:3px 10px;border-radius:9999px;font-size:11px;font-weight:600;font-family:'Sora',sans-serif;line-height:1.6;letter-spacing:.01em}
+        .card{background:#fff;border-radius:16px;padding:18px;box-shadow:0 2px 12px rgba(0,0,0,0.05)}
+        .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 24px;border:none;border-radius:14px;font-family:'Sora',sans-serif;font-weight:600;font-size:14px;cursor:pointer;transition:all .2s ease;text-decoration:none;line-height:1.3}
+        .btn:active{transform:scale(.97)}
+        .btn-p{background:linear-gradient(135deg,#1f8c7e,#18706a);color:#fff;box-shadow:0 4px 16px rgba(31,140,126,0.35)}
+        .btn-p:hover{box-shadow:0 6px 22px rgba(31,140,126,0.5);transform:translateY(-1px)}
+        .btn-s{background:#f6f8fb;color:#1f8c7e;border:1.5px solid #d1e8e5}
+        .btn-s:hover{background:#edf5f4}
+        .btn-d{background:#1f8c7e;color:#fff;box-shadow:0 4px 16px rgba(0,0,0,0.2)}
+        .btn-d:hover{background:#18706a}
+        .btn-g{background:#e8ecf3;color:#475d86}
+        .btn-g:hover{background:#d1d7e3}
+        .btn-out{background:transparent;color:#1f8c7e;border:1.5px solid #a3d1cb}
+        .btn-out:hover{background:#edf5f4}
+        .btn-sm{padding:8px 16px;font-size:12px;border-radius:10px}
+        .btn-icon{width:42px;height:42px;padding:0;border-radius:12px;border:none;background:#f6f8fb;color:#475d86;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s ease;flex-shrink:0}
+        .btn-icon:hover{background:#edf5f4;color:#1f8c7e}
+        .btn-icon:active{transform:scale(.93)}
+        .nav-btn{display:flex;flex-direction:column;align-items:center;gap:4px;padding:6px 0;min-width:0;flex:1;background:none;border:none;color:#7585a5;cursor:pointer;transition:all .18s ease;font-family:'Sora',sans-serif;font-size:10px;font-weight:500;position:relative;border-radius:12px 12px 4px 4px}
+        .nav-btn::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:0;height:2.5px;background:#1f8c7e;border-radius:2px;transition:width .25s ease}
+        .nav-btn:hover{color:#1f8c7e}
+        .nav-btn.ativo{color:#1f8c7e;font-weight:600}
+        .nav-btn.ativo::before{width:22px}
+        .input{width:100%;padding:13px 16px;border:1.5px solid #d1d7e3;border-radius:12px;font-family:'Sora',sans-serif;font-size:14px;color:#111c32;background:#fff;transition:all .2s ease;outline:none}
+        .input::placeholder{color:#a3adc4}
+        .input:focus{border-color:#1f8c7e;box-shadow:0 0 0 3px rgba(31,140,126,0.1)}
+        .input-erro{border-color:#ef4444!important}
+        .erro-msg{color:#ef4444;font-size:11px;margin-top:4px;display:none;font-family:'Sora',sans-serif}
+        .list-item{display:flex;align-items:center;gap:14px;padding:14px 16px;background:#fff;border-radius:14px;cursor:pointer;transition:all .18s ease;border:1.5px solid transparent}
+        .list-item:hover{background:#f6f8fb;border-color:#d1e8e5;transform:translateX(2px)}
+        .list-item:active{transform:scale(.98)}
+        .check-circle{width:22px;height:22px;border-radius:50%;border:2px solid #d1d7e3;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .2s ease}
+        .check-circle.done{background:#1f8c7e;border-color:#1f8c7e}
+        .toast-c{position:fixed;top:52px;left:50%;transform:translateX(-50%);z-index:9999;display:flex;flex-direction:column;gap:8px;pointer-events:none;width:calc(100% - 32px);max-width:358px}
+        .toast{pointer-events:auto;padding:14px 18px;border-radius:14px;font-size:13px;font-weight:500;font-family:'Sora',sans-serif;display:flex;align-items:center;gap:10px;animation:tsin .3s ease;box-shadow:0 8px 30px rgba(0,0,0,0.18);backdrop-filter:blur(8px)}
+        .toast.remover{animation:tsot .28s ease forwards}
+        .toast-ok{background:rgba(31,140,126,0.95);color:#fff}
+        .toast-erro{background:rgba(239,68,68,0.95);color:#fff}
+        .toast-info{background:rgba(51,69,104,0.95);color:#fff}
+        .modal-ov{position:fixed;inset:0;background:rgba(7,15,28,0.6);z-index:5000;display:flex;align-items:flex-end;justify-content:center;padding:0;animation:fe .2s ease;backdrop-filter:blur(2px)}
+        .modal-ct{background:#fff;border-radius:24px 24px 0 0;width:100%;max-width:430px;max-height:80vh;display:flex;flex-direction:column;animation:fe .3s ease}
+        .modal-ct .modal-head{padding:20px 22px 0;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+        .modal-ct .modal-body{overflow-y:auto;padding:14px 22px 28px;flex:1}
+        .phone-outer{width:100%;min-height:100vh;display:flex;justify-content:center;align-items:center;background:#070f1c}
+        @media(min-width:431px){.phone-outer{background:linear-gradient(135deg,#070f1c 0%,#111c32 50%,#031c2e 100%)}.phone-m{width:390px;min-height:100vh;max-height:100vh;background:#f6f8fb;position:relative;overflow:hidden;border-radius:0;box-shadow:none}}
+        .skeleton{background:linear-gradient(90deg,#e8ecf3 25%,#f6f8fb 50%,#e8ecf3 75%);background-size:200% 100%;animation:shim 1.5s infinite;border-radius:8px}
+    </style>
+</head>
+<body>
+    <div class="phone-outer">
+    <div class="phone-m" id="app">
+
+        <div class="toast-c" id="toast-container"></div>
+
+        <div id="modal"></div>
+
+        <!-- CABEÇALHO GLOBAL -->
+        <header id="global-header" class="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-neutro-100/80">
+            <div class="flex items-center justify-between px-5 pt-3 pb-2.5">
+                <div class="flex items-center gap-2.5">
+                    <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-marca-500 to-marca-700 flex items-center justify-center shadow-glow">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                    </div>
+                    <span class="font-display font-800 text-lg text-neutro-800 tracking-tight">Flow</span>
+                </div>
+                <div class="flex items-center gap-1.5">
+                    <button class="btn-icon !w-9 !h-9" onclick="mostrarTela('notificacoes')" aria-label="Notificações">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
+                    </button>
+                    <div class="relative">
+                        <img src="" alt="" class="w-9 h-9 rounded-full bg-gradient-to-br from-marca-400 to-destaque-400 flex items-center justify-center text-white font-display font-700 text-sm cursor-pointer" onclick="mostrarTela('perfil')" id="avatar-usr">
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- CONTEÚDO PRINCIPAL COM ROLAGEM -->
+        <main id="main-content" style="height:calc(100vh - 56px - 72px);overflow-y:auto;overflow-x:hidden;scroll-behavior:smooth;-webkit-overflow-scrolling:touch">
+            <!-- TELAS -->
+        </main>
+
+        <!-- NAVEGAÇÃO INFERIOR -->
+        <nav class="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[390px] bg-white/90 backdrop-blur-xl border-t border-neutro-100/80 z-50 shadow-nav" id="bottom-nav">
+            <div class="flex items-center justify-around py-1 px-1">
+                <button class="nav-btn" data-nav="painel-principal" onclick="mostrarTela('painel-principal')">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+                    Painel
+                </button>
+                <button class="nav-btn" data-nav="chat-com-ia" onclick="mostrarTela('chat-com-ia')">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                    Chat IA
+                </button>
+                <button class="nav-btn" data-nav="automacoes" onclick="mostrarTela('automacoes')">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                    Fluxos
+                </button>
+                <button class="nav-btn" data-nav="historico" onclick="mostrarTela('historico')">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    Histórico
+                </button>
+                <button class="nav-btn" data-nav="planos" onclick="mostrarTela('planos')">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                    Planos
+                </button>
+            </div>
+            <div style="height:env(safe-area-inset-bottom,0px)"></div>
+        </nav>
+    </div>
+    </div>
+
+    <script>
+        var toastTimer=null;
+        function toast(msg,t){
+            var c=document.getElementById('toast-container');
+            var d=document.createElement('div');
+            var cls=t==='ok'?'toast-ok':t==='erro'?'toast-erro':'toast-info';
+            var ico=t==='ok'?'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>':t==='erro'?'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>':'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>';
+            d.className='toast '+cls;
+            d.innerHTML=ico+msg;
+            c.appendChild(d);
+            if(toastTimer)clearTimeout(toastTimer);
+            toastTimer=setTimeout(function(){d.classList.add('remover');setTimeout(function(){d.remove()},300)},3000);
+        }
+
+        function abrirModal(html,title){
+            var m=document.getElementById('modal');
+            m.innerHTML='<div class="modal-ov" onclick="if(event.target===this)fecharModal()"><div class="modal-ct"><div class="modal-head"><h3 class="font-display font-700 text-base text-neutro-800">'+title+'</h3><button class="btn-icon !w-8 !h-8" onclick="fecharModal()" aria-label="Fechar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div><div class="modal-body">'+html+'</div></div></div>';
+            document.body.style.overflow='hidden';
+        }
+        function fecharModal(){
+            var m=document.getElementById('modal');
+            if(m.innerHTML)m.innerHTML='';
+            document.body.style.overflow='';
+        }
+        document.addEventListener('keydown',function(e){if(e.key==='Escape')fecharModal()});
+
+        function brl(v){return new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL'}).format(v)}
+        function dataBR(i){var d=new Date(i+'T00:00:00');return d.toLocaleDateString('pt-BR')}
+
+        function mostrarTela(id){
+            document.querySelectorAll('[data-tela]').forEach(function(s){s.classList.toggle('hidden',s.dataset.tela!==id)});
+            document.querySelectorAll('[data-nav]').forEach(function(b){b.classList.toggle('ativo',b.dataset.nav===id)});
+            var m=document.getElementById('main-content');if(m)m.scrollTo({top:0,behavior:'smooth'});
+        }
+        document.addEventListener('DOMContentLoaded',function(){mostrarTela('painel-principal')});
+    </script>
+</body>
+</html>
